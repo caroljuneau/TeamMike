@@ -2,6 +2,7 @@ package commanddesignpattern;
 import java.util.*;
 
 public class Agent {
+
 	private ArrayList<Command> orders;
 	
 	public Agent() {
