@@ -1,0 +1,104 @@
+{
+   "PropertyManager": [
+      {
+         "username": "chriswalls",
+         "password": "$@*!@#!@#!",
+         "firstName": "Chris",
+         "lastName": "Walls",
+		 "emailAddress": "test@gmail.com",
+		 "phone": "555-111-1111",
+		 "ratings": {
+			"4",
+			"3",
+			"5"
+		 },
+		 "reviews": {
+			"Review 0": {
+				"rating": "3",
+				"username": "bobbydale",
+				"description" "The fitness gram pacer test"
+			},
+			"Review 1": {
+				"rating": "5",
+				"username": "princeofbelair",
+				"description" "They was up to no good"
+			}
+		 },
+		 "signedLeases": {
+			"Lease 0": {
+				"property": {
+				}
+				"fees": "electric, 35/mo parking, 300 security deposit",
+				"repairs": "The owner shall replace/repair amenities like the dryer",
+				"termination": "The contract shall only be terminated if",
+				"info": "yeah this property is pretty cool",
+				"signed": "false",
+				"signedBy" : {
+				}
+			},
+			"Lease 1": {
+				"property": {
+				}
+				"fees": "600 security deposit",
+				"repairs": "The owner shall replace/repair amenities like the dryer",
+				"termination": "The contract shall only be terminated if",
+				"info": "yeah this property is pretty cool",
+				"signed": "true",
+				"signedBy" : {
+					"bobbydale",
+					"chriswalls"
+				}
+			}
+		 }
+		 "myProperties": {
+			"Property 1": {
+				"amenities": {
+					"Parking",
+					"Washer/Dryer"
+				},
+				"utilities": "Water, sewage, and trash included.",
+				"location": "123 Picadilly St",
+				"pictures": {
+					filepath/to/picture,
+					filepath/to/picture2
+				},
+				"price": "1200",
+				"ratings": {
+					"3",
+					"4"
+				},
+				"reviews": {
+					"Review 0": {
+						"rating": "3",
+						"username": "bobbydale",
+						"description" "The fitness gram pacer test"
+					},
+					"Review 1": {
+						"rating": "5",
+						"username": "princeofbelair",
+						"description" "They was up to no good"
+					}
+				},
+				"beds": "3",
+				"baths": "2",
+				"lease": {
+					"Lease 0": {
+						"fees": "600 security deposit",
+						"repairs": "The owner shall replace/repair amenities like the dryer",
+						"termination": "The contract shall only be terminated if",
+						"info": "yeah this property is pretty cool",
+						"signed": "true",
+						"signedBy": {
+							"bobbydale",
+							"chriswalls"
+						}
+					}
+				},
+				"description": "christopher columbus sailed in 1492",
+				"contact": "Chris Walls 555-111-1111",
+				"visible": "false"
+			}
+		 }
+      }
+   ]
+}
