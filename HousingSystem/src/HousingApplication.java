@@ -5,8 +5,8 @@ public class HousingApplication {
 	private AccountList accounts;
 	
 	public HousingApplication() {
-		properties = PropertyList.getInstance();
-		accounts = AccountList.getInstance();
+		//properties = PropertyList.getInstance();
+		//accounts = AccountList.getInstance();
 	}
 	
 	public String listProperties(ArrayList<Property> properties) {
@@ -44,22 +44,6 @@ public class HousingApplication {
 	}
 	
 	public void createStudentAccount() {
-		
-	}
-	
-	public ArrayList<Property> getMyFavoriteProperties() {
-		return null;
-	}
-	
-	public ArrayList<Lease> getMySignedLeases() {
-		return null;
-	}
-	
-	public void rateProperty(Property property) {
-		
-	}
-	
-	public void manageAccount(Student student) {
 		
 	}
 	
