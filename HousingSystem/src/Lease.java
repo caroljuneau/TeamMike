@@ -1,5 +1,3 @@
-package Stubs;
-
 public class Lease {
 
 	private void property() {
