@@ -1,0 +1,27 @@
+{"reviews":[
+  {
+  	"reviewId":1,
+  	"propertyId":1,
+  	"username":"",
+	"id":"",
+    "description":"very nice property, fit me and my friends needs for 3 years. great property managers!"
+  },{
+  	"reviewId":2,
+  	"propertyId":1,
+  	"username":"",
+	"id":"",
+    "description":"review 2 very nice property, fit me and my friends needs for 3 years. great property managers!"
+  },{
+  	"reviewId":3,
+  	"propertyId":3,
+  	"username":"",
+	"id":"",
+    "description":"nice review 3"
+  },{
+  	"reviewId":4,
+  	"propertyId":4,
+  	"username":"",
+	"id":"",
+    "description":"very nice property, fit me and my friends needs for 3 years. great property managers!"
+  },
+]}
