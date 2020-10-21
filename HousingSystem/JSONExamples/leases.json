@@ -1,0 +1,39 @@
+{"leases":[
+  {
+  	"leaseId":1,
+  	"propertyId":1,
+  	"fees":"One month's rent security deposit",
+    "repairs":"",
+    "termination":"",
+    "info": "",
+    "signed":false,
+    "signedBy": []
+  },{
+  	"leaseId":2,
+  	"propertyId":2,
+  	"fees":"One month's rent security deposit",
+    "repairs":"",
+    "termination":"",
+    "info": "",
+    "signed":false,
+    "signedBy": []
+  },{
+  	"leaseId":3,
+  	"propertyId":3,
+  	"fees":"One month's rent security deposit",
+    "repairs":"",
+    "termination":"",
+    "info": "",
+    "signed":false,
+    "signedBy": []
+  },{
+  	"leaseId":4,
+  	"propertyId":4,
+  	"fees":"One month's rent security deposit",
+    "repairs":"",
+    "termination":"",
+    "info": "",
+    "signed":false,
+    "signedBy": []
+  },
+]}
