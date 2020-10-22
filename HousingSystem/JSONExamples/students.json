@@ -1,63 +1,51 @@
-{"students":[
+[
   {
-  	"id":1,
+  	"id":"1",
   	"username":"cwalls",
+	"password":"password",
   	"firstName":"Chris",
 	"lastName":"Walls",
 	"emailAddress":"christopherwallssc@gmail.com",
-	"phone":"803-521-6174",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
+	"phone":"803-521-6174"
   },{
-  	"id":2,
+  	"id":"2",
   	"username":"cjuneau",
+	"password":"password",
   	"firstName":"Carol",
 	"lastName":"Juneau",
 	"emailAddress":"cjuneau@gmail.com",
-	"phone":"803-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
+	"phone":"803-555-5555"
   },{
-  	"id":3,
+  	"id":"3",
   	"username":"cframes",
+	"password":"password",
   	"firstName":"Collin",
 	"lastName":"Frames",
 	"emailAddress":"cframes@gmail.com",
-	"phone":"843-610-1455",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
+	"phone":"843-610-1455"
   },{
-  	"id":4,
+  	"id":"4",
   	"username":"chenry",
+	"password":"password",
   	"firstName":"Chase",
 	"lastName":"Henry",
 	"emailAddress":"chenry@gmail.com",
-	"phone":"803-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
-  },
-	"id":5,
+	"phone":"803-555-5555"
+  },{
+	"id":"5",
   	"username":"billjones",
+	"password":"password",
   	"firstName":"Bill",
 	"lastName":"Jones",
 	"emailAddress":"billjones@gmail.com",
-	"phone":"803-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
-  },
-	"id":6,
+	"phone":"803-555-5555"
+  },{
+	"id":"6",
   	"username":"wapgirl12",
+	"password":"password",
   	"firstName":"Belcalis",
 	"lastName":"Almanzar",
 	"emailAddress":"cardib@gmail.com",
-	"phone":"555-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
-  },
-]}
+	"phone":"555-555-5555"
+  }
+]

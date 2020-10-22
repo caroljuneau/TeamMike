@@ -1,5 +1,8 @@
 import java.util.*;
 import java.io.FileReader;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
 
 public class dataLoader extends DataConstants{
 	
@@ -8,10 +11,35 @@ public class dataLoader extends DataConstants{
 		
 		return property;
 	}
-	public static Student loadStudent() {
-		Student student = new Student();
+	public static ArrayList<Student> loadStudent() {
+		ArrayList<Student> students = new ArrayList<Student>();
 		
-		return student;
+		try {
+			FileReader reader = new FileReader(STUDENT_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray studentsJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < studentsJSON.size(); i++) {
+				JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
+				int id = Integer.parseInt((String)studentJSON.get(ID));
+				String username = (String)studentJSON.get(USER_NAME);
+				String password = (String)studentJSON.get(PASSWORD);
+				String firstName = (String)studentJSON.get(FIRST_NAME);
+				String lastName = (String)studentJSON.get(LAST_NAME);
+				String emailAddress = (String)studentJSON.get(EMAIL);
+				String phone = (String)studentJSON.get(PHONE);
+				String studentID = (String)studentJSON.get(STUDENT);
+				System.out.println(id);
+				students.add(new Student(username, password, firstName, lastName, emailAddress, phone, studentID));
+			}
+			
+			
+			return students;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	public static PropertyManager loadPropertyManager() {
 		PropertyManager manager = new PropertyManager();
