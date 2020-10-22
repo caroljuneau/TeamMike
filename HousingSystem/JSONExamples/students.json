@@ -6,7 +6,11 @@
   	"firstName":"Chris",
 	"lastName":"Walls",
 	"emailAddress":"christopherwallssc@gmail.com",
-	"phone":"803-521-6174"
+	"phone":"803-521-6174",
+	"favorites":[1],
+	"ratings":[1, 2, 3],
+	"reviews":[1],
+	"signedLeases":[]
   },{
   	"id":"2",
   	"username":"cjuneau",
@@ -14,7 +18,11 @@
   	"firstName":"Carol",
 	"lastName":"Juneau",
 	"emailAddress":"cjuneau@gmail.com",
-	"phone":"803-555-5555"
+	"phone":"803-555-5555",
+	"favorites":[1, 2, 3],
+	"ratings":[5, 5, 5],
+	"reviews":[2],
+	"signedLeases":[]
   },{
   	"id":"3",
   	"username":"cframes",
@@ -22,7 +30,11 @@
   	"firstName":"Collin",
 	"lastName":"Frames",
 	"emailAddress":"cframes@gmail.com",
-	"phone":"843-610-1455"
+	"phone":"843-610-1455",
+	"favorites":[4],
+	"ratings":[1, 1, 1],
+	"reviews":[3],
+	"signedLeases":[]
   },{
   	"id":"4",
   	"username":"chenry",
@@ -30,7 +42,11 @@
   	"firstName":"Chase",
 	"lastName":"Henry",
 	"emailAddress":"chenry@gmail.com",
-	"phone":"803-555-5555"
+	"phone":"803-555-5555",
+	"favorites":[2],
+	"ratings":[4, 3, 5],
+	"reviews":[4],
+	"signedLeases":[]
   },{
 	"id":"5",
   	"username":"billjones",
@@ -38,7 +54,11 @@
   	"firstName":"Bill",
 	"lastName":"Jones",
 	"emailAddress":"billjones@gmail.com",
-	"phone":"803-555-5555"
+	"phone":"803-555-5555",
+	"favorites":[2, 3],
+	"ratings":[5, 1, 2],
+	"reviews":[],
+	"signedLeases":[]
   },{
 	"id":"6",
   	"username":"wapgirl12",
@@ -46,6 +66,10 @@
   	"firstName":"Belcalis",
 	"lastName":"Almanzar",
 	"emailAddress":"cardib@gmail.com",
-	"phone":"555-555-5555"
+	"phone":"555-555-5555",
+	"favorites":[3, 4],
+	"ratings":[2, 2, 3],
+	"reviews":[],
+	"signedLeases":[]
   }
 ]
