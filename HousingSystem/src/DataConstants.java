@@ -1,5 +1,3 @@
-import java.util.*;
-
 public abstract class DataConstants {	
 	/** Filepaths to JSON Data */
 	protected static final String MANAGER_FILE_NAME = "../JSONExamples/PropertyManager.JSON";

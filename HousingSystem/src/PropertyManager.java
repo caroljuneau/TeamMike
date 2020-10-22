@@ -9,6 +9,9 @@ public class PropertyManager {
 		return;
 	}
 	
+	public PropertyManager() {
+		// TODO Auto-generated constructor stub
+	}
 	public void createProperty(ArrayList<String> amenities, String utilities, String location, ArrayList<String> pictures, int price, ArrayList<Review> reviews, int beds, int baths, Lease lease, String description, String contact, boolean signedLease)
 	{
 		return; 
