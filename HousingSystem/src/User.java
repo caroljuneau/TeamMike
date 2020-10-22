@@ -8,10 +8,10 @@ public class User
 	
 	private User() 
 	{
-		userList = Database.getUsers();
+		//userList = Database.getUsers();
 	}
 	
-	public static Users getInstance() 
+	public static User getInstance() 
 	{
 		if(users == null) 
 		{
