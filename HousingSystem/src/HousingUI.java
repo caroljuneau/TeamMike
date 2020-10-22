@@ -4,10 +4,11 @@ public class HousingUI {
 
 	private Scanner keyboard;
 	private HousingApplication application;
-	private Account account;
+	//private Account account;
 	
 	private static final String WELCOME = "Welcome!";
 	private static final String GOODBYE = "Goodbye!";
+	private static final String LOGOUT = "Logging out...";
 	private static final String INVALID = "Invalid command";
 	private static final String STUDENT = "Student";
 	private static final String PM = "Property Manager";
@@ -47,6 +48,12 @@ public class HousingUI {
 			"Rate/review a student", //4
 			"Manage account", //5
 			"Log out" //6
+		};
+	private String[] guestOptions = 
+		{
+			"Guest Menu: ",
+			"Browse properties", //1
+			"Go back" //2
 		};
 	private String[] browsePropertiesOptions = 
 		{
@@ -102,8 +109,10 @@ public class HousingUI {
 				default:
 					break;
 				}
+				break;
 			case 2:
 				String type = logIn();
+				//TODO update based on type
 				switch(type) {
 				case STUDENT:
 					studentLoop();
@@ -114,6 +123,7 @@ public class HousingUI {
 				default:
 					break;
 				}
+				break;
 			case 3:
 				guestLoop();
 				break;
@@ -144,7 +154,8 @@ public class HousingUI {
 	
 	// should return the type of account, either student or pm. maybe make an enum intead of using string
 	private String logIn() {
-		return "";
+		return "STUDENT";
+		//TODO update
 	}
 	
 	private void createStudentAccount() {
@@ -156,14 +167,137 @@ public class HousingUI {
 	}
 	
 	private void studentLoop() {
-		
+		boolean logOut = false;
+		while(!logOut) {
+			displayMenu(studentOptions);
+			int userCommand = getUserCommand(studentOptions.length);
+			switch(userCommand) {
+			case -1:
+				System.out.println(INVALID);
+				break;
+			case 1:
+				browsePropertiesLoop();
+				break;
+			case 2:
+				viewFavProperties();
+				break;
+			case 3:
+				viewSignedLeases();
+				break;
+			case 4:
+				reviewProperty();
+				break;
+			case 5:
+				reviewPropertyManager();
+				break;
+			case 6:
+				manageAccount();
+				break;
+			default:
+				System.out.println(LOGOUT);
+				logOut = true;
+				break;
+			}
+		}
 	}
-	
+
 	private void propertyManagerLoop() {
-		
+		boolean logOut = false;
+		while(!logOut) {
+			displayMenu(propertyManagerOptions);
+			int userCommand = getUserCommand(propertyManagerOptions.length);
+			switch(userCommand) {
+			case -1:
+				System.out.println(INVALID);
+				break;
+			case 1:
+				manageProperties();
+				break;
+			case 2:
+				viewMyProperties();
+				break;
+			case 3:
+				viewSignedLeases();
+				break;
+			case 4:
+				reviewStudent();
+				break;
+			case 5:
+				manageAccount();
+				break;
+			default:
+				System.out.println(LOGOUT);
+				logOut = true;
+				break;
+			}
+		}
 	}
 	
 	private void guestLoop() {
+		boolean goBack = false;
+		while(!goBack) {
+			displayMenu(guestOptions);
+			int userCommand = getUserCommand(guestOptions.length);
+			switch(userCommand) {
+			case -1:
+				System.out.println(INVALID);
+				break;
+			case 1:
+				browsePropertiesLoop();
+				break;
+			default:
+				goBack = true;
+				break;
+			}
+		}
+	}
+	
+	private void browsePropertiesLoop() {
+		boolean goBack = false;
+		while(!goBack) {
+			displayMenu(browsePropertiesOptions);
+			int userCommand = getUserCommand(browsePropertiesOptions.length);
+			switch(userCommand) {
+			case -1:
+				System.out.println(INVALID);
+				break;
+				//TODO rest of cases
+			default:
+				goBack = true;
+				break;
+			}
+		}
+	}
+	
+	private void viewFavProperties() {
+		
+	}
+	
+	private void viewSignedLeases() {
+		
+	}
+	
+	private void reviewProperty() {
+		
+	}
+	
+	private void reviewPropertyManager() {
+		
+	}
+	
+	private void manageAccount() {
+		
+	}
+	
+	private void manageProperties() {
+		
+	}
+	
+	private void viewMyProperties() {
+		
+	}
+	
+	private void reviewStudent() {
 		
 	}
 	
