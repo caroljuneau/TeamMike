@@ -4,7 +4,13 @@ public class HousingUI {
 
 	private Scanner keyboard;
 	private HousingApplication application;
-	//private User user;
+	private Account account;
+	
+	private static final String WELCOME = "Welcome!";
+	private static final String GOODBYE = "Goodbye!";
+	private static final String INVALID = "Invalid command";
+	private static final String STUDENT = "Student";
+	private static final String PM = "Property Manager";
 	
 	private String[] mainMenuOptions = 
 		{
@@ -19,9 +25,7 @@ public class HousingUI {
 			"Create Account Menu: ",
 			"Create student account", //1
 			"Create property manager account", //2
-			"Create hybrid account", //3
-			"Go back", //4
-			"Exit" //5
+			"Go back" //3
 		};
 	private String[] studentOptions = 
 		{
@@ -44,14 +48,7 @@ public class HousingUI {
 			"Manage account", //5
 			"Log out" //6
 		};
-	private String[] guestOptions = 
-		{
-			"Guest Menu: ",
-			"Browse properties", //1
-			"Create account", //2
-			"Exit" //3
-		};
-	private String[] browseProperties = 
+	private String[] browsePropertiesOptions = 
 		{
 			"Browse Properties Menu: ",
 			"View all properties", //1
@@ -62,15 +59,15 @@ public class HousingUI {
 			"Filter by amenities", //6
 			"Filter by price range", //7
 			"Go back", //8
-			"Exit" //9
 		};
-	private String[] manageProperties = 
+	private String[] managePropertiesOptions = 
 		{
 			"Manage Properties Menu: ",
 			"Add a new property", //1
 			"Edit an existing property", //2
 			"Delete an existing property", //3
-			"Create a lease" //4
+			"Create a lease", //4
+			"Go back" //5
 		};
 	
 	public HousingUI() {
@@ -79,27 +76,49 @@ public class HousingUI {
 	}
 	
 	public void run() {
-		System.out.println("Welcome");
+		System.out.println(WELCOME);
 		while(true) {
 			displayMenu(mainMenuOptions);
 			int userCommand = getUserCommand(mainMenuOptions.length);
-			if(userCommand == -1) {
-				System.out.println("Invalid command");
-				continue;
-			}
 			switch(userCommand) {
+			case -1:
+				System.out.println(INVALID);
+				break;
 			case 1:
 				displayMenu(createAccountOptions);
-				break;
-			case 2: 
-				logIn();
-				break;
+				userCommand = getUserCommand(createAccountOptions.length);
+				switch(userCommand) {
+				case -1:
+					System.out.println(INVALID);
+					break;
+				case 1:
+					createStudentAccount();
+					studentLoop();
+					break;
+				case 2:
+					createPropertyManagerAccount();
+					propertyManagerLoop();
+					break;
+				default:
+					break;
+				}
+			case 2:
+				String type = logIn();
+				switch(type) {
+				case STUDENT:
+					studentLoop();
+					break;
+				case PM:
+					propertyManagerLoop();
+					break;
+				default:
+					break;
+				}
 			case 3:
-				displayMenu(guestOptions);
+				guestLoop();
 				break;
 			default:
-				logOut();
-				System.exit(1);
+				System.out.println(GOODBYE);
 			}
 		}
 	}
@@ -123,17 +142,33 @@ public class HousingUI {
 		return -1;
 	}
 	
-	private void logIn() {
+	// should return the type of account, either student or pm. maybe make an enum intead of using string
+	private String logIn() {
+		return "";
+	}
+	
+	private void createStudentAccount() {
 		
 	}
 	
-	private void logOut() {
-		System.out.println("Goodbye");
+	private void createPropertyManagerAccount() {
+		
+	}
+	
+	private void studentLoop() {
+		
+	}
+	
+	private void propertyManagerLoop() {
+		
+	}
+	
+	private void guestLoop() {
+		
 	}
 	
 	public static void main(String[] args) {
 		HousingUI driver = new HousingUI();
 		driver.run();
 	}
-
 }

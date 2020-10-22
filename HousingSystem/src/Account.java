@@ -20,19 +20,20 @@ public class Account {
 	
 	public void addReview()
 	{
+		
 	}
 	
-	public ArrayList<Review> getReviewed;
+	public ArrayList<Review> getReviews()
 	{
 		return null;
 	}
 	
 	public void signLease(Property property)
 	{
-		return null;
+		
 	}
 	
-	public ArrayList<Lease> getSignedLease()
+	public ArrayList<Lease> getSignedLeases()
 	{
 		return null;
 	}
