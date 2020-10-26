@@ -5,14 +5,12 @@ public class HousingUI {
 
 	private Scanner keyboard;
 	private HousingApplication application;
-	//private Account account;
+	private Account user;
 	
 	private static final String WELCOME = "Welcome!";
 	private static final String GOODBYE = "Goodbye!";
 	private static final String LOGOUT = "Logging out...";
 	private static final String INVALID = "Invalid command";
-	private static final String STUDENT = "Student";
-	private static final String PM = "Property Manager";
 	
 	private String[] mainMenuOptions = 
 		{
@@ -119,13 +117,12 @@ public class HousingUI {
 				}
 				break;
 			case 2:
-				String type = logIn();
-				//TODO update based on type
-				switch(type) {
+				logIn();
+				switch(user.getAccountType()) {
 				case STUDENT:
 					studentLoop();
 					break;
-				case PM:
+				case PROPERTYMANAGER:
 					propertyManagerLoop();
 					break;
 				default:
@@ -160,10 +157,16 @@ public class HousingUI {
 		return -1;
 	}
 	
-	// should return the type of account, either student or pm. maybe make an enum intead of using string
-	private String logIn() {
-		return "STUDENT";
-		//TODO update
+	private void logIn() {
+		this.user = null;
+		while(this.user != null)
+		{
+			System.out.println("Please enter your username.");
+			String username = keyboard.nextLine();
+			System.out.println("Please enter your password.");
+			String password = keyboard.nextLine();
+			this.user = application.logIn(username, password);
+		}
 	}
 	
 	private void createStudentAccount() {

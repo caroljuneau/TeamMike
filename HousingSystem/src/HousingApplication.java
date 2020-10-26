@@ -8,6 +8,13 @@ public class HousingApplication {
 		//properties = PropertyList.getInstance();
 		//accounts = AccountList.getInstance();
 	}
+	
+	public Account logIn(String username, String password)
+	{
+		// need to return the account with the given username and password
+		// if it does not exist, print out an error message and return null
+		return null;
+	}
 
 	public String listProperties(ArrayList<Property> properties) {
 		// list all the properties from the given arraylist

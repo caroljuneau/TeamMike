@@ -1,12 +1,22 @@
 import java.util.ArrayList;
 
-public class PropertyManager {
+public class PropertyManager extends Account {
 
 	private ArrayList<Property> myProperties;
 	
 	public PropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone)
 	{
-		return;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
+		this.phone = phone;
+		this.type = AccountType.PROPERTYMANAGER;
+		this.myProperties = null;
+		this.ratings = null;
+		this.reviews = null;
+		this.signedLeases = null;
 	}
 	
 	public PropertyManager() {
@@ -14,31 +24,31 @@ public class PropertyManager {
 	}
 	public void createProperty(ArrayList<String> amenities, String utilities, String location, ArrayList<String> pictures, int price, ArrayList<Review> reviews, int beds, int baths, Lease lease, String description, String contact, boolean signedLease)
 	{
-		return; 
+		
 	}
 	
 	public void addMyProperty(Property property)
 	{
-		return;
+		
 	}
 	
 	public void createLease(Property property)
 	{
-		return;
+		
 	}
 	
 	public void deleteProperty(Property property)
 	{
-		return;
+		
 	}
 	
 	public void editProperty(Property property)
 	{
-		return;
+		
 	}
 	
 	public void reviewStudent(Student student, int rating, String username, String review)
 	{
-		return;
+		
 	}
 }
