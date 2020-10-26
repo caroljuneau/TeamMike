@@ -1,75 +1,81 @@
 [
   {
   	"id":"1",
+	"studentId":"12345",
   	"username":"cwalls",
 	"password":"password",
   	"firstName":"Chris",
 	"lastName":"Walls",
 	"emailAddress":"christopherwallssc@gmail.com",
 	"phone":"803-521-6174",
-	"favorites":[1],
+	"favoriteIDs":[1],
 	"ratings":[1, 2, 3],
-	"reviews":[1],
-	"signedLeases":[]
+	"reviewIDs":[1],
+	"signedLeaseIDs":[]
   },{
   	"id":"2",
+	"studentId":"23456",
   	"username":"cjuneau",
 	"password":"password",
   	"firstName":"Carol",
 	"lastName":"Juneau",
 	"emailAddress":"cjuneau@gmail.com",
 	"phone":"803-555-5555",
-	"favorites":[1, 2, 3],
+	"favoriteIDs":[1, 2, 3],
 	"ratings":[5, 5, 5],
-	"reviews":[2],
-	"signedLeases":[]
+	"reviewIDs":[2],
+	"signedLeaseIDs":[]
   },{
   	"id":"3",
+	"studentId":"34567",
   	"username":"cframes",
 	"password":"password",
   	"firstName":"Collin",
 	"lastName":"Frames",
 	"emailAddress":"cframes@gmail.com",
 	"phone":"843-610-1455",
-	"favorites":[4],
+	"favoriteIDs":[4],
 	"ratings":[1, 1, 1],
-	"reviews":[3],
-	"signedLeases":[]
+	"reviewsIDs":[3],
+	"signedLeaseIDs":[]
   },{
   	"id":"4",
+	"studentId":"45678",
   	"username":"chenry",
 	"password":"password",
   	"firstName":"Chase",
 	"lastName":"Henry",
 	"emailAddress":"chenry@gmail.com",
 	"phone":"803-555-5555",
-	"favorites":[2],
+	"favoriteIDs":[2],
 	"ratings":[4, 3, 5],
-	"reviews":[4],
-	"signedLeases":[]
+	"reviewIDs":[4],
+	"signedLeaseIDs":[]
   },{
 	"id":"5",
+	"studentId":"56789",
   	"username":"billjones",
 	"password":"password",
   	"firstName":"Bill",
 	"lastName":"Jones",
 	"emailAddress":"billjones@gmail.com",
 	"phone":"803-555-5555",
-	"favorites":[2, 3],
+	"favoriteIDs":[2, 3],
 	"ratings":[5, 1, 2],
-	"reviews":[],
-	"signedLeases":[]
+	"reviewIDs":[],
+	"signedLeaseIDs":[]
   },{
 	"id":"6",
+	"studentId":"67890",
   	"username":"wapgirl12",
 	"password":"password",
   	"firstName":"Belcalis",
 	"lastName":"Almanzar",
 	"emailAddress":"cardib@gmail.com",
 	"phone":"555-555-5555",
-	"favorites":[3, 4],
+	"favoritesIDs":[3, 4],
 	"ratings":[2, 2, 3],
-	"reviews":[],
-	"signedLeases":[]
+	"reviewIDs":[],
+	"signedLeaseIDs":[]
   }
 ]

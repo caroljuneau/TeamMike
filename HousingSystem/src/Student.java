@@ -2,8 +2,22 @@ import java.util.ArrayList;
 
 public class Student extends Account {
 	
-	private String studentID;
 	private ArrayList<Property> favoriteProperties;
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String emailAddress;
+	private String phone;
+	private String studentID;
+	private int[] ratings;
+	private int rating;
+	private ArrayList<Review> reviews;
+	private ArrayList<Lease> signedLeases;
+	private ArrayList<Property> favorites;
+	private int[] reviewIDs;
+	private int[] signedLeaseIDs;
+	private int[] favoriteIDs;
 //	static Student student = new Student();
 	
 	public Student(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)

@@ -14,12 +14,9 @@ public abstract class DataConstants {
 	protected static final String LAST_NAME = "lastName";
 	protected static final String EMAIL = "emailAddress";
 	protected static final String PHONE = "phone";
-	/** @todo
-	 * replace ratings, reviews, and leases by corresponding IDS
-	 * protected static final String RATINGS = "ratings";
-	 * protected static final String REVIEWS = "reviews";
-	 * protected static final String LEASES = "signedLeases";
-	 */
+	protected static final String RATINGS = "ratings";
+	protected static final String REVIEWS = "reviewIDs";
+	protected static final String LEASES = "signedLeaseIDs";
 	
 	/** Strings to read Property Manager JSON File */
 	protected static final String MANAGER = "propertyManager";
@@ -27,6 +24,7 @@ public abstract class DataConstants {
 
 	/** Strings to read Students JSON File */
 	protected static final String STUDENT = "studentId";
+	protected static final String FAVORITES = "favoriteIDs";
 	
 	/** Strings to read Properties JSON File */
 	protected static final String PROPERTY = "properties";

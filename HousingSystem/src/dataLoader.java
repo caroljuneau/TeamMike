@@ -31,6 +31,28 @@ public class dataLoader extends DataConstants{
 				String studentID = (String)studentJSON.get(STUDENT);
 				Student student = new Student(username, password, firstName, lastName, emailAddress, phone, studentID);
 				students.add(student);
+				//loop array
+				String fav = (String)studentJSON.get(FAVORITES);
+				for(int j=0; j < fav.length(); j++) {
+					JSONObject fav = (JSONObject)studentsJSON.get(FAVORITES);
+				}
+//				int favoriteIds = (Integer)studentJSON.get(FAVORITES);
+//				System.out.println(favoriteIds);
+//				int size = favoriteIds.length();
+//				int[] arr = new int [size];
+//				for(int i = 0; i < size; i++) {
+//					arr[i] = Integer.parseInt(favoriteIds[i]);
+//				}
+				
+//				JSONArray favorite = (JSONArray)new JSONParser().parse(reader);
+//				int[] ids;
+//				for(int j=0; j < favorite.size(); j++) {
+//					ids = new int[favorite.size()];
+//					ids[i] = Integer.parseInt((String)favorite.get(j));
+//					System.out.println(ids[i]);
+//				}
+				//student.setFavoriteIDs(ids);
+				
 			}
 			
 			
