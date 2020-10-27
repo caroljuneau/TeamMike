@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Account {
 
+	protected int id;
 	protected String username;
 	protected String password;
 	protected String firstName;
@@ -113,5 +114,9 @@ public class Account {
 				"\nLast: " + this.lastName + "\nEmail: " + this.emailAddress + "\nPhone: " +
 				this.phone + "\nAvg Rating: " + this.getAvgRating();
 		return s;
+	}
+	
+	public String getName() {
+		return this.firstName + " " + this.lastName;
 	}
 }

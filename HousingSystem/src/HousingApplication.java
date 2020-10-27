@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HousingApplication {
 	private Property properties;
@@ -96,16 +97,16 @@ public class HousingApplication {
 	    }
 	    return sort;
 	}
-
-	public ArrayList<Property> sortByKeyword(String key, ArrayList<Property> list) {
-		ArrayList<Property> sort = new ArrayList<Property>();
-	    for(Property string : list){
-	        if(string.matches(key)){
-	            sort.add(string);
-	        }
-	    }
-	    return sort;
-	}
+// why is this duplicate?
+//	public ArrayList<Property> sortByKeyword(String key, ArrayList<Property> list) {
+//		ArrayList<Property> sort = new ArrayList<Property>();
+//	    for(Property string : list){
+//	        if(string.matches(key)){
+//	            sort.add(string);
+//	        }
+//	    }
+//	    return sort;
+//	}
 
 	public boolean usernameInList(AccountType type, String username) {
 		if(students.usernameInList(username) || propertyManagers.usernameInList(username)) {

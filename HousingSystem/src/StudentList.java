@@ -7,6 +7,7 @@ public class StudentList {
 
 	private StudentList() {
 		students = dataLoader.loadStudent();
+		//students = new ArrayList<Student>();
 	}
 
 	public static StudentList getInstance() {
@@ -16,10 +17,9 @@ public class StudentList {
 		return studentList;
 	}
 
-	public int addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
-		int id = students.size();
-		students.add(new Student(username, password, firstName, lastName, emailAddress, phone, studentID));
-		return id;
+	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
+		int id = students.size() + 1;
+		students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
 	}
 	
 	public Student getStudent(String username, String password) {
@@ -27,7 +27,7 @@ public class StudentList {
 		Student student = null;
 		while(iterator.hasNext()) {
 			student = iterator.next();
-			if(student.getUsername() == username && student.getPassword() == password) {
+			if(student.getUsername().equals(username) && student.getPassword().equals(password)) {
 				return student;
 			}
 		}

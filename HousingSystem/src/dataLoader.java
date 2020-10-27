@@ -94,7 +94,7 @@ public class dataLoader extends DataConstants{
 				String phone = (String)studentJSON.get(PHONE);
 				String studentID = (String)studentJSON.get(STUDENT);
 				
-				Student student = new Student(username, password, firstName, lastName, emailAddress, phone, studentID);
+				Student student = new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID);
 				students.add(student);
 				
 				student.setFavoriteIDs(parseStringToInt(studentJSON.get(FAVORITES)));

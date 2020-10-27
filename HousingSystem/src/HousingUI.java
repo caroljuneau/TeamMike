@@ -121,6 +121,7 @@ public class HousingUI {
 				break;
 			case 2:
 				logIn();
+				System.out.println(WELCOME + " " + user.getName());
 				switch(user.getAccountType()) {
 				case STUDENT:
 					studentLoop();

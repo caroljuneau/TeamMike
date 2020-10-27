@@ -6,8 +6,9 @@ public class Student extends Account {
 	private int[] favoriteIDs;
 	private String studentID;
 	
-	public Student(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)
+	public Student(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)
 	{
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;

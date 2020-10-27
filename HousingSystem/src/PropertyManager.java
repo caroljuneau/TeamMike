@@ -4,8 +4,9 @@ public class PropertyManager extends Account {
 
 	private ArrayList<Property> myProperties;
 	
-	public PropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone)
+	public PropertyManager(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone)
 	{
+		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;

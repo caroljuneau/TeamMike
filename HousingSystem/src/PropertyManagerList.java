@@ -7,6 +7,7 @@ public class PropertyManagerList {
 
 	private PropertyManagerList() {
 		propertyManagers = new ArrayList<PropertyManager>();
+		//TODO dataloader
 	}
 
 	public static PropertyManagerList getInstance() {
@@ -16,17 +17,17 @@ public class PropertyManagerList {
 		return propertyManagerList;
 	}
 
-	public int addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
-		int id = propertyManagers.size();
-		propertyManagers.add(new PropertyManager(username, password, firstName, lastName, emailAddress, phone));
-		return id;
+	public void addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
+		int id = propertyManagers.size() + 1;
+		propertyManagers.add(new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone));
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {
 		Iterator<PropertyManager> iterator = propertyManagers.iterator();
+		PropertyManager propertyManager = null;
 		while(iterator.hasNext()) {
-			PropertyManager propertyManager = iterator.next();
-			if(propertyManager.getUsername() == username && propertyManager.getPassword() == password) {
+			propertyManager = iterator.next();
+			if(propertyManager.getUsername().equals(username) && propertyManager.getPassword().equals(password)) {
 				return propertyManager;
 			}
 		}
