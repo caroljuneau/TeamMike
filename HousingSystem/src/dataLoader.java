@@ -55,36 +55,6 @@ public class dataLoader extends DataConstants{
 				student.setRating(parseString(studentJSON.get(RATINGS)));
 				student.setReviewIDs(parseString(studentJSON.get(REVIEWS)));
 				student.setSignedLeaseIDs(parseString(studentJSON.get(LEASES)));
-
-/** 
- * Passing data to be replaced by student.toString();
- */
-//				System.out.println("Username: " + username);
-//				System.out.println("Password: " + password);
-//				System.out.println("First: " + firstName);
-//				System.out.println("Last: " + lastName);
-//				System.out.println("Rating: " + student.getAvgRating());
-//				System.out.println("Favorite IDs: ");
-//				int[] a;
-//				a = student.getFavoriteIDs();
-//				for(int j: a) {
-//					System.out.print(j + ", ");
-//				}
-//				System.out.println();
-//				System.out.println("Review IDs: ");
-//				a = student.getReviewIDs();
-//				for(int j: a) {
-//					System.out.print(j + ", ");
-//				}
-//				System.out.println();
-//				System.out.println("Signed Lease IDs: ");
-//				a = student.getSignedLeaseIDs();
-//				for(int j: a) {
-//					System.out.print(j + ", ");
-//				}
-//				System.out.println();
-//				System.out.println();
-	
 			}
 			return students;
 		} catch (Exception e) {
