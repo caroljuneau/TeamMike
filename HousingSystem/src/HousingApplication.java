@@ -2,11 +2,30 @@ import java.util.ArrayList;
 
 public class HousingApplication {
 	private PropertyList properties;
-	private AccountList accounts;
+	private StudentList students;
+	private PropertyManagerList propertyManagers;
 
 	public HousingApplication() {
 		//properties = PropertyList.getInstance();
-		//accounts = AccountList.getInstance();
+		students = StudentList.getInstance();
+		propertyManagers = PropertyManagerList.getInstance();
+	}
+	
+	public Account logIn(String username, String password)
+	{
+		//first check students
+		Account user = null;
+		user = students.getStudent(username, password);
+		if(user != null) {
+			return user;
+		}
+		//then check property managers
+		user = propertyManagers.getPropertyManager(username, password);
+		if(user != null) {
+			return user;
+		}
+		//if not found, return null
+		return null;
 	}
 
 	public String listProperties(ArrayList<Property> properties) {

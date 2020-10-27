@@ -1,17 +1,16 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class HousingUI {
 
 	private Scanner keyboard;
 	private HousingApplication application;
-	//private Account account;
+	private Account user;
 	
 	private static final String WELCOME = "Welcome!";
 	private static final String GOODBYE = "Goodbye!";
 	private static final String LOGOUT = "Logging out...";
 	private static final String INVALID = "Invalid command";
-	private static final String STUDENT = "Student";
-	private static final String PM = "Property Manager";
 	
 	private String[] mainMenuOptions = 
 		{
@@ -76,6 +75,12 @@ public class HousingUI {
 			"Create a lease", //4
 			"Go back" //5
 		};
+	private String[] tryAgainOptions = 
+		{
+			"Would you like to try again?",
+			"Yes", //1
+			"No, go back" //2
+		};
 	
 	public HousingUI() {
 		keyboard = new Scanner(System.in);
@@ -84,20 +89,21 @@ public class HousingUI {
 	
 	public void run() {
 		System.out.println(WELCOME);
+      //Data Loading test for students, delete whenever
+// 		ArrayList<Student> students = dataLoader.loadStudent();
+//		for(Student s: students) {
+//			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
+//		}
+
+		
 		while(true) {
 			displayMenu(mainMenuOptions);
 			int userCommand = getUserCommand(mainMenuOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				displayMenu(createAccountOptions);
 				userCommand = getUserCommand(createAccountOptions.length);
 				switch(userCommand) {
-				case -1:
-					System.out.println(INVALID);
-					break;
 				case 1:
 					createStudentAccount();
 					studentLoop();
@@ -106,18 +112,20 @@ public class HousingUI {
 					createPropertyManagerAccount();
 					propertyManagerLoop();
 					break;
+				case 3:
+					break;
 				default:
+					System.out.println(INVALID);
 					break;
 				}
 				break;
 			case 2:
-				String type = logIn();
-				//TODO update based on type
-				switch(type) {
+				logIn();
+				switch(user.getAccountType()) {
 				case STUDENT:
 					studentLoop();
 					break;
-				case PM:
+				case PROPERTYMANAGER:
 					propertyManagerLoop();
 					break;
 				default:
@@ -127,8 +135,12 @@ public class HousingUI {
 			case 3:
 				guestLoop();
 				break;
-			default:
+			case 4:
 				System.out.println(GOODBYE);
+				break;
+			default:
+				System.out.println(INVALID);
+				break;
 			}
 		}
 	}
@@ -152,10 +164,29 @@ public class HousingUI {
 		return -1;
 	}
 	
-	// should return the type of account, either student or pm. maybe make an enum intead of using string
-	private String logIn() {
-		return "STUDENT";
-		//TODO update
+	private void logIn() {
+		user = null;
+		while(user != null)
+		{
+			System.out.println("Please enter your username.");
+			String username = keyboard.nextLine();
+			System.out.println("Please enter your password.");
+			String password = keyboard.nextLine();
+			user = application.logIn(username, password);
+			if(user == null) {
+				System.out.println("Incorrect username or password.");
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println("INVALID");
+					break;
+				}
+			}
+		}
 	}
 	
 	private void createStudentAccount() {
@@ -172,9 +203,6 @@ public class HousingUI {
 			displayMenu(studentOptions);
 			int userCommand = getUserCommand(studentOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				browsePropertiesLoop();
 				break;
@@ -193,9 +221,12 @@ public class HousingUI {
 			case 6:
 				manageAccount();
 				break;
-			default:
+			case 7:
 				System.out.println(LOGOUT);
 				logOut = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
@@ -207,9 +238,6 @@ public class HousingUI {
 			displayMenu(propertyManagerOptions);
 			int userCommand = getUserCommand(propertyManagerOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				manageProperties();
 				break;
@@ -225,9 +253,12 @@ public class HousingUI {
 			case 5:
 				manageAccount();
 				break;
-			default:
+			case 6:
 				System.out.println(LOGOUT);
 				logOut = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
@@ -239,14 +270,14 @@ public class HousingUI {
 			displayMenu(guestOptions);
 			int userCommand = getUserCommand(guestOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				browsePropertiesLoop();
 				break;
-			default:
+			case 2:
 				goBack = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
@@ -258,12 +289,12 @@ public class HousingUI {
 			displayMenu(browsePropertiesOptions);
 			int userCommand = getUserCommand(browsePropertiesOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
-				//TODO rest of cases
-			default:
+			//TODO rest of cases
+			case 8:
 				goBack = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
