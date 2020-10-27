@@ -44,11 +44,6 @@ public class HousingApplication {
 		return null;
 	}
 
-	public ArrayList<Property> sortByDistance(boolean increasing) {
-		// can sort by distance increasing (true) or decreasing (false)
-		return null;
-	}
-
 	public ArrayList<Property> sortByPrice(boolean increasing) {
 		ArrayList<Property> sortPrice = new ArrayList<Property>();
 		if(increasing == true) {
@@ -102,27 +97,23 @@ public class HousingApplication {
 	    return sort;
 	}
 
-<<<<<<< HEAD
-	//public ArrayList<Property> sortByKeyword(String key, ArrayList<Property> list) {
-		/**
-		 * Sort class. Currently commented out because code is broken due to no data.
-		 */
-		//ArrayList<Property> sort = new ArrayList<Property>();
-	    //for(Property string : list){
-	    //    if(string.matches(key)){
-	    //        sort.add(string);
-	    //    }
-	    //}
-	    //return sort;
-	//}
-	
+	public ArrayList<Property> sortByKeyword(String key, ArrayList<Property> list) {
+		ArrayList<Property> sort = new ArrayList<Property>();
+	    for(Property string : list){
+	        if(string.matches(key)){
+	            sort.add(string);
+	        }
+	    }
+	    return sort;
+	}
+
 	public boolean usernameInList(AccountType type, String username) {
 		if(students.usernameInList(username) || propertyManagers.usernameInList(username)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void createStudentAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		students.addStudent(username, password, firstName, lastName, emailAddress, phone, studentID);
 =======
