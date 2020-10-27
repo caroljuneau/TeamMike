@@ -8,7 +8,7 @@ import org.json.simple.parser.*;
 
 public class dataLoader extends DataConstants{
 	
-	public static int[] parseString(Object obj) {
+	public static int[] parseStringToInt(Object obj) {
 		String csv;
 		String[] str;
 		int[] ind;
@@ -23,11 +23,57 @@ public class dataLoader extends DataConstants{
 		}
 		return null;
 	}
+	public static String[] parseString(Object obj) {
+		String csv;
+		String[] str;
+		if(obj != null) {
+			csv = obj.toString();
+			str = csv.split(", ");
+			return str;
+		}
+		return null;
+	}
+	
 	
 	public static ArrayList<Property> loadProperties() {
-		ArrayList<Property> property = new ArrayList<Property>();
+		ArrayList<Property> properties = new ArrayList<Property>();
 		
-		return property;
+		try {
+			FileReader reader = new FileReader(PROPERTY_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray propertiesJSON = (JSONArray)new JSONParser().parse(reader);
+			Property property;
+			
+			for(int i=0; i < propertiesJSON.size(); i++) {
+				JSONObject propertyJSON = (JSONObject)propertiesJSON.get(i);
+				int id = Integer.parseInt((String)propertyJSON.get(PROPERTY_ID));
+				String[] amenities = parseString(propertyJSON.get(AMENITIES));
+				String utilities = (String)propertyJSON.get(UTILITIES);
+				String location = (String)propertyJSON.get(LOCATION);
+				//String pictures = (String)propertyJSON.get(PICTURES);
+				int price = (Integer)propertyJSON.get(PRICE);
+				int[] reviews = parseStringToInt((String)propertyJSON.get(PROPERTY_REVIEWS));
+				int beds = (Integer)propertyJSON.get(BEDS);
+				int baths = (Integer)propertyJSON.get(BATHS);
+				int leaseId = Integer.parseInt((String)propertyJSON.get(LEASE));
+				String description = (String)propertyJSON.get(DESCRIPTION);
+				String contact = (String)propertyJSON.get(CONTACT);
+				String vis = (String)propertyJSON.get(VISIBLE);
+				boolean visible;
+				if(vis.equalsIgnoreCase("false")) {
+					visible = false;
+				} else {
+					visible = true;
+				}
+				property = new Property(amenities, utilities, location, price, beds, baths, description, contact, visible);
+				properties.add(property);
+			}
+			return properties;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	public static ArrayList<Student> loadStudent() {
 		ArrayList<Student> students = new ArrayList<Student>();
@@ -51,10 +97,10 @@ public class dataLoader extends DataConstants{
 				Student student = new Student(username, password, firstName, lastName, emailAddress, phone, studentID);
 				students.add(student);
 				
-				student.setFavoriteIDs(parseString(studentJSON.get(FAVORITES)));
-				student.setRating(parseString(studentJSON.get(RATINGS)));
-				student.setReviewIDs(parseString(studentJSON.get(REVIEWS)));
-				student.setSignedLeaseIDs(parseString(studentJSON.get(LEASES)));
+				student.setFavoriteIDs(parseStringToInt(studentJSON.get(FAVORITES)));
+				student.setRating(parseStringToInt(studentJSON.get(RATINGS)));
+				student.setReviewIDs(parseStringToInt(studentJSON.get(REVIEWS)));
+				student.setSignedLeaseIDs(parseStringToInt(studentJSON.get(LEASES)));
 			}
 			return students;
 		} catch (Exception e) {

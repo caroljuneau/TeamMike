@@ -28,21 +28,19 @@ public abstract class DataConstants {
 	
 	/** Strings to read Properties JSON File */
 	protected static final String PROPERTY = "properties";
-	protected static final String PROPERTY_AMENITIES = "amenities";
-	protected static final String PROPERTY_UTILITIES = "utilities";
-	protected static final String PROPERTY_LOCATION = "location";
-	protected static final String PROPERTY_PICTURES = "pictures";
-	protected static final String PROPERTY_PRICE = "price";
+	protected static final String PROPERTY_ID = "propertyId";
+	protected static final String AMENITIES = "amenities";
+	protected static final String UTILITIES = "utilities";
+	protected static final String LOCATION = "location";
+	protected static final String PICTURES = "pictures";
+	protected static final String PRICE = "price";
 	protected static final String PROPERTY_REVIEWS = "reviews";
-	protected static final String PROPERTY_BEDS = "beds";
-	protected static final String PROPERTY_BATHS = "baths";
-	/** 
-	 * protected static final String PROPERTY_LEASE = "properties";
-	 * @todo TO BE REPLACED BY leaseID
-	 */
-	protected static final String PROPERTY_DESCRIPTION = "description";
-	protected static final String PROPERTY_CONTACT = "contact";
-	protected static final String PROPERTY_VISIBLE = "visible";
+	protected static final String BEDS = "beds";
+	protected static final String BATHS = "baths";
+	protected static final String LEASE = "lease";
+	protected static final String DESCRIPTION = "description";
+	protected static final String CONTACT = "contact";
+	protected static final String VISIBLE = "visible";
 
 
 

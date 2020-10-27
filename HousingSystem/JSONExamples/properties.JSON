@@ -1,20 +1,20 @@
 [
   {
-	"propertyId":"",
+	"propertyId":"1",
 	"amenities": "",
 	"utilities": "Water and Sewage, Trash",
 	"location": "123 Picadilly St",
 	"pictures": "",
 	"price": "800",
 	"reviews": "",
-	"beds": "",
-	"baths": "",
+	"beds": "2",
+	"baths": "2",
 	"lease": "",
 	"description": "Walking distance from Campus, and right behind the baseball stadium!",
 	"contact": "803-555-5555",
 	"visible": true
   },{
-    "propertyId":"",
+    "propertyId":"2",
 	"amenities": "Wi-fi, Swimming Pool, Gym, Parking, Shuttle",
 	"utilities": "Water and Sewage, Electric, Gas, Trash, Internet, Cable",
 	"location": "112 Silo CT, Columbia SC",
