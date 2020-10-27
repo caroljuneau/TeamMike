@@ -25,6 +25,7 @@ public class PropertyList {
 	
 	public String toString()
 	{
-		return propertyList.toString();
+		//return propertyList.toString();
+		return "";
 	}
 }

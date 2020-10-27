@@ -105,11 +105,11 @@ public class HousingUI {
 				userCommand = getUserCommand(createAccountOptions.length);
 				switch(userCommand) {
 				case 1:
-					user = application.createStudentAccount();
+					createAccount(AccountType.STUDENT);
 					studentLoop();
 					break;
 				case 2:
-					user = application.createPropertyManagerAccount();
+					createAccount(AccountType.PROPERTYMANAGER);
 					propertyManagerLoop();
 					break;
 				case 3:
@@ -189,11 +189,45 @@ public class HousingUI {
 		}
 	}
 	
-	private void createStudentAccount() {
-//		user = null;
-//		while(user == null) {
-//			System.out.println
-//		}
+	private void createAccount(AccountType type) {
+		boolean goBack = false;
+		while(!goBack) {
+			System.out.println("Please enter a username.");
+			String username = keyboard.nextLine();
+			if(application.usernameInList(type, username)) {
+				System.out.println("Username is already taken.");
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println("INVALID");
+					break;
+				}
+				continue;
+			}
+			System.out.println("Please enter a password.");
+			String password = keyboard.nextLine();
+			System.out.println("Please enter your first name.");
+			String firstname = keyboard.nextLine();
+			System.out.println("Please enter your last name.");
+			String lastname = keyboard.nextLine();
+			System.out.println("Please enter your email address.");
+			String emailAddress = keyboard.nextLine();
+			System.out.println("pleae enter your phone number.");
+			String phone = keyboard.nextLine();
+			if(type == AccountType.STUDENT) {
+				System.out.println("Please enter your student id.");
+				String studentID = keyboard.nextLine();
+				application.createStudentAccount(username, password, firstname, lastname, emailAddress, phone, studentID);
+			}
+			else if(type == AccountType.PROPERTYMANAGER) {
+				application.createPropertyManagerAccount(username, password, firstname, lastname, emailAddress, phone);
+			}
+			return;
+		}
 	}
 	
 	private void studentLoop() {

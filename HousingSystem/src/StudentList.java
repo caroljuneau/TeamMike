@@ -16,9 +16,9 @@ public class StudentList {
 		return studentList;
 	}
 
-	public int addStudent(/*params*/) {
+	public int addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size();
-		students.add(new Student(null, null, null, null, null, null, null/*constructor params*/));
+		students.add(new Student(username, password, firstName, lastName, emailAddress, phone, studentID));
 		return id;
 	}
 	
@@ -36,7 +36,6 @@ public class StudentList {
 	
 	public boolean usernameInList(String username) {
 		Iterator<Student> iterator = students.iterator();
-		boolean ret = true;
 		while(iterator.hasNext()) {
 			if(iterator.next().getUsername() == username) {
 				return true;

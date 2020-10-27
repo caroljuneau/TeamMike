@@ -75,12 +75,19 @@ public class HousingApplication {
 	    //return sort;
 	//}
 	
-	public Student createStudentAccount() {
-		return null;
+	public boolean usernameInList(AccountType type, String username) {
+		if(students.usernameInList(username) || propertyManagers.usernameInList(username)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void createStudentAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
+		students.addStudent(username, password, firstName, lastName, emailAddress, phone, studentID);
 	}
 
-	public PropertyManager createPropertyManagerAccount() {
-		return null;
+	public void createPropertyManagerAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
+		propertyManagers.addPropertyManager(username, password, firstName, lastName, emailAddress, phone);
 	}
 
 }

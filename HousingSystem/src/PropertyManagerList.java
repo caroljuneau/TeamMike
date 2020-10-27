@@ -16,9 +16,9 @@ public class PropertyManagerList {
 		return propertyManagerList;
 	}
 
-	public int addPropertyManager(/*params*/) {
+	public int addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		int id = propertyManagers.size();
-		propertyManagers.add(new PropertyManager(null, null, null, null, null, null/*constructor params*/));
+		propertyManagers.add(new PropertyManager(username, password, firstName, lastName, emailAddress, phone));
 		return id;
 	}
 	
@@ -31,5 +31,15 @@ public class PropertyManagerList {
 			}
 		}
 		return null;
+	}
+	
+	public boolean usernameInList(String username) {
+		Iterator<PropertyManager> iterator = propertyManagers.iterator();
+		while(iterator.hasNext()) {
+			if(iterator.next().getUsername() == username) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
