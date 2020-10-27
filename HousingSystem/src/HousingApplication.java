@@ -74,13 +74,13 @@ public class HousingApplication {
 	    //}
 	    //return sort;
 	//}
-
-	public void createStudentAccount() {
-
+	
+	public Student createStudentAccount() {
+		return null;
 	}
 
-	public void createPropertyManagerAccount() {
-
+	public PropertyManager createPropertyManagerAccount() {
+		return null;
 	}
 
 }

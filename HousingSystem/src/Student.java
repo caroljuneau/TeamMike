@@ -14,7 +14,7 @@ public class Student extends Account {
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.phone = phone;
-		this.type = "Student";
+		this.type = AccountType.STUDENT;
 		this.studentID = studentID;
 		this.favoriteProperties = null;
 		this.ratings = null;

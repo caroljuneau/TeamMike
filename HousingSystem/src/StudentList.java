@@ -24,12 +24,24 @@ public class StudentList {
 	
 	public Student getStudent(String username, String password) {
 		Iterator<Student> iterator = students.iterator();
+		Student student = null;
 		while(iterator.hasNext()) {
-			Student student = iterator.next();
+			student = iterator.next();
 			if(student.getUsername() == username && student.getPassword() == password) {
 				return student;
 			}
 		}
 		return null;
+	}
+	
+	public boolean usernameInList(String username) {
+		Iterator<Student> iterator = students.iterator();
+		boolean ret = true;
+		while(iterator.hasNext()) {
+			if(iterator.next().getUsername() == username) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

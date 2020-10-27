@@ -8,7 +8,7 @@ public class Account {
 	protected String lastName;
 	protected String emailAddress;
 	protected String phone;
-	protected String type;
+	protected AccountType type;
 	protected int[] ratings;
 	protected ArrayList<Review> reviews;
 	protected ArrayList<Lease> signedLeases;
@@ -52,10 +52,10 @@ public class Account {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getAccountType() {
+	public AccountType getAccountType() {
 		return this.type;
 	}
-	public void setAccountType(String type) {
+	public void setAccountType(AccountType type) {
 		this.type = type;
 	}
 	

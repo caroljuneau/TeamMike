@@ -105,11 +105,11 @@ public class HousingUI {
 				userCommand = getUserCommand(createAccountOptions.length);
 				switch(userCommand) {
 				case 1:
-					createStudentAccount();
+					user = application.createStudentAccount();
 					studentLoop();
 					break;
 				case 2:
-					createPropertyManagerAccount();
+					user = application.createPropertyManagerAccount();
 					propertyManagerLoop();
 					break;
 				case 3:
@@ -166,7 +166,7 @@ public class HousingUI {
 	
 	private void logIn() {
 		user = null;
-		while(user != null)
+		while(user == null)
 		{
 			System.out.println("Please enter your username.");
 			String username = keyboard.nextLine();
@@ -190,11 +190,10 @@ public class HousingUI {
 	}
 	
 	private void createStudentAccount() {
-		
-	}
-	
-	private void createPropertyManagerAccount() {
-		
+//		user = null;
+//		while(user == null) {
+//			System.out.println
+//		}
 	}
 	
 	private void studentLoop() {
