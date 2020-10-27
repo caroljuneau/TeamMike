@@ -16,7 +16,8 @@ public class Property {
 	private String description;
 	private String contact;
 	private boolean visible;
-	
+	private int size;
+
 	public Property(String[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		this.amenities = amenities;
 		this.utilities = utilities;
@@ -119,6 +120,14 @@ public class Property {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
-	
+	public int getSize() {
+		return size;
+	}
+	public Property get(int i) {
+		return null;
+	}
+	public boolean matches(String key) {
+		return false;
+	}
+
 }
