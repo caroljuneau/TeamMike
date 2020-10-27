@@ -21,38 +21,15 @@ public class StudentList {
 		students.add(new Student(null, null, null, null, null, null, null/*constructor params*/));
 		return id;
 	}
-
-	public Student getRecord(int id) {
-		if (id >= 0 && id < students.size()) {
-			return students.get(id);
+	
+	public Student getStudent(String username, String password) {
+		Iterator<Student> iterator = students.iterator();
+		while(iterator.hasNext()) {
+			Student student = iterator.next();
+			if(student.getUsername() == username && student.getPassword() == password) {
+				return student;
+			}
 		}
 		return null;
 	}
-	
-	public boolean foundUsername(String username) {
-		Iterator<Student> iterator = students.iterator();
-		while(iterator.hasNext())
-			if(iterator.next().getUsername() == username) return true;
-		return false;
-	}
-	
-	public boolean matchingPassword(Student student, String password) {
-		if(student.getPassword() == password) return true;
-		return false;
-	}
-//	public void addAllergy(int id, String allergy) {
-//	Patient patient = getRecord(id);
-//	if (patient == null) return;
-//	patient.addAllergy(allergy);
-//}
-//
-//public String getAllPatientsData() {
-//	String string = "";
-//	Iterator<Patient> iterator = patients.iterator();
-//	while (iterator.hasNext()) {
-//		string += iterator.next() + "\n";
-//	}
-//	return string;
-//}
-
 }

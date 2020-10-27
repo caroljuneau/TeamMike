@@ -75,6 +75,12 @@ public class HousingUI {
 			"Create a lease", //4
 			"Go back" //5
 		};
+	private String[] tryAgainOptions = 
+		{
+			"Would you like to try again?",
+			"Yes", //1
+			"No, go back" //2
+		};
 	
 	public HousingUI() {
 		keyboard = new Scanner(System.in);
@@ -94,16 +100,10 @@ public class HousingUI {
 			displayMenu(mainMenuOptions);
 			int userCommand = getUserCommand(mainMenuOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				displayMenu(createAccountOptions);
 				userCommand = getUserCommand(createAccountOptions.length);
 				switch(userCommand) {
-				case -1:
-					System.out.println(INVALID);
-					break;
 				case 1:
 					createStudentAccount();
 					studentLoop();
@@ -112,28 +112,35 @@ public class HousingUI {
 					createPropertyManagerAccount();
 					propertyManagerLoop();
 					break;
+				case 3:
+					break;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				break;
+			case 2:
+				logIn();
+				switch(user.getAccountType()) {
+				case STUDENT:
+					studentLoop();
+					break;
+				case PROPERTYMANAGER:
+					propertyManagerLoop();
+					break;
 				default:
 					break;
 				}
 				break;
-//			case 2:
-//				logIn();
-//				switch(user.getAccountType()) {
-//				case STUDENT:
-//					studentLoop();
-//					break;
-//				case PROPERTYMANAGER:
-//					propertyManagerLoop();
-//					break;
-//				default:
-//					break;
-//				}
-//				break;
 			case 3:
 				guestLoop();
 				break;
-			default:
+			case 4:
 				System.out.println(GOODBYE);
+				break;
+			default:
+				System.out.println(INVALID);
+				break;
 			}
 		}
 	}
@@ -158,14 +165,27 @@ public class HousingUI {
 	}
 	
 	private void logIn() {
-		this.user = null;
-		while(this.user != null)
+		user = null;
+		while(user != null)
 		{
 			System.out.println("Please enter your username.");
 			String username = keyboard.nextLine();
 			System.out.println("Please enter your password.");
 			String password = keyboard.nextLine();
-			this.user = application.logIn(username, password);
+			user = application.logIn(username, password);
+			if(user == null) {
+				System.out.println("Incorrect username or password.");
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println("INVALID");
+					break;
+				}
+			}
 		}
 	}
 	
@@ -183,9 +203,6 @@ public class HousingUI {
 			displayMenu(studentOptions);
 			int userCommand = getUserCommand(studentOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				browsePropertiesLoop();
 				break;
@@ -204,9 +221,12 @@ public class HousingUI {
 			case 6:
 				manageAccount();
 				break;
-			default:
+			case 7:
 				System.out.println(LOGOUT);
 				logOut = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
@@ -218,9 +238,6 @@ public class HousingUI {
 			displayMenu(propertyManagerOptions);
 			int userCommand = getUserCommand(propertyManagerOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				manageProperties();
 				break;
@@ -236,9 +253,12 @@ public class HousingUI {
 			case 5:
 				manageAccount();
 				break;
-			default:
+			case 6:
 				System.out.println(LOGOUT);
 				logOut = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
@@ -250,14 +270,14 @@ public class HousingUI {
 			displayMenu(guestOptions);
 			int userCommand = getUserCommand(guestOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
 			case 1:
 				browsePropertiesLoop();
 				break;
-			default:
+			case 2:
 				goBack = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
@@ -269,12 +289,12 @@ public class HousingUI {
 			displayMenu(browsePropertiesOptions);
 			int userCommand = getUserCommand(browsePropertiesOptions.length);
 			switch(userCommand) {
-			case -1:
-				System.out.println(INVALID);
-				break;
-				//TODO rest of cases
-			default:
+			//TODO rest of cases
+			case 8:
 				goBack = true;
+				break;
+			default:
+				System.out.println(INVALID);
 				break;
 			}
 		}
