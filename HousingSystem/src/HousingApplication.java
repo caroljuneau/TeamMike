@@ -102,7 +102,6 @@ public class HousingApplication {
 	    return sort;
 	}
 
-<<<<<<< HEAD
 	//public ArrayList<Property> sortByKeyword(String key, ArrayList<Property> list) {
 		/**
 		 * Sort class. Currently commented out because code is broken due to no data.
@@ -125,10 +124,6 @@ public class HousingApplication {
 	
 	public void createStudentAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		students.addStudent(username, password, firstName, lastName, emailAddress, phone, studentID);
-=======
-	public Student createStudentAccount() {
-		return null;
->>>>>>> 64700dc6d1ce2a5346d9c6ef0f19206c226b2819
 	}
 
 	public void createPropertyManagerAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
