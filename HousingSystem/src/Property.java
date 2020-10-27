@@ -129,5 +129,9 @@ public class Property {
 	public boolean matches(String key) {
 		return false;
 	}
+	public String toString() {
+		//TODO return a string with all the characteristics of the property
+		return "";
+	}
 
 }

@@ -54,6 +54,7 @@ public class HousingUI {
 		};
 	private String[] browsePropertiesOptions = 
 		{
+				// TODO check when we have finalized which methods are going to be implemented
 			"Browse Properties Menu: ",
 			"View all properties", //1
 			"Search by keyword", //2
@@ -78,6 +79,12 @@ public class HousingUI {
 			"Would you like to try again?",
 			"Yes", //1
 			"No, go back" //2
+		};
+	private String[] incOrDec = 
+		{
+			"Sort increasing or decreasing?",
+			"Increasing", //1
+			"Decreasing", //2
 		};
 	
 	public HousingUI() {
@@ -315,7 +322,59 @@ public class HousingUI {
 			displayMenu(browsePropertiesOptions);
 			int userCommand = getUserCommand(browsePropertiesOptions.length);
 			switch(userCommand) {
-			//TODO rest of cases
+			case 1:
+				System.out.println("Viewing All Properties:");
+				System.out.println(application.viewAllProperties());
+				break;
+			case 2:
+				System.out.println("Please enter a keyword.");
+				String keyword = keyboard.nextLine();
+				System.out.println("Searching by keyword:" + keyword);
+				System.out.println(application.searchByKeyword(keyword));
+				break;
+			case 3:
+				//sort by distance?
+				break;
+			case 4:
+				displayMenu(incOrDec);
+				int userCommand2 = getUserCommand(incOrDec.length);
+				switch(userCommand2) {
+				case 1:
+					System.out.println("Sorting by price, increasing:");
+					System.out.println(application.sortByPrice(true));
+					break;
+				case 2:
+					System.out.println("Sorting by price, decreasing");
+					System.out.println(application.sortByPrice(false));
+					break;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				break;
+			case 5:
+				displayMenu(incOrDec);
+				int userCommand3 = getUserCommand(incOrDec.length);
+				switch(userCommand3) {
+				case 1:
+					System.out.println("Sorting by number of reviews, increasing");
+					System.out.println(application.sortByNumReviews(true));
+					break;
+				case 2:
+					System.out.println("Sorting by number of reviews, decreasing");
+					System.out.println(application.sortByNumReviews(false));
+					break;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				break;
+			case 6:
+				//TODO filter by amenities
+				break;
+			case 7:
+				//TODO filter by price range
+				break;
 			case 8:
 				goBack = true;
 				break;
