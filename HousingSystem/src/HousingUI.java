@@ -35,8 +35,7 @@ public class HousingUI {
 			"View my signed leases", //3
 			"Rate/review a property", //4
 			"Rate/review a property manager", //5
-			"Manage account", //6
-			"Log out" //7
+			"Log out" //6
 		};
 	private String[] propertyManagerOptions = 
 		{
@@ -45,8 +44,7 @@ public class HousingUI {
 			"View my properties", //2
 			"View my signed leases", //3
 			"Rate/review a student", //4
-			"Manage account", //5
-			"Log out" //6
+			"Log out" //5
 		};
 	private String[] guestOptions = 
 		{
@@ -253,9 +251,6 @@ public class HousingUI {
 				reviewPropertyManager();
 				break;
 			case 6:
-				manageAccount();
-				break;
-			case 7:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -285,9 +280,6 @@ public class HousingUI {
 				reviewStudent();
 				break;
 			case 5:
-				manageAccount();
-				break;
-			case 6:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -335,35 +327,34 @@ public class HousingUI {
 	}
 	
 	private void viewFavProperties() {
-		
+		//student; TODO
 	}
 	
 	private void viewSignedLeases() {
-		
+		//student and pm; TODO
 	}
 	
 	private void reviewProperty() {
-		
+		// student; TODO
 	}
 	
 	private void reviewPropertyManager() {
-		
+		// student; TODO
 	}
 	
-	private void manageAccount() {
-		
-	}
+//	private void manageAccount() {
+//	}
 	
 	private void manageProperties() {
-		
+		// pm ; TODO
 	}
 	
 	private void viewMyProperties() {
-		
+		// pm; TODO
 	}
 	
 	private void reviewStudent() {
-		
+		//pm; TODO
 	}
 	
 	public static void main(String[] args) {
