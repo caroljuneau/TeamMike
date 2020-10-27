@@ -8,7 +8,7 @@ public class Account {
 	protected String lastName;
 	protected String emailAddress;
 	protected String phone;
-	protected AccountType type;
+//	protected AccountType type;
 	protected ArrayList<Integer> ratings;
 	protected ArrayList<Review> reviews;
 	protected ArrayList<Lease> signedLeases;

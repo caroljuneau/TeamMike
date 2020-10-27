@@ -1,10 +1,28 @@
 import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Stream;
 import java.io.FileReader;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 public class dataLoader extends DataConstants{
+	
+	public static int[] parseString(Object obj) {
+		String csv;
+		String[] str;
+		int[] ind;
+		if(obj != null) {
+			csv = obj.toString();
+			str = csv.split(", ");
+			ind = new int[str.length];
+			for(int i = 0; i < str.length; i++) {
+				ind[i] = Integer.parseInt(str[i]);
+			}
+			return ind;
+		}
+		return null;
+	}
 	
 	public static ArrayList<Property> loadProperties() {
 		ArrayList<Property> property = new ArrayList<Property>();
@@ -29,33 +47,45 @@ public class dataLoader extends DataConstants{
 				String emailAddress = (String)studentJSON.get(EMAIL);
 				String phone = (String)studentJSON.get(PHONE);
 				String studentID = (String)studentJSON.get(STUDENT);
+				
 				Student student = new Student(username, password, firstName, lastName, emailAddress, phone, studentID);
 				students.add(student);
-				//loop array
-				String fav = (String)studentJSON.get(FAVORITES);
-				for(int j=0; j < fav.length(); j++) {
-					JSONObject fav = (JSONObject)studentsJSON.get(FAVORITES);
-				}
-//				int favoriteIds = (Integer)studentJSON.get(FAVORITES);
-//				System.out.println(favoriteIds);
-//				int size = favoriteIds.length();
-//				int[] arr = new int [size];
-//				for(int i = 0; i < size; i++) {
-//					arr[i] = Integer.parseInt(favoriteIds[i]);
-//				}
 				
-//				JSONArray favorite = (JSONArray)new JSONParser().parse(reader);
-//				int[] ids;
-//				for(int j=0; j < favorite.size(); j++) {
-//					ids = new int[favorite.size()];
-//					ids[i] = Integer.parseInt((String)favorite.get(j));
-//					System.out.println(ids[i]);
+				student.setFavoriteIDs(parseString(studentJSON.get(FAVORITES)));
+				student.setRating(parseString(studentJSON.get(RATINGS)));
+				student.setReviewIDs(parseString(studentJSON.get(REVIEWS)));
+				student.setSignedLeaseIDs(parseString(studentJSON.get(LEASES)));
+
+/** 
+ * Passing data to be replaced by student.toString();
+ */
+//				System.out.println("Username: " + username);
+//				System.out.println("Password: " + password);
+//				System.out.println("First: " + firstName);
+//				System.out.println("Last: " + lastName);
+//				System.out.println("Rating: " + student.getAvgRating());
+//				System.out.println("Favorite IDs: ");
+//				int[] a;
+//				a = student.getFavoriteIDs();
+//				for(int j: a) {
+//					System.out.print(j + ", ");
 //				}
-				//student.setFavoriteIDs(ids);
-				
+//				System.out.println();
+//				System.out.println("Review IDs: ");
+//				a = student.getReviewIDs();
+//				for(int j: a) {
+//					System.out.print(j + ", ");
+//				}
+//				System.out.println();
+//				System.out.println("Signed Lease IDs: ");
+//				a = student.getSignedLeaseIDs();
+//				for(int j: a) {
+//					System.out.print(j + ", ");
+//				}
+//				System.out.println();
+//				System.out.println();
+	
 			}
-			
-			
 			return students;
 		} catch (Exception e) {
 			e.printStackTrace();

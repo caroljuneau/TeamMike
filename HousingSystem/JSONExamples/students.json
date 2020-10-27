@@ -8,10 +8,10 @@
 	"lastName":"Walls",
 	"emailAddress":"christopherwallssc@gmail.com",
 	"phone":"803-521-6174",
-	"favoriteIDs":[1],
-	"ratings":[1, 2, 3],
-	"reviewIDs":[1],
-	"signedLeaseIDs":[]
+	"favoriteIDs":"1",
+	"ratings":"1, 2, 3",
+	"reviewIDs":"1",
+	"signedLeaseIDs":"1"
   },{
   	"id":"2",
 	"studentId":"23456",
@@ -21,10 +21,10 @@
 	"lastName":"Juneau",
 	"emailAddress":"cjuneau@gmail.com",
 	"phone":"803-555-5555",
-	"favoriteIDs":[1, 2, 3],
-	"ratings":[5, 5, 5],
-	"reviewIDs":[2],
-	"signedLeaseIDs":[]
+	"favoriteIDs":"1, 2, 3",
+	"ratings":"5, 5, 5",
+	"reviewIDs":"2",
+	"signedLeaseIDs":"2"
   },{
   	"id":"3",
 	"studentId":"34567",
@@ -34,10 +34,10 @@
 	"lastName":"Frames",
 	"emailAddress":"cframes@gmail.com",
 	"phone":"843-610-1455",
-	"favoriteIDs":[4],
-	"ratings":[1, 1, 1],
-	"reviewsIDs":[3],
-	"signedLeaseIDs":[]
+	"favoriteIDs":"4",
+	"ratings":"1, 1, 1",
+	"reviewIDs":"3",
+	"signedLeaseIDs":"3"
   },{
   	"id":"4",
 	"studentId":"45678",
@@ -47,10 +47,10 @@
 	"lastName":"Henry",
 	"emailAddress":"chenry@gmail.com",
 	"phone":"803-555-5555",
-	"favoriteIDs":[2],
-	"ratings":[4, 3, 5],
-	"reviewIDs":[4],
-	"signedLeaseIDs":[]
+	"favoriteIDs":"2",
+	"ratings":"4, 3, 5",
+	"reviewIDs":"4",
+	"signedLeaseIDs":"4"
   },{
 	"id":"5",
 	"studentId":"56789",
@@ -60,10 +60,10 @@
 	"lastName":"Jones",
 	"emailAddress":"billjones@gmail.com",
 	"phone":"803-555-5555",
-	"favoriteIDs":[2, 3],
-	"ratings":[5, 1, 2],
-	"reviewIDs":[],
-	"signedLeaseIDs":[]
+	"favoriteIDs":"2, 3",
+	"ratings":"5, 1, 2",
+	"reviewIDs":"5",
+	"signedLeaseIDs":"5"
   },{
 	"id":"6",
 	"studentId":"67890",
@@ -73,9 +73,9 @@
 	"lastName":"Almanzar",
 	"emailAddress":"cardib@gmail.com",
 	"phone":"555-555-5555",
-	"favoritesIDs":[3, 4],
-	"ratings":[2, 2, 3],
-	"reviewIDs":[],
-	"signedLeaseIDs":[]
+	"favoriteIDs":"3, 4",
+	"ratings":"2, 2, 3",
+	"reviewIDs":"6",
+	"signedLeaseIDs":"6"
   }
 ]

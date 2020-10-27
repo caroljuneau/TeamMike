@@ -83,12 +83,12 @@ public class HousingUI {
 	
 	public void run() {
 		System.out.println(WELCOME);
-/*      //Data Loading test for students, delete whenever
- 		ArrayList<Student> students = dataLoader.loadStudent();
-		for(Student s: students) {
-			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
-		}
-*/
+      //Data Loading test for students, delete whenever
+// 		ArrayList<Student> students = dataLoader.loadStudent();
+//		for(Student s: students) {
+//			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
+//		}
+
 		
 		while(true) {
 			displayMenu(mainMenuOptions);
@@ -116,19 +116,19 @@ public class HousingUI {
 					break;
 				}
 				break;
-			case 2:
-				logIn();
-				switch(user.getAccountType()) {
-				case STUDENT:
-					studentLoop();
-					break;
-				case PROPERTYMANAGER:
-					propertyManagerLoop();
-					break;
-				default:
-					break;
-				}
-				break;
+//			case 2:
+//				logIn();
+//				switch(user.getAccountType()) {
+//				case STUDENT:
+//					studentLoop();
+//					break;
+//				case PROPERTYMANAGER:
+//					propertyManagerLoop();
+//					break;
+//				default:
+//					break;
+//				}
+//				break;
 			case 3:
 				guestLoop();
 				break;

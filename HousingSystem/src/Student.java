@@ -10,7 +10,6 @@ public class Student extends Account {
 	private String emailAddress;
 	private String phone;
 	private String studentID;
-	private int[] ratings;
 	private int rating;
 	private ArrayList<Review> reviews;
 	private ArrayList<Lease> signedLeases;
@@ -18,6 +17,7 @@ public class Student extends Account {
 	private int[] reviewIDs;
 	private int[] signedLeaseIDs;
 	private int[] favoriteIDs;
+	private int[] ratings;
 //	static Student student = new Student();
 	
 	public Student(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)
@@ -28,7 +28,7 @@ public class Student extends Account {
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.phone = phone;
-		this.type = AccountType.STUDENT;
+//		this.type = AccountType.STUDENT;
 		this.studentID = studentID;
 		this.favoriteProperties = null;
 		this.ratings = null;
@@ -46,6 +46,36 @@ public class Student extends Account {
 //		return student;
 //	}
 
+	public void setFavoriteIDs(int[] arr) {
+		this.favoriteIDs = arr;
+	}
+	public int[] getFavoriteIDs() {
+		return this.favoriteIDs;
+	}
+	public void setRating(int[] arr) {
+		int num = arr.length;
+		int sum = 0;
+		for(int j: arr) {
+			sum += j;
+		}
+		this.rating = sum/num;
+	}
+	public double getAvgRating() {
+		return this.rating;
+	}
+	public void setReviewIDs(int[] arr) {
+		this.reviewIDs = arr;
+	}
+	public int[] getReviewIDs() {
+		return this.reviewIDs;
+	}
+	public void setSignedLeaseIDs(int[] arr) {
+		this.signedLeaseIDs = arr;
+	}
+	public int[] getSignedLeaseIDs() {
+		return this.signedLeaseIDs;
+	}
+	
 	public String getStudentId() {
 		return this.studentID;
 	}
