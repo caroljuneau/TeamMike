@@ -33,6 +33,14 @@ public class dataLoader extends DataConstants{
 		}
 		return null;
 	}
+	public static int[] getIDs(JSONArray arr)
+	{
+		int[] ids = new int[arr.size()];
+		for(int i=0; i < arr.size(); i++) {
+			ids[i] = ((Long)arr.get(i)).intValue();
+		}
+		return ids;
+	}
 	
 	
 	public static ArrayList<Property> loadProperties() {
@@ -85,7 +93,7 @@ public class dataLoader extends DataConstants{
 			
 			for(int i=0; i < studentsJSON.size(); i++) {
 				JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
-				int id = Integer.parseInt((String)studentJSON.get(ID));
+				int id = ((Long)studentJSON.get(ID)).intValue();
 				String username = (String)studentJSON.get(USER_NAME);
 				String password = (String)studentJSON.get(PASSWORD);
 				String firstName = (String)studentJSON.get(FIRST_NAME);
@@ -97,10 +105,15 @@ public class dataLoader extends DataConstants{
 				Student student = new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID);
 				students.add(student);
 				
-				student.setFavoriteIDs(parseStringToInt(studentJSON.get(FAVORITES)));
-				student.setRating(parseStringToInt(studentJSON.get(RATINGS)));
-				student.setReviewIDs(parseStringToInt(studentJSON.get(REVIEWS)));
-				student.setSignedLeaseIDs(parseStringToInt(studentJSON.get(LEASES)));
+				student.setFavoriteIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
+				student.setRating(getIDs((JSONArray)studentJSON.get(FAVORITES)));
+				student.setReviewIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
+				student.setSignedLeaseIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
+
+//				student.setFavoriteIDs(parseStringToInt(studentJSON.get(FAVORITES)));
+//				student.setRating(parseStringToInt(studentJSON.get(RATINGS)));
+//				student.setReviewIDs(parseStringToInt(studentJSON.get(REVIEWS)));
+//				student.setSignedLeaseIDs(parseStringToInt(studentJSON.get(LEASES)));
 			}
 			return students;
 		} catch (Exception e) {
