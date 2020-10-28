@@ -11,7 +11,7 @@
 	"favoriteIDs":[1],
 	"ratings":[1,2,3],
 	"reviewIDs":[1],
-	"signedLeaseIDs":[1]
+	"leaseIDs":[1]
   },{
   	"id":2,
 	"studentId":"23456",
@@ -24,7 +24,7 @@
 	"favoriteIDs": [1,2,3],
 	"ratings":[5,5,5],
 	"reviewIDs":[2],
-	"signedLeaseIDs":[2]
+	"leaseIDs":[2]
   },{
   	"id":3,
 	"studentId":"34567",
@@ -37,7 +37,7 @@
 	"favoriteIDs":[4],
 	"ratings":[1,1,1],
 	"reviewIDs":[3],
-	"signedLeaseIDs":[3]
+	"leaseIDs":[3]
   },{
   	"id":4,
 	"studentId":"45678",
@@ -50,7 +50,7 @@
 	"favoriteIDs":[2],
 	"ratings":[4,3,5],
 	"reviewIDs":[4],
-	"signedLeaseIDs":[4]
+	"leaseIDs":[4]
   },{
 	"id":5,
 	"studentId":"56789",
@@ -63,7 +63,7 @@
 	"favoriteIDs":[2,3],
 	"ratings":[5,1,2],
 	"reviewIDs":[5],
-	"signedLeaseIDs":[5]
+	"leaseIDs":[5]
   },{
 	"id":6,
 	"studentId":"67890",
@@ -76,6 +76,6 @@
 	"favoriteIDs":[3,4],
 	"ratings":[2,2,3],
 	"reviewIDs":[6],
-	"signedLeaseIDs":[6]
+	"leaseIDs":[6]
   }
 ]

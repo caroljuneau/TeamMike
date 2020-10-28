@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
 public class Property {
+	private int propertyId;
 	private String[] amenities;
 	private String utilities;
 	private String location;
-	private ArrayList<String> pictures;
+	//private ArrayList<String> pictures;
 	private int price;
-	private int[] ratingIDs;
+	private int[] ratings;
 	private int[] reviewIDs;
-	private int rating;
+	private int[] leaseIDs;
 	private ArrayList<Review> reviews;
 	private int beds;
 	private int baths;
@@ -48,35 +49,29 @@ public class Property {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public ArrayList<String> getPictures() {
-		return pictures;
-	}
-	public void setPictures(ArrayList<String> pictures) {
-		this.pictures = pictures;
-	}
+//	public ArrayList<String> getPictures() {
+//		return pictures;
+//	}
+//	public void setPictures(ArrayList<String> pictures) {
+//		this.pictures = pictures;
+//	}
 	public int getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int[] getRatingIDs() {
-		return ratingIDs;
+	public int[] getRatings() {
+		return ratings;
 	}
-	public void setRatingIDs(int[] ratingIDs) {
-		this.ratingIDs = ratingIDs;
+	public void setRatings(int[] ratingIDs) {
+		this.ratings = ratingIDs;
 	}
 	public int[] getReviewIDs() {
 		return reviewIDs;
 	}
 	public void setReviewIDs(int[] reviewIDs) {
 		this.reviewIDs = reviewIDs;
-	}
-	public int getRating() {
-		return rating;
-	}
-	public void setRating(int rating) {
-		this.rating = rating;
 	}
 	public ArrayList<Review> getReviews() {
 		return reviews;
@@ -129,9 +124,30 @@ public class Property {
 	public boolean matches(String key) {
 		return false;
 	}
-	public String toString() {
-		//TODO return a string with all the characteristics of the property
-		return "";
+	public int getPropertyId() {
+		return propertyId;
 	}
+
+	public void setPropertyId(int propertyId) {
+		this.propertyId = propertyId;
+	}
+	
+	public String toString() {
+		String s;
+		s = "Location: " + this.location + "\nAmenities: " + this.amenities +
+				"\nUtilities: " + this.utilities + "\nPrice: " + this.price + "\nBeds: " +
+				this.beds + "\nBaths: " + this.baths + "\nDescription: " + this.description +
+				"\nContact: " + this.contact;
+		return s;
+	}
+
+	public int[] getLeaseIDs() {
+		return leaseIDs;
+	}
+
+	public void setLeaseIDs(int[] leaseIDs) {
+		this.leaseIDs = leaseIDs;
+	}
+
 
 }

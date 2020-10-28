@@ -14,9 +14,10 @@ public abstract class DataConstants {
 	protected static final String LAST_NAME = "lastName";
 	protected static final String EMAIL = "emailAddress";
 	protected static final String PHONE = "phone";
+	/** Shared Data Strings for PropertyManager, Student, Review, Lease, and Property */
 	protected static final String RATINGS = "ratings";
 	protected static final String REVIEWS = "reviewIDs";
-	protected static final String LEASES = "signedLeaseIDs";
+	protected static final String LEASES = "leaseIDs";
 	
 	/** Strings to read Property Manager JSON File */
 	protected static final String MANAGER = "propertyManager";
@@ -34,10 +35,8 @@ public abstract class DataConstants {
 	protected static final String LOCATION = "location";
 	protected static final String PICTURES = "pictures";
 	protected static final String PRICE = "price";
-	protected static final String PROPERTY_REVIEWS = "reviews";
 	protected static final String BEDS = "beds";
 	protected static final String BATHS = "baths";
-	protected static final String LEASE = "lease";
 	protected static final String DESCRIPTION = "description";
 	protected static final String CONTACT = "contact";
 	protected static final String VISIBLE = "visible";

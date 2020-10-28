@@ -94,12 +94,16 @@ public class HousingUI {
 	
 	public void run() {
 		System.out.println(WELCOME);
-      //Data Loading test for students, delete whenever
+		// Test for Student DataLoader
 // 		ArrayList<Student> students = dataLoader.loadStudent();
 //		for(Student s: students) {
 //			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
 //		}
-
+		// Test for Property DataLoader
+//		ArrayList<Property> properties = dataLoader.loadProperties();
+//		for(Property p: properties) {
+//			System.out.println(p.toString()+"\n");
+//		}
 		
 		while(true) {
 			displayMenu(mainMenuOptions);

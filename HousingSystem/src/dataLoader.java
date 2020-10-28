@@ -50,31 +50,30 @@ public class dataLoader extends DataConstants{
 			FileReader reader = new FileReader(PROPERTY_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray propertiesJSON = (JSONArray)new JSONParser().parse(reader);
-			Property property;
 			
 			for(int i=0; i < propertiesJSON.size(); i++) {
 				JSONObject propertyJSON = (JSONObject)propertiesJSON.get(i);
-				int id = Integer.parseInt((String)propertyJSON.get(PROPERTY_ID));
+				
+				int id = ((Long)propertyJSON.get(PROPERTY_ID)).intValue();
+				// fix amenities
 				String[] amenities = parseString(propertyJSON.get(AMENITIES));
 				String utilities = (String)propertyJSON.get(UTILITIES);
 				String location = (String)propertyJSON.get(LOCATION);
 				//String pictures = (String)propertyJSON.get(PICTURES);
-				int price = (Integer)propertyJSON.get(PRICE);
-				int[] reviews = parseStringToInt((String)propertyJSON.get(PROPERTY_REVIEWS));
-				int beds = (Integer)propertyJSON.get(BEDS);
-				int baths = (Integer)propertyJSON.get(BATHS);
-				int leaseId = Integer.parseInt((String)propertyJSON.get(LEASE));
+				int price = ((Long)propertyJSON.get(PRICE)).intValue();
+				int beds = ((Long)propertyJSON.get(BEDS)).intValue();
+				int baths = ((Long)propertyJSON.get(BATHS)).intValue();
 				String description = (String)propertyJSON.get(DESCRIPTION);
 				String contact = (String)propertyJSON.get(CONTACT);
-				String vis = (String)propertyJSON.get(VISIBLE);
-				boolean visible;
-				if(vis.equalsIgnoreCase("false")) {
-					visible = false;
-				} else {
-					visible = true;
-				}
-				property = new Property(amenities, utilities, location, price, beds, baths, description, contact, visible);
+				boolean vis = (boolean)propertyJSON.get(VISIBLE);
+				
+				Property property = new Property(amenities, utilities, location, price, beds, baths, description, contact, vis);
 				properties.add(property);
+				
+				property.setRatings(getIDs((JSONArray)propertyJSON.get(RATINGS)));
+				property.setReviewIDs(getIDs((JSONArray)propertyJSON.get(REVIEWS)));
+				property.setLeaseIDs(getIDs((JSONArray)propertyJSON.get(LEASES)));
+
 			}
 			return properties;
 		} catch (Exception e) {
@@ -93,6 +92,7 @@ public class dataLoader extends DataConstants{
 			
 			for(int i=0; i < studentsJSON.size(); i++) {
 				JSONObject studentJSON = (JSONObject)studentsJSON.get(i);
+				
 				int id = ((Long)studentJSON.get(ID)).intValue();
 				String username = (String)studentJSON.get(USER_NAME);
 				String password = (String)studentJSON.get(PASSWORD);
@@ -106,9 +106,9 @@ public class dataLoader extends DataConstants{
 				students.add(student);
 				
 				student.setFavoriteIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
-				student.setRating(getIDs((JSONArray)studentJSON.get(FAVORITES)));
-				student.setReviewIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
-				student.setSignedLeaseIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
+				student.setRating(getIDs((JSONArray)studentJSON.get(RATINGS)));
+				student.setReviewIDs(getIDs((JSONArray)studentJSON.get(REVIEWS)));
+				student.setSignedLeaseIDs(getIDs((JSONArray)studentJSON.get(LEASES)));
 
 //				student.setFavoriteIDs(parseStringToInt(studentJSON.get(FAVORITES)));
 //				student.setRating(parseStringToInt(studentJSON.get(RATINGS)));
@@ -126,6 +126,16 @@ public class dataLoader extends DataConstants{
 		PropertyManager manager = new PropertyManager();
 		
 		return manager;
+	}
+	public static Lease loadLeases() {
+		Lease lease = new Lease();
+		
+		return lease;
+	}
+	public static Review loadReviews() {
+		Review reviews = new Review();
+		
+		return reviews;
 	}
 
 	
