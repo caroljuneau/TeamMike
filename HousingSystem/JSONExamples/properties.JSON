@@ -10,7 +10,7 @@
 	"reviewIDs":[],
 	"beds":2,
 	"baths":2,
-	"leaseIDs": [],
+	"leaseIDs": [1],
 	"description": "Walking distance from Campus, and right behind the baseball stadium!",
 	"contact": "803-555-5555",
 	"visible": true
@@ -25,7 +25,7 @@
 	"reviewIDs":[],
 	"beds": 1,
 	"baths": 1,
-	"leaseIDs": [],
+	"leaseIDs": [2],
 	"description": "Trading in a dorm room for off-campus living is a major milestone for any college student. Shouldn't you mark the occasion by choosing to live somewhere you love? At Stadium Suites, you'll enjoy all the advantages of communal living without an RA down the hall.",
 	"contact": "803-779-3280",
 	"visible": true
@@ -40,7 +40,7 @@
 	"reviewIDs":[],
 	"beds": 1,
 	"baths": 1,
-	"leaseIDs": [],
+	"leaseIDs": [3,6],
 	"description": "Enjoy a furnished 2 or 4 bedroom apartment with available private bathrooms, included utilities and a full set of amenities such as a resort-style pool, fitness center, sports courts and a private shuttle bus, all just minutes from the USC campus.",
 	"contact": "803-772-2200",
 	"visible": true
@@ -55,7 +55,7 @@
 	"reviewIDs":[],
 	"beds": 3,
 	"baths": 2,
-	"leaseIDs": [],
+	"leaseIDs": [4,5],
 	"description": "Completely renovated ranch on the Avenues. Close to everything. Large fenced in backyard.",
 	"contact": "803-622-9549",
 	"visible": true

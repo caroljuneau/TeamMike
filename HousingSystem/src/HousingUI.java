@@ -104,6 +104,11 @@ public class HousingUI {
 //		for(Property p: properties) {
 //			System.out.println(p.toString()+"\n");
 //		}
+		// Test for PropertyManager DataLoader
+//		ArrayList<PropertyManager> manager = dataLoader.loadPropertyManager();
+//		for(PropertyManager p: manager) {
+//			System.out.println(p.getUsername()+" " +p.getPassword()+" "+p.getFirstName()+ " "+p.getLastName());
+//		}
 		
 		while(true) {
 			displayMenu(mainMenuOptions);

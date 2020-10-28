@@ -21,7 +21,7 @@ public abstract class DataConstants {
 	
 	/** Strings to read Property Manager JSON File */
 	protected static final String MANAGER = "propertyManager";
-	protected static final String MANAGER_PROPERTY = "propertyIds";
+	protected static final String MANAGER_PROPERTY = "propertyIDs";
 
 	/** Strings to read Students JSON File */
 	protected static final String STUDENT = "studentId";

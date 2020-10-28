@@ -70,6 +70,7 @@ public class dataLoader extends DataConstants{
 				Property property = new Property(amenities, utilities, location, price, beds, baths, description, contact, vis);
 				properties.add(property);
 				
+				property.setPropertyId(id);
 				property.setRatings(getIDs((JSONArray)propertyJSON.get(RATINGS)));
 				property.setReviewIDs(getIDs((JSONArray)propertyJSON.get(REVIEWS)));
 				property.setLeaseIDs(getIDs((JSONArray)propertyJSON.get(LEASES)));
@@ -109,11 +110,6 @@ public class dataLoader extends DataConstants{
 				student.setRating(getIDs((JSONArray)studentJSON.get(RATINGS)));
 				student.setReviewIDs(getIDs((JSONArray)studentJSON.get(REVIEWS)));
 				student.setSignedLeaseIDs(getIDs((JSONArray)studentJSON.get(LEASES)));
-
-//				student.setFavoriteIDs(parseStringToInt(studentJSON.get(FAVORITES)));
-//				student.setRating(parseStringToInt(studentJSON.get(RATINGS)));
-//				student.setReviewIDs(parseStringToInt(studentJSON.get(REVIEWS)));
-//				student.setSignedLeaseIDs(parseStringToInt(studentJSON.get(LEASES)));
 			}
 			return students;
 		} catch (Exception e) {
@@ -122,10 +118,40 @@ public class dataLoader extends DataConstants{
 		
 		return null;
 	}
-	public static PropertyManager loadPropertyManager() {
-		PropertyManager manager = new PropertyManager();
+	public static ArrayList<PropertyManager> loadPropertyManager() {
+		ArrayList<PropertyManager> managerList = new ArrayList<PropertyManager>();
 		
-		return manager;
+		try {
+			FileReader reader = new FileReader(MANAGER_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray propertyManagerJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < propertyManagerJSON.size(); i++) {
+				JSONObject managerJSON = (JSONObject)propertyManagerJSON.get(i);
+				
+				int id = ((Long)managerJSON.get(ID)).intValue();
+				String username = (String)managerJSON.get(USER_NAME);
+				String password = (String)managerJSON.get(PASSWORD);
+				String firstName = (String)managerJSON.get(FIRST_NAME);
+				String lastName = (String)managerJSON.get(LAST_NAME);
+				String emailAddress = (String)managerJSON.get(EMAIL);
+				String phone = (String)managerJSON.get(PHONE);
+				
+				PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
+				managerList.add(manager);
+				
+				manager.setMyPropertyIDs(getIDs((JSONArray)managerJSON.get(MANAGER_PROPERTY)));
+				manager.setRating(getIDs((JSONArray)managerJSON.get(RATINGS)));
+				manager.setReviewIDs(getIDs((JSONArray)managerJSON.get(REVIEWS)));
+				manager.setSignedLeaseIDs(getIDs((JSONArray)managerJSON.get(LEASES)));
+			}
+			return managerList;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	public static Lease loadLeases() {
 		Lease lease = new Lease();

@@ -8,31 +8,11 @@ public class Student extends Account {
 	
 	public Student(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)
 	{
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailAddress = emailAddress;
-		this.phone = phone;
-		this.type = AccountType.STUDENT;
+		super(id, username, password, firstName, lastName, emailAddress, phone);
 		this.studentID = studentID;
 		this.favoriteProperties = null;
-		this.ratings = null;
-		this.reviews = null;
-		this.signedLeases = null;
+		this.type = AccountType.STUDENT;
 	}
-//	public Student() {
-//		student = dataLoader.loadStudent();
-//	}
-//	public static Student getInstance() {
-//		if(student == null) {
-//			student = new Student();
-//		}
-//		
-//		return student;
-//	}
-
 
 	public void setFavoriteIDs(int[] arr) {
 		this.favoriteIDs = arr;
@@ -70,5 +50,10 @@ public class Student extends Account {
 	public void reviewPropertyManager(PropertyManager propertyManager, int rating, String username, String review)
 	{
 		
+	}
+	public String toString() {
+		String s;
+		s = super.toString();
+		return s;
 	}
 }

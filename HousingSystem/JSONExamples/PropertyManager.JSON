@@ -1,63 +1,75 @@
-{"propertyManager":[
+[
   {
-  	"id":1,
-  	"username":"cwalls",
+  	"id":7,
+  	"username":"wallsc",
+  	"password":"@Password",
   	"firstName":"Chris",
 	"lastName":"Walls",
 	"emailAddress":"christopherwallssc@gmail.com",
 	"phone":"803-521-6174",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
+	"propertyIDs":[4],
+	"ratings":[1, 1, 1, 4],
+	"reviewIDs":[],
+	"leaseIDs":[4,5]
   },{
-  	"id":2,
-  	"username":"cjuneau",
+  	"id":8,
+  	"username":"juneauc",
+  	"password":"@Password",
   	"firstName":"Carol",
 	"lastName":"Juneau",
 	"emailAddress":"cjuneau@gmail.com",
 	"phone":"803-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
+	"propertyIDs":[3],
+	"ratings":[2, 2, 1, 3],
+	"reviewIDs":[],
+	"leaseIDs":[3,6]
   },{
-  	"id":3,
-  	"username":"cframes",
+  	"id":9,
+  	"username":"framesc",
+  	"password":"@Password",
   	"firstName":"Collin",
 	"lastName":"Frames",
 	"emailAddress":"cframes@gmail.com",
 	"phone":"843-610-1455",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
+	"propertyIDs":[2],
+	"ratings":[5, 5, 5, 5, 2],
+	"reviewIDs":[],
+	"leaseIDs":[2]
   },{
-  	"id":4,
-  	"username":"chenry",
+  	"id":10,
+  	"username":"henryc",
+  	"password":"@Password",
   	"firstName":"Chase",
 	"lastName":"Henry",
 	"emailAddress":"chenry@gmail.com",
 	"phone":"803-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
-  },
-	"id":5,
-  	"username":"billjones",
+	"propertyIDs":[1],
+	"ratings":[5],
+	"reviewIDs":[],
+	"leaseIDs":[1]
+  },{
+	"id":11,
+  	"username":"jonesbill",
+  	"password":"@Password",
   	"firstName":"Bill",
 	"lastName":"Jones",
 	"emailAddress":"billjones@gmail.com",
 	"phone":"803-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
-  },
-	"id":6,
-  	"username":"wapgirl12",
-  	"firstName":"Belcalis",
-	"lastName":"Almanzar",
-	"emailAddress":"cardib@gmail.com",
+	"propertyIDs":[],
+	"ratings":[5,4,3,2,1],
+	"reviewIDs":[],
+	"leaseIDs":[]
+  },{
+	"id":12,
+  	"username":"johnjohn",
+  	"password":"@Password",
+  	"firstName":"John",
+	"lastName":"Johnson",
+	"emailAddress":"jjohnson@gmail.com",
 	"phone":"555-555-5555",
-	"ratings":[],
-	"reviews":[],
-	"signedLeases":[]
-  },
-]}
+	"propertyIDs":[],
+	"ratings":[3,5,4],
+	"reviewIDs":[],
+	"leaseIDs":[]
+  }
+]

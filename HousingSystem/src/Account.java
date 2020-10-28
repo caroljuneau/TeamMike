@@ -13,10 +13,22 @@ public class Account {
 	protected int[] ratings;
 	protected ArrayList<Review> reviews;
 	protected ArrayList<Lease> signedLeases;
-	protected int[] ratingIDs;
 	protected int[] reviewIDs;
 	protected int[] signedLeaseIDs;
 	
+	public Account(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone)
+	{
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
+		this.phone = phone;
+		this.ratings = null;
+		this.reviews = null;
+		this.signedLeases = null;
+	}
 	public String getUsername() {
 		return this.username;
 	}

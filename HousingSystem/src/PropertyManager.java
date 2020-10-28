@@ -3,26 +3,22 @@ import java.util.ArrayList;
 public class PropertyManager extends Account {
 
 	private ArrayList<Property> myProperties;
+	private int[] myPropertyIDs;
 	
 	public PropertyManager(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone)
 	{
-		this.id = id;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailAddress = emailAddress;
-		this.phone = phone;
-		this.type = AccountType.PROPERTYMANAGER;
+		super(id, username, password, firstName, lastName, emailAddress, phone);
 		this.myProperties = null;
-		this.ratings = null;
-		this.reviews = null;
-		this.signedLeases = null;
+		this.type = AccountType.PROPERTYMANAGER;
+	}
+	public int[] getMyPropertyIDs() {
+		return myPropertyIDs;
+	}
+
+	public void setMyPropertyIDs(int[] myPropertyIDs) {
+		this.myPropertyIDs = myPropertyIDs;
 	}
 	
-	public PropertyManager() {
-		// TODO Auto-generated constructor stub
-	}
 	public void createProperty(ArrayList<String> amenities, String utilities, String location, ArrayList<String> pictures, int price, ArrayList<Review> reviews, int beds, int baths, Lease lease, String description, String contact, boolean signedLease)
 	{
 		
@@ -52,4 +48,10 @@ public class PropertyManager extends Account {
 	{
 		
 	}
+	public String toString() {
+		String s;
+		s = super.toString();
+		return s;
+	}
+
 }
