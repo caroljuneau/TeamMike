@@ -23,21 +23,8 @@ public class PropertyList {
 		return propertyList;
 	}
 	
-	public ArrayList<Property> getProperties() {
-		return properties;
-	}
-	
-	public int getSize() {
-		return properties.size();
-	}
-	
-	public Property getProperty(int id) {
-		return properties.get(id);
-	}
-	
 	public String toString()
 	{
-		//return propertyList.toString();
-		return "";
+		return Property.toString();
 	}
 }

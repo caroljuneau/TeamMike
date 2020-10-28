@@ -1,4 +1,4 @@
-{"leases":[
+[
   {
   	"leaseId":1,
   	"propertyId":1,
@@ -36,4 +36,4 @@
     "signed":false,
     "signedBy": []
   },
-]}
+]
