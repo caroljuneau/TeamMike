@@ -29,6 +29,12 @@ public class Account {
 		this.reviews = null;
 		this.signedLeases = null;
 	}
+	public int getID() {
+		return this.id;
+	}
+	public void setID(int id) {
+		this.id = id;
+	}
 	public String getUsername() {
 		return this.username;
 	}
@@ -53,10 +59,10 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getEmailAdress() {
+	public String getEmailAddress() {
 		return this.emailAddress;
 	}
-	public void setEmailAdress(String emailAddress) {
+	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress;
 	}
 	public String getPhone() {

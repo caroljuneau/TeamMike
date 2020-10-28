@@ -16,6 +16,10 @@ public class PropertyManagerList {
 		}
 		return propertyManagerList;
 	}
+	
+	public ArrayList<PropertyManager> getPropertyManagers() {
+		return this.propertyManagers;
+	}
 
 	public void addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		int id = propertyManagers.size() + 1;
