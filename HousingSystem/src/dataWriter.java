@@ -128,7 +128,7 @@ public class dataWriter extends DataConstants{
 
 	//TODO saveReview
 	public static void saveReview() {
-		Review review = Review.getInstance();
+		ReviewList review = ReviewList.getInstance();
 		ArrayList<Review> reviewList = review.getReviews();
 		JSONArray jsonProperty = new JSONArray();
 
@@ -149,7 +149,7 @@ public class dataWriter extends DataConstants{
 
 	//TODO saveLease
 	public static void saveLease() {
-		Lease lease = Lease.getInstance();
+		LeaseList lease = LeaseList.getInstance();
 		ArrayList<Lease> leaseList = lease.getLeases();
 		JSONArray jsonProperty = new JSONArray();
 
