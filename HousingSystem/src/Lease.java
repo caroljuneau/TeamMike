@@ -1,30 +1,35 @@
 public class Lease {
 
-	private void property() {
-		
+	private Property property;
+	private String fees;
+	private String repairs;
+	private String info;
+	private boolean signed;
+	private ArrayList<String> signedBy;
+
+	public Lease(Property property, String fees, String repairs, String termination, String info) {
+		this.property = property;
+		this.fees = fees;
+		this.repairs = repairs;
+		this.termination = termination;
+		this.info = info;
 	}
-	
-	private void fees(String money) {
-		
+
+	public void sign(String fullName) {
+		this.fullname = fullname;
 	}
-	
-	private void repairs(String repair) {
-		
+
+	public boolean getSigned() {
+		return signed;
 	}
-	
-	private void termination(String term) {
-		
+
+	public ArrayList<String> getSignedBy() {
+		return signedBy;
 	}
-	
-	private void info(String info) {
-		
-	}
-	
-	private void signed(boolean date) {
-		
-	}
-	
-	private void signedBy() {
-		
+
+	public String toString() {
+		String s;
+		s = super.toString();
+		return s;
 	}
 }
