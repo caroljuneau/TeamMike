@@ -6,8 +6,7 @@ public class PropertyManagerList {
 	private static PropertyManagerList propertyManagerList;
 
 	private PropertyManagerList() {
-		propertyManagers = new ArrayList<PropertyManager>();
-		//TODO dataloader
+		propertyManagers = dataLoader.loadPropertyManager();
 	}
 
 	public static PropertyManagerList getInstance() {
@@ -24,6 +23,7 @@ public class PropertyManagerList {
 	public void addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		int id = propertyManagers.size() + 1;
 		propertyManagers.add(new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone));
+		//TODO add to json
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {

@@ -1,27 +1,31 @@
-{"reviews":[
+[
   {
-  	"reviewId":1,
-  	"propertyId":1,
-  	"username":"",
-	"id":"",
+  	"id":1,
+  	"reviewedId":1,
+    "type":"Property",
+    "rating":5,
+  	"username":"cwalls",
     "description":"very nice property, fit me and my friends needs for 3 years. great property managers!"
   },{
-  	"reviewId":2,
-  	"propertyId":1,
-  	"username":"",
-	"id":"",
+  	"id":2,
+  	"reviewedId":1,
+    "type":"Property",
+    "rating":4,
+  	"username":"cframes",
     "description":"review 2 very nice property, fit me and my friends needs for 3 years. great property managers!"
   },{
-  	"reviewId":3,
-  	"propertyId":3,
-  	"username":"",
-	"id":"",
+  	"id":3,
+  	"reviewedId":3,
+    "type":"PropertyManager",
+    "rating":3,
+  	"username":"chenry",
     "description":"nice review 3"
   },{
-  	"reviewId":4,
-  	"propertyId":4,
-  	"username":"",
-	"id":"",
-    "description":"very nice property, fit me and my friends needs for 3 years. great property managers!"
-  },
-]}
+  	"id":4,
+  	"reviewdId":2,
+    "type":"Student",
+    "rating":2,
+  	"username":"juneauc",
+    "description":"nice lady"
+  }
+]

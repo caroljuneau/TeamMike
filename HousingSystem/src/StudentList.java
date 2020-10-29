@@ -7,7 +7,6 @@ public class StudentList {
 
 	private StudentList() {
 		students = dataLoader.loadStudent();
-		//students = new ArrayList<Student>();
 	}
 
 	public static StudentList getInstance() {
@@ -16,13 +15,15 @@ public class StudentList {
 		}
 		return studentList;
 	}
+	
 	public ArrayList<Student> getStudents() {
-		return this.students;
+		return students;
 	}
 
 	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size() + 1;
 		students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
+		//TODO add student to json
 	}
 	
 	public Student getStudent(String username, String password) {

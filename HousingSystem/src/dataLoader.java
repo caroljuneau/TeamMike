@@ -151,10 +151,41 @@ public class dataLoader extends DataConstants{
 		
 		return null;
 	}
-	public static Lease loadLeases() {
-		Lease lease = new Lease();
+	public static ArrayList<Lease> loadLeases() {
+		ArrayList<Lease> leaseList = new ArrayList<Lease>();
 		
-		return lease;
+		try {
+			FileReader reader = new FileReader(MANAGER_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray leasesJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < leasesJSON.size(); i++) {
+				JSONObject leaseObj = (JSONObject)leasesJSON.get(i);
+				
+				int id = ((Long)leaseObj.get(ID)).intValue();
+				int propertyId = ((Long)leaseObj.get(PROPERTY_ID)).intValue();
+				String username = (String)leaseObj.get(USER_NAME);
+				String password = (String)leaseObj.get(PASSWORD);
+				String firstName = (String)leaseObj.get(FIRST_NAME);
+				String lastName = (String)leaseObj.get(LAST_NAME);
+				String emailAddress = (String)leaseObj.get(EMAIL);
+				String phone = (String)leaseObj.get(PHONE);
+				
+				Lease lease = new Lease(id, username, password, firstName, lastName, emailAddress, phone);
+				leaseList.add(lease);
+				
+				lease.setMyPropertyIDs(getIDs((JSONArray)lease.get(MANAGER_PROPERTY)));
+				lease.setRating(getIDs((JSONArray)lease.get(RATINGS)));
+				lease.setReviewIDs(getIDs((JSONArray)lease.get(REVIEWS)));
+				lease.setSignedLeaseIDs(getIDs((JSONArray)lease.get(LEASES)));
+			}
+			return leaseList;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	public static Review loadReviews() {
 		Review reviews = new Review();
