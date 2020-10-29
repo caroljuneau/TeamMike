@@ -13,10 +13,8 @@ public class Lease {
 	private boolean signed;
 //	private ArrayList<String> signedBy;
 
-	public Lease(int id, ArrayList<Integer> signedByStudentIds, ArrayList<Integer> signedByPropertyManagerIds, int propertyID, String fees, String repairs, String termination, String info, boolean signed) {
+	public Lease(int id, int propertyID, String fees, String repairs, String termination, String info) {
 		this.id = id;
-		this.signedByStudentIds = signedByStudentIds;
-		this.signedByPropertyManagerIds = signedByPropertyManagerIds;
 		this.propertyID = propertyID;
 		this.fees = fees;
 		this.repairs = repairs;

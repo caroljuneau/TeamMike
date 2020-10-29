@@ -177,11 +177,12 @@ public class dataLoader extends DataConstants{
 				String info = (String)leaseObj.get(INFO);
 				boolean signed = (boolean)leaseObj.get(SIGNED);
 				
-				Lease lease = new Lease(id, fees, repairs, termination, info);
+				Lease lease = new Lease(id, propertyId, fees, repairs, termination, info);
 				leaseList.add(lease);
 				
 				lease.setSigned(signed);
-				lease.setSignedByIds(getIDs((JSONArray)leaseObj.get(SIGNED_BY)));
+				lease.setSignedByStudentIds(getIDs((JSONArray)leaseObj.get(SIGNED_BY_STUDENT_IDS)));
+				lease.setSignedByPropertyManagerIds(getIDs((JSONArray)leaseObj.get(SIGNED_BY_PROPERTY_MANAGER_IDS)));
 			}
 			return leaseList;
 			

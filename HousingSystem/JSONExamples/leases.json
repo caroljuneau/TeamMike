@@ -1,39 +1,43 @@
 [
   {
   	"id":1,
+  	"signedByStudentIds":[],
+  	"signedByPropertyManagerIds":[],
   	"propertyId":1,
   	"fees":"One month's rent security deposit",
     "repairs":"",
     "termination":"",
     "info": "",
-    "signed":false,
-    "signedBy": []
+    "signed":false
   },{
   	"id":2,
+  	"signedByStudentIds":[],
+  	"signedByPropertyManagerIds":[],
   	"propertyId":2,
   	"fees":"One month's rent security deposit",
     "repairs":"",
     "termination":"",
     "info": "",
-    "signed":false,
-    "signedBy": []
+    "signed":false
   },{
   	"id":3,
+  	"signedByStudentIds":[],
+  	"signedByPropertyManagerIds":[],
   	"propertyId":3,
   	"fees":"One month's rent security deposit",
     "repairs":"",
     "termination":"",
     "info": "",
-    "signed":false,
-    "signedBy": []
+    "signed":false
   },{
   	"id":4,
+  	"signedByStudentIds":[],
+  	"signedByPropertyManagerIds":[],
   	"propertyId":4,
   	"fees":"One month's rent security deposit",
     "repairs":"",
     "termination":"",
     "info": "",
-    "signed":false,
-    "signedBy": []
+    "signed":false
   }
 ]
