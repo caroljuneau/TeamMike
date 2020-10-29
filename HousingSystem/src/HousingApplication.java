@@ -68,68 +68,37 @@ public class HousingApplication {
 	public String listProperties(ArrayList<Property> properties) {
 		String ret = "";
 		for(Property property : properties) {
-			ret += property.toString() + '\n';
+			ret += property.toString() + "\n";
 		}
 		return ret;
 	}
 
-//
-//	public ArrayList<Property> sortByPrice(boolean increasing) {
-//		ArrayList<Property> sortPrice = new ArrayList<Property>();
-//		if(increasing == true) {
-//			Collections.sort(sortPrice, Collections.reverseOrder().reversed());
-//		} else {
-//			Collections.sort(sortPrice, Collections.reverseOrder());
-//		}
-//		return sortPrice;
-//	}
-
-//	public ArrayList<Property> sortByNumReviews(boolean increasing) {
-//		ArrayList<Property> sortReviews = new ArrayList<Property>();
-//			if(increasing == true) {
-//				Collections.sort(sortReviews, Collections.reverseOrder().reversed());
-//			} else {
-//				Collections.sort(sortReviews, Collections.reverseOrder());
-//			}
-//			return sortReviews;
-//	}
-
-	public String filterByAmenities(boolean pool, boolean gym, boolean pets, boolean laundry, boolean shuttle) {
-		//need to fix
-		ArrayList<Property> listData = new ArrayList<Property>();
-//		for(Property data : listData) {
-//			//something wrong here: type mismatch on amenities boolean/string[]
-//			if(data.getAmenities() != null) {
-//				listData.add(data);
-//			}
-//		}
-		return listProperties(listData);
+	public String filterByAmenities(boolean[] choices) {
+		//TODO need to test
+		ArrayList<Property> filtered = new ArrayList<Property>();
+		for(int i = 0; i < properties.getSize(); i++) {
+			Property property = properties.getProperty(i);
+			boolean[] actualAmenities = property.getAmenities();
+			if(choices.equals(actualAmenities)) {
+				filtered.add(property);
+			}
+		}
+		return listProperties(filtered);
 	}
 
 	public String filterByPriceRange(int min, int max) {
-		ArrayList<Property> output = new ArrayList<Property>();
+		//TODO need to test
+		ArrayList<Property> filtered = new ArrayList<Property>();
 		for(int i=0; i<properties.getSize(); ++i) {
 			Property property = properties.getProperty(i);
 			int price = property.getPrice();
 			if(price >= min && price <= max) {
-				output.add(property);
+				filtered.add(property);
 			}
 		}
-		return listProperties(output);
+		return listProperties(filtered);
 	}
 
-	// what is sort by keyword? just search by keyword?
-	public String sortByKeyword(String key, ArrayList<Property> list) {
-		//need to fix
-		ArrayList<Property> sort = new ArrayList<Property>();
-//	    for(Property string : list){
-//	        if(string.matches(key)){
-//	            sort.add(string);
-//	        }
-//	    }
-	    return listProperties(sort);
-	}
-	
 	public String viewFavProperties(Account user) {
 		if(user.type == AccountType.STUDENT) {
 			ArrayList<Integer> favIDs = ((Student) user).getFavoriteIDs();

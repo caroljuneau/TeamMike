@@ -58,12 +58,11 @@ public class HousingUI {
 			"Browse Properties Menu: ",
 			"View all properties", //1
 			"Search by keyword", //2
-			"Sort by distance", //3
-			"Sort by price", //4
-			"Sort by number of reviews", //5
-			"Filter by amenities", //6
+			"Sort by price", //3
+			"Sort by number of reviews", //4
+			"Filter by amenities", //5
 			"Filter by price range", //7
-			"Go back", //8
+			"Go back", //7
 		};
 	private String[] managePropertiesOptions = 
 		{
@@ -85,6 +84,14 @@ public class HousingUI {
 			"Sort increasing or decreasing?",
 			"Increasing", //1
 			"Decreasing", //2
+		};
+	private String[] amenities = 
+		{
+			"Pool",
+			"Gym",
+			"Pets",
+			"Laundry",
+			"Shuttle"
 		};
 	
 	public HousingUI() {
@@ -348,9 +355,6 @@ public class HousingUI {
 				System.out.println(application.searchByKeyword(keyword));
 				break;
 			case 3:
-				//sort by distance?
-				break;
-			case 4:
 				displayMenu(incOrDec);
 				int userCommand2 = getUserCommand(incOrDec.length);
 				switch(userCommand2) {
@@ -367,7 +371,7 @@ public class HousingUI {
 					break;
 				}
 				break;
-			case 5:
+			case 4:
 				displayMenu(incOrDec);
 				int userCommand3 = getUserCommand(incOrDec.length);
 				switch(userCommand3) {
@@ -384,13 +388,37 @@ public class HousingUI {
 					break;
 				}
 				break;
+			case 5:
+				System.out.println("Which amenities do you want?");
+				boolean[] choices = new boolean[amenities.length];
+				for(int i = 0; i < amenities.length; i++) {
+					while(true) {
+						System.out.println(amenities[i] + "? Enter 1 for yes or 2 for no.");
+						int choice = getUserCommand(3);
+						if(choice == 1) {
+							choices[i] = true;
+							break;
+						}
+						if(choice == 2) {
+							choices[i] = false;
+							break;
+						}
+						System.out.println(INVALID);
+					}	
+				}
+				application.filterByAmenities(choices);
+				break;
 			case 6:
-				//TODO filter by amenities
+				System.out.println("Please enter a minimum price (as an integer).");
+				int min = keyboard.nextInt();
+				keyboard.nextLine();
+				System.out.println("Please enter a maximum price (as an integer).");
+				int max = keyboard.nextInt();
+				keyboard.nextLine();
+				System.out.println("Properties between $" + min + " and $" + max + ":");
+				System.out.println(application.filterByPriceRange(min, max));
 				break;
 			case 7:
-				//TODO filter by price range
-				break;
-			case 8:
 				goBack = true;
 				break;
 			default:
