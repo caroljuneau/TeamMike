@@ -1,17 +1,15 @@
-package TeamMike;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ReviewList {
-	
+
 	private ArrayList<Review> reviews;
 	private static ReviewList reviewList;
-	
+
 	private ReviewList() {
 		reviews = dataLoader.loadReviews();
 	}
-	
+
 	public static ReviewList getInstance()
 	{
 		if(reviewList == null)
@@ -20,7 +18,7 @@ public class ReviewList {
 		}
 		return reviewList;
 	}
-	
+
 	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
