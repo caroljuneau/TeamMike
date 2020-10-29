@@ -137,4 +137,12 @@ public class Account {
 	public String getName() {
 		return this.firstName + " " + this.lastName;
 	}
+	
+	public String shortToString() {
+		return "ID: " + ", " + getName();
+	}
+	
+	public void addReview(int reviewId) {
+		reviewIDs.add(reviewId);
+	}
 }

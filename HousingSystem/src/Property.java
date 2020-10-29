@@ -153,6 +153,10 @@ public class Property {
 	public void setLeaseIDs(ArrayList<Integer> leaseIDs) {
 		this.leaseIDs = leaseIDs;
 	}
+	
+	public void addReview(int reviewId) {
+		reviewIDs.add(reviewId);
+	}
 
 
 

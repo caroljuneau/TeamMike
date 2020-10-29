@@ -226,6 +226,7 @@ public class HousingUI {
 			String username = keyboard.nextLine();
 			if(application.usernameInList(type, username)) {
 				System.out.println("Username is already taken.");
+				displayMenu(tryAgainOptions);
 				int userCommand = getUserCommand(tryAgainOptions.length);
 				switch(userCommand) {
 				case 1:
@@ -233,7 +234,7 @@ public class HousingUI {
 				case 2:
 					return;
 				default:
-					System.out.println("INVALID");
+					System.out.println(INVALID);
 					break;
 				}
 				continue;
@@ -273,34 +274,16 @@ public class HousingUI {
 				application.viewFavProperties(user);
 				break;
 			case 3:
-				System.out.println("Please enter the ID of the property you wish to sign the lease for.");
-				System.out.println(application.viewAllPropertiesShort());
-				int userCommand2 = getUserCommand(application.getNumOfProperties());
-				if(userCommand2 == -1)  {
-					System.out.println(INVALID);
-					break;
-				}
-				System.out.println("Signing lease for Property " + application.getProperty(userCommand2).shortToString() + ":");
-				application.signLease(user, userCommand2);
-				//TODO need to check
+				signLease();
 				break;
 			case 4:
 				application.viewSignedLeases(user);
 				break;
 			case 5:
-				System.out.println("Please enter the ID of the property you wish to review.");
-				System.out.println(application.viewAllPropertiesShort());
-				int userCommand3 = getUserCommand(application.getNumOfProperties());
-				if(userCommand3 == -1) {
-					System.out.println(INVALID);
-					break;
-				}
-				System.out.println("Reviewing property " + application.getProperty(userCommand3).shortToString() + ":");
-				application.reviewProperty(user, userCommand3);
-//				reviewProperty();//TODO
+				reviewProperty();
 				break;
 			case 6:
-//				reviewPropertyManager();//TODO
+				reviewPropertyManager();
 				break;
 			case 7:
 				System.out.println(LOGOUT);
@@ -323,15 +306,16 @@ public class HousingUI {
 //				manageProperties();//TODO
 				break;
 			case 2:
-				application.viewMyProperties(user);//TODO
+				application.viewMyProperties(user);
 				break;
 			case 3:
-				//TODO sign lease
+				signLease();
+				break;
 			case 4:
 				application.viewSignedLeases(user);
 				break;
 			case 5:
-//				reviewStudent();//TODO
+				reviewStudent();
 				break;
 			case 6:
 				System.out.println(LOGOUT);
@@ -450,6 +434,167 @@ public class HousingUI {
 				System.out.println(INVALID);
 				break;
 			}
+		}
+	}
+	
+	public void reviewProperty() {
+		while(true) {
+			System.out.println("Please enter the ID of the property you wish to review.");
+			System.out.println(application.viewAllPropertiesShort());
+			int id = getUserCommand(application.getNumOfProperties() + 1); // TODO +1?
+			if(id == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Reviewing property " + application.getProperty(id).shortToString() + ":");
+			System.out.println("Please enter a rating of the property as an integer between 1 and 5.");
+			int rating = getUserCommand(6);
+			if(rating == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Please type your review.");
+			String review = keyboard.nextLine();
+			application.reviewProperty(user, id, rating, review);
+			return;
+		}
+		
+	}
+	
+	public void reviewPropertyManager() {
+		while(true) {
+			System.out.println("Please enter the ID of the property manager you wish to review.");
+			System.out.println(application.listPropertyManagersShort());
+			int id = getUserCommand(application.getNumOfPropertyManagers() + 1);
+			if(id == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Reviewing property manager " + application.getPropertyManager(id).shortToString() + ":");
+			System.out.println("Please enter a rating of the property manager as an integer between 1 and 5.");
+			int rating = getUserCommand(6);
+			if(rating == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Please type your review.");
+			String review = keyboard.nextLine();
+			application.reviewPropertyManager(user, id, rating, review);
+			return;
+		}
+	}
+	
+	public void reviewStudent() {
+		while(true) {
+			System.out.println("Please enter the ID of the student you wish to review.");
+			System.out.println(application.listStudentsShort());
+			int id = getUserCommand(application.getNumOfStudents() + 1);
+			if(id == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Reviewing student " + application.getStudent(id).shortToString() + ":");
+			System.out.println("Please enter a rating of the student as an integer between 1 and 5.");
+			int rating = getUserCommand(6);
+			if(rating == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Please type your review.");
+			String review = keyboard.nextLine();
+			application.reviewStudent(user, id, rating, review);
+			return;
+		}
+	}
+	
+	public void signLease() {
+		while(true) {
+			System.out.println("Please enter the ID of the property you wish to sign the lease for.");
+			System.out.println(application.viewPropertiesWithLeases());
+			int id = getUserCommand(application.getNumOfPropertiesWithLeases());
+			if(id == -1) {
+				System.out.println(INVALID);
+				displayMenu(tryAgainOptions);
+				int userCommand = getUserCommand(tryAgainOptions.length);
+				switch(userCommand) {
+				case 1:
+					break;
+				case 2:
+					return;
+				default:
+					System.out.println(INVALID);
+					break;
+				}
+				continue;
+			}
+			System.out.println("Signing lease for Property " + application.getProperty(id).shortToString() + ":");
+			application.signLease(user, id);
 		}
 	}
 	

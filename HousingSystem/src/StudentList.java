@@ -56,4 +56,8 @@ public class StudentList {
 		}
 		return false;
 	}
+	
+	public int getSize() {
+		return students.size();
+	}
 }

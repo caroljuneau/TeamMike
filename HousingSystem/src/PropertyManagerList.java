@@ -56,4 +56,8 @@ public class PropertyManagerList {
 		}
 		return false;
 	}
+	
+	public int getSize() {
+		return propertyManagers.size();
+	}
 }
