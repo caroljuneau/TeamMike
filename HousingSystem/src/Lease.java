@@ -9,6 +9,7 @@ public class Lease {
 	private String info;
 	private boolean signed;
 	private ArrayList<String> signedBy;
+	private static Lease leaseList;
 
 	public Lease(int propertyID, String fees, String repairs, String termination, String info) {
 		this.propertyID = propertyID;
@@ -81,7 +82,7 @@ public class Lease {
 	public String getSignedByString() {
 		String s = "";
 		for(String i: signedBy) {
-			s += i + ", ";
+			s += i + ", ";5
 		}
 		return s;
 	}
@@ -92,5 +93,14 @@ public class Lease {
 				"\nInfo: " + this.info;
 		s += "\nSigned By: " + getSignedByString();
 		return s;
+	}
+
+	public static Lease getInstance()
+	{
+		if(leaseList == null)
+		{
+			leaseList = new LeaseList();
+		}
+		return leaseList;
 	}
 }

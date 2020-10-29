@@ -6,6 +6,7 @@ public class Review {
 	private int ratingID;
 	private String username;
 	private String description;
+	private static Review reviewList;
 
 	public String Review(int rating, String username, String description)
 	{
@@ -53,4 +54,13 @@ public class Review {
   public void setRating(int rating) {
     this.rating = rating;
   }
+
+	public static reviewList getInstance()
+	{
+		if(reviewList == null)
+		{
+			reviewList = new ReviewList();
+		}
+		return reviewList;
+	}
 }
