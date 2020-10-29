@@ -19,7 +19,7 @@ public class PropertyList {
 		return properties;
 	}
 	
-	public void addProperty(ArrayList<String> amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
+	public void addProperty(boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		int id = properties.size() + 1;
 		properties.add(new Property(id, amenities, utilities, location, price, beds, baths, description, contact, visible));
 		//TODO add the property to json

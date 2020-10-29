@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Property {
 	private int propertyId;
-	private ArrayList<String> amenities;
+	private boolean[] amenities;
 	private String utilities;
 	private String location;
 	//private ArrayList<String> pictures;
@@ -19,7 +19,7 @@ public class Property {
 	private boolean visible;
 	private int size;
 
-	public Property(int id, ArrayList<String> amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
+	public Property(int id, boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		this.propertyId = id;
 		this.amenities = amenities;
 		this.utilities = utilities;
@@ -32,10 +32,10 @@ public class Property {
 		this.visible = visible;
 	}
 
-	public ArrayList<String> getAmenities() {
+	public boolean[] getAmenities() {
 		return amenities;
 	}
-	public void setAmenities(ArrayList<String> amenities) {
+	public void setAmenities(boolean[] amenities) {
 		this.amenities = amenities;
 	}
 	public String getUtilities() {
