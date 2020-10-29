@@ -141,6 +141,10 @@ public class Property {
 				"\nContact: " + this.contact;
 		return s;
 	}
+	
+	public String shortToString() {
+		return "ID: " + this.propertyId + ", Location: " + this.location;
+	}
 
 	public ArrayList<Integer> getLeaseIDs() {
 		return leaseIDs;

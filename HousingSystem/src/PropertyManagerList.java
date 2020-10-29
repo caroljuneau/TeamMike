@@ -38,6 +38,15 @@ public class PropertyManagerList {
 		return null;
 	}
 	
+	public PropertyManager getPropertyManager(int id) {
+		for(PropertyManager pM : propertyManagers) {
+			if(pM.getID() == id) {
+				return pM;
+			}
+		}
+		return null;
+	}
+	
 	public boolean usernameInList(String username) {
 		Iterator<PropertyManager> iterator = propertyManagers.iterator();
 		while(iterator.hasNext()) {

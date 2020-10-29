@@ -32,19 +32,21 @@ public class HousingUI {
 			"Student Menu: ",
 			"Browse properties", //1
 			"View my favorite properties", //2
-			"View my signed leases", //3
-			"Rate/review a property", //4
-			"Rate/review a property manager", //5
-			"Log out" //6
+			"Sign lease", //3
+			"View my signed leases", //4
+			"Rate/review a property", //5
+			"Rate/review a property manager", //6
+			"Log out" //7
 		};
 	private String[] propertyManagerOptions = 
 		{
 			"Property Manager Menu: ",
 			"Manage my properties", //1
 			"View my properties", //2
-			"View my signed leases", //3
-			"Rate/review a student", //4
-			"Log out" //5
+			"Sign lease", //3
+			"View my signed leases", //4
+			"Rate/review a student", //5
+			"Log out" //6
 		};
 	private String[] guestOptions = 
 		{
@@ -271,15 +273,36 @@ public class HousingUI {
 				application.viewFavProperties(user);
 				break;
 			case 3:
-				application.viewSignedLeases(user);
+				System.out.println("Please enter the ID of the property you wish to sign the lease for.");
+				System.out.println(application.viewAllPropertiesShort());
+				int userCommand2 = getUserCommand(application.getNumOfProperties());
+				if(userCommand2 == -1)  {
+					System.out.println(INVALID);
+					break;
+				}
+				System.out.println("Signing lease for Property " + application.getProperty(userCommand2).shortToString() + ":");
+				application.signLease(user, userCommand2);
+				//TODO need to check
 				break;
 			case 4:
-//				reviewProperty();//TODO
+				application.viewSignedLeases(user);
 				break;
 			case 5:
-//				reviewPropertyManager();//TODO
+				System.out.println("Please enter the ID of the property you wish to review.");
+				System.out.println(application.viewAllPropertiesShort());
+				int userCommand3 = getUserCommand(application.getNumOfProperties());
+				if(userCommand3 == -1) {
+					System.out.println(INVALID);
+					break;
+				}
+				System.out.println("Reviewing property " + application.getProperty(userCommand3).shortToString() + ":");
+				application.reviewProperty(user, userCommand3);
+//				reviewProperty();//TODO
 				break;
 			case 6:
+//				reviewPropertyManager();//TODO
+				break;
+			case 7:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -303,12 +326,14 @@ public class HousingUI {
 				application.viewMyProperties(user);//TODO
 				break;
 			case 3:
+				//TODO sign lease
+			case 4:
 				application.viewSignedLeases(user);
 				break;
-			case 4:
+			case 5:
 //				reviewStudent();//TODO
 				break;
-			case 5:
+			case 6:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;

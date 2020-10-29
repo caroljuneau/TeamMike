@@ -5,11 +5,15 @@ public class HousingApplication {
 	private PropertyList properties;
 	private StudentList students;
 	private PropertyManagerList propertyManagers;
+	private LeaseList leases;
+	private ReviewList reviews;
 
 	public HousingApplication() {
 		properties = PropertyList.getInstance();
 		students = StudentList.getInstance();
 		propertyManagers = PropertyManagerList.getInstance();
+		leases = LeaseList.getInstance();
+		reviews = ReviewList.getInstance();
 	}
 
 	public Account logIn(String username, String password)
@@ -35,6 +39,10 @@ public class HousingApplication {
 	
 	public String viewAllProperties() {
 		return listProperties(allProperties());
+	}
+	
+	public String viewAllPropertiesShort() {
+		return listPropertiesShort(allProperties());
 	}
 	
 	public String searchByKeyword(String key) {
@@ -69,6 +77,14 @@ public class HousingApplication {
 		String ret = "";
 		for(Property property : properties) {
 			ret += property.toString() + "\n";
+		}
+		return ret;
+	}
+	
+	public String listPropertiesShort(ArrayList<Property> properties) {
+		String ret = "";
+		for(Property property : properties) {
+			ret += property.shortToString() + "\n";
 		}
 		return ret;
 	}
@@ -130,6 +146,44 @@ public class HousingApplication {
 			//TODO
 		}
 		return ret;
+	}
+	
+	public Student getStudent(int id) {
+		return students.getStudent(id);
+	}
+	
+	public PropertyManager getPropertyManager(int id) {
+		return propertyManagers.getPropertyManager(id);
+	}
+	
+	public Property getProperty(int id) {
+		return properties.getProperty(id);
+	}
+	
+	public String getSignedBy(Lease lease) {
+		String ret = "Students: \n";
+		for(int i : lease.getSignedByStudentIds()) {
+			ret += getStudent(i).getName() + "\n";
+		}
+		ret += "Property Managers: \n";
+		for(int i : lease.getSignedByPropertyManagerIds()) {
+			ret += getPropertyManager(i).getName() + "\n";
+		}
+		return ret;
+	}
+	
+	public int getNumOfProperties() {
+		return properties.getSize();
+	}
+	
+	public void signLease(Account user, int propertyId) {
+		Property property = properties.getProperty(propertyId);
+		Lease lease = property.getLease();
+		lease.sign(user);
+	}
+	
+	public void reviewProperty(Account user, int propertyId) {
+		//TODO
 	}
 
 	public boolean usernameInList(AccountType type, String username) {

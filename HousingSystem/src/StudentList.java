@@ -23,7 +23,7 @@ public class StudentList {
 	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size() + 1;
 		students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
-		//TODO add student to json
+		//TODO datawriter
 	}
 	
 	public Student getStudent(String username, String password) {
@@ -32,6 +32,15 @@ public class StudentList {
 		while(iterator.hasNext()) {
 			student = iterator.next();
 			if(student.getUsername().equals(username) && student.getPassword().equals(password)) {
+				return student;
+			}
+		}
+		return null;
+	}
+	
+	public Student getStudent(int id) {
+		for(Student student : students) {
+			if(student.getID() == id) {
 				return student;
 			}
 		}

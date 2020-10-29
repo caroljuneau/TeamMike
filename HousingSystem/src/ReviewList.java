@@ -22,6 +22,12 @@ public class ReviewList {
 	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
+	
+	public void addReview(int reviewedId, ReviewType type, int rating, String username, String description) {
+		int id = reviews.size() + 1;
+		reviews.add(new Review(id, reviewedId, type, rating, username, description));
+		//TODO datawriter
+	}
 
 
 }
