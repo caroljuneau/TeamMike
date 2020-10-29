@@ -10,7 +10,7 @@ public class Lease {
 	private boolean signed;
 	private ArrayList<String> signedBy;
 
-	public Lease(Int propertyID, String fees, String repairs, String termination, String info) {
+	public Lease(int propertyID, String fees, String repairs, String termination, String info) {
 		this.property = property;
 		this.fees = fees;
 		this.repairs = repairs;
