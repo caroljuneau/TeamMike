@@ -65,7 +65,7 @@ public class dataLoader extends DataConstants{
 				String contact = (String)propertyJSON.get(CONTACT);
 				boolean vis = (boolean)propertyJSON.get(VISIBLE);
 				
-				Property property = new Property(amenities, utilities, location, price, beds, baths, description, contact, vis);
+				Property property = new Property(id, amenities, utilities, location, price, beds, baths, description, contact, vis);
 				properties.add(property);
 				
 				property.setPropertyId(id);
@@ -155,7 +155,7 @@ public class dataLoader extends DataConstants{
 		ArrayList<Lease> leaseList = new ArrayList<Lease>();
 		
 		try {
-			FileReader reader = new FileReader(MANAGER_FILE_NAME);
+			FileReader reader = new FileReader(LEASE_FILE_NAME);
 			JSONParser parser = new JSONParser();
 			JSONArray leasesJSON = (JSONArray)new JSONParser().parse(reader);
 			
@@ -164,20 +164,17 @@ public class dataLoader extends DataConstants{
 				
 				int id = ((Long)leaseObj.get(ID)).intValue();
 				int propertyId = ((Long)leaseObj.get(PROPERTY_ID)).intValue();
-				String username = (String)leaseObj.get(USER_NAME);
-				String password = (String)leaseObj.get(PASSWORD);
-				String firstName = (String)leaseObj.get(FIRST_NAME);
-				String lastName = (String)leaseObj.get(LAST_NAME);
-				String emailAddress = (String)leaseObj.get(EMAIL);
-				String phone = (String)leaseObj.get(PHONE);
+				String fees = (String)leaseObj.get(FEES);
+				String repairs = (String)leaseObj.get(REPAIRS);
+				String termination = (String)leaseObj.get(TERMINATION);
+				String info = (String)leaseObj.get(INFO);
+				boolean signed = (boolean)leaseObj.get(SIGNED);
 				
-				Lease lease = new Lease(id, username, password, firstName, lastName, emailAddress, phone);
+				Lease lease = new Lease(id, fees, repairs, termination, info);
 				leaseList.add(lease);
 				
-				lease.setMyPropertyIDs(getIDs((JSONArray)lease.get(MANAGER_PROPERTY)));
-				lease.setRating(getIDs((JSONArray)lease.get(RATINGS)));
-				lease.setReviewIDs(getIDs((JSONArray)lease.get(REVIEWS)));
-				lease.setSignedLeaseIDs(getIDs((JSONArray)lease.get(LEASES)));
+				lease.setSigned(signed);
+				lease.setSignedByIds(getIDs((JSONArray)leaseObj.get(SIGNED_BY)));
 			}
 			return leaseList;
 			
@@ -187,10 +184,35 @@ public class dataLoader extends DataConstants{
 		
 		return null;
 	}
-	public static Review loadReviews() {
-		Review reviews = new Review();
+	public static ArrayList<Review> loadReviews() {
+		ArrayList<Review> reviewList = new ArrayList<Review>();
 		
-		return reviews;
+		try {
+			FileReader reader = new FileReader(REVIEW_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray reviewJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < reviewJSON.size(); i++) {
+				JSONObject reviewObj = (JSONObject)reviewJSON.get(i);
+				
+				int id = ((Long)reviewObj.get(ID)).intValue();
+				int reviewedId = ((Long)reviewObj.get(REVIEWED)).intValue();
+				ReviewType type = ((ReviewType)reviewObj.get(TYPE));
+				int rating = ((Long)reviewObj.get(RATING)).intValue();
+				String username = (String)reviewObj.get(USER_NAME);
+				String description = (String)reviewObj.get(DESCRIPTION);
+				
+				Review review = new Review(id, reviewedId, type, rating, username, description);
+				reviewList.add(review);
+				
+			}
+			return reviewList;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	
