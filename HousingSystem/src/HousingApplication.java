@@ -52,8 +52,8 @@ public class HousingApplication {
 	}
 	
 	public String sortByPrice(boolean increasing) {
-		ArrayList<Property> list = null;
-		Collections.copy(list, allProperties());
+		ArrayList<Property> list = allProperties();
+//		Collections.copy(list, allProperties());
 		if(increasing == true) {
 			Collections.sort(list, Collections.reverseOrder().reversed());
 		} else {
@@ -63,8 +63,8 @@ public class HousingApplication {
 	}
 	
 	public String sortByNumReviews(boolean increasing) {
-		ArrayList<Property> list = null;
-		Collections.copy(list, allProperties());
+		ArrayList<Property> list = allProperties();
+//		Collections.copy(list, allProperties());
 		if(increasing == true) {
 			Collections.sort(list, Collections.reverseOrder().reversed());
 		} else {
@@ -76,7 +76,7 @@ public class HousingApplication {
 	public String listProperties(ArrayList<Property> properties) {
 		String ret = "";
 		for(Property property : properties) {
-			ret += property.toString() + "\n";
+			ret += property.toString() + "\n\n";
 		}
 		return ret;
 	}
@@ -150,15 +150,14 @@ public class HousingApplication {
 	}
 
 	public String viewFavProperties(Account user) {
+		ArrayList<Property> list = new ArrayList<Property>();
 		if(user.type == AccountType.STUDENT) {
 			ArrayList<Integer> favIDs = ((Student) user).getFavoriteIDs();
-			String ret = "";
 			for(int i = 0; i < favIDs.size(); i++) {
-				ret += properties.getProperty(i) + "\n";
+				list.add(properties.getProperty(i));
 			}
-			return ret;
 		}
-		return "";
+		return listProperties(list);
 	}
 	
 	public String viewMyProperties(Account user) {

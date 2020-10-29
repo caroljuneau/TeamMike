@@ -63,7 +63,7 @@ public class HousingUI {
 			"Sort by price", //3
 			"Sort by number of reviews", //4
 			"Filter by amenities", //5
-			"Filter by price range", //7
+			"Filter by price range", //6
 			"Go back", //7
 		};
 	private String[] managePropertiesOptions = 
@@ -167,7 +167,7 @@ public class HousingUI {
 				break;
 			case 4:
 				System.out.println(GOODBYE);
-				break;
+				return;
 			default:
 				System.out.println(INVALID);
 				break;
@@ -177,7 +177,7 @@ public class HousingUI {
 	
 	// prints the menu, where element 0 is the title and elements 1-menu.length are the items
 	private void displayMenu(String[] menu) {
-		System.out.println(menu[0]);
+		System.out.println("\n" + menu[0]);
 		for(int i = 1; i < menu.length; i++) {
 			System.out.println(i + ". " + menu[i]);
 		}
@@ -271,13 +271,13 @@ public class HousingUI {
 				browsePropertiesLoop();
 				break;
 			case 2:
-				application.viewFavProperties(user);
+				System.out.println(application.viewFavProperties(user));
 				break;
 			case 3:
 				signLease();
 				break;
 			case 4:
-				application.viewSignedLeases(user);
+				System.out.println(application.viewSignedLeases(user));
 				break;
 			case 5:
 				reviewProperty();
@@ -306,13 +306,13 @@ public class HousingUI {
 //				manageProperties();//TODO
 				break;
 			case 2:
-				application.viewMyProperties(user);
+				System.out.println(application.viewMyProperties(user));
 				break;
 			case 3:
 				signLease();
 				break;
 			case 4:
-				application.viewSignedLeases(user);
+				System.out.println(application.viewSignedLeases(user));
 				break;
 			case 5:
 				reviewStudent();
@@ -415,7 +415,7 @@ public class HousingUI {
 						System.out.println(INVALID);
 					}	
 				}
-				application.filterByAmenities(choices);
+				System.out.println(application.filterByAmenities(choices));
 				break;
 			case 6:
 				System.out.println("Please enter a minimum price (as an integer).");
@@ -457,6 +457,7 @@ public class HousingUI {
 				}
 				continue;
 			}
+			id--;
 			System.out.println("Reviewing property " + application.getProperty(id).shortToString() + ":");
 			System.out.println("Please enter a rating of the property as an integer between 1 and 5.");
 			int rating = getUserCommand(6);
@@ -503,6 +504,7 @@ public class HousingUI {
 				}
 				continue;
 			}
+			id--;
 			System.out.println("Reviewing property manager " + application.getPropertyManager(id).shortToString() + ":");
 			System.out.println("Please enter a rating of the property manager as an integer between 1 and 5.");
 			int rating = getUserCommand(6);
@@ -548,6 +550,7 @@ public class HousingUI {
 				}
 				continue;
 			}
+			id--;
 			System.out.println("Reviewing student " + application.getStudent(id).shortToString() + ":");
 			System.out.println("Please enter a rating of the student as an integer between 1 and 5.");
 			int rating = getUserCommand(6);

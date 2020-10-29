@@ -22,7 +22,7 @@
     "description":"nice review 3"
   },{
   	"id":4,
-  	"reviewdId":2,
+  	"reviewedId":2,
     "type":"PROPERTY",
     "rating":2,
   	"username":"juneauc",
