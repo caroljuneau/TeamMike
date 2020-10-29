@@ -8,7 +8,7 @@ public class Review {
 	private String description;
 	private static Review reviewList;
 
-	public String Review(int rating, String username, String description)
+	public Review(int rating, String username, String description)
 	{
 		this.rating = rating;
 		this.username = username;
@@ -55,11 +55,11 @@ public class Review {
     this.rating = rating;
   }
 
-	public static reviewList getInstance()
+	public static Review getInstance()
 	{
 		if(reviewList == null)
 		{
-			reviewList = new ReviewList();
+			reviewList = new Review();
 		}
 		return reviewList;
 	}
