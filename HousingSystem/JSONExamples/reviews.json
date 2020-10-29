@@ -2,28 +2,28 @@
   {
   	"id":1,
   	"reviewedId":1,
-    "type":"Property",
+    "type":"PROPERTY",
     "rating":5,
   	"username":"cwalls",
     "description":"very nice property, fit me and my friends needs for 3 years. great property managers!"
   },{
   	"id":2,
   	"reviewedId":1,
-    "type":"Property",
+    "type":"PROPERTY",
     "rating":4,
   	"username":"cframes",
     "description":"review 2 very nice property, fit me and my friends needs for 3 years. great property managers!"
   },{
   	"id":3,
   	"reviewedId":3,
-    "type":"PropertyManager",
+    "type":"PROPERTYMANAGER",
     "rating":3,
   	"username":"chenry",
     "description":"nice review 3"
   },{
   	"id":4,
   	"reviewdId":2,
-    "type":"Student",
+    "type":"PROPERTY",
     "rating":2,
   	"username":"juneauc",
     "description":"nice lady"
