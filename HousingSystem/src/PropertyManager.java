@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class PropertyManager extends Account {
 
 	private ArrayList<Property> myProperties;
-	private int[] myPropertyIDs;
+	private ArrayList<Integer> myPropertyIDs;
 	
 	public PropertyManager(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone)
 	{
@@ -11,11 +11,11 @@ public class PropertyManager extends Account {
 		this.myProperties = null;
 		this.type = AccountType.PROPERTYMANAGER;
 	}
-	public int[] getMyPropertyIDs() {
+	public ArrayList<Integer> getMyPropertyIDs() {
 		return myPropertyIDs;
 	}
 
-	public void setMyPropertyIDs(int[] myPropertyIDs) {
+	public void setMyPropertyIDs(ArrayList<Integer> myPropertyIDs) {
 		this.myPropertyIDs = myPropertyIDs;
 	}
 	

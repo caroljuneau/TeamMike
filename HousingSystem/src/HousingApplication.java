@@ -129,6 +129,39 @@ public class HousingApplication {
 //	    }
 	    return listProperties(sort);
 	}
+	
+	public String viewFavProperties(Account user) {
+		if(user.type == AccountType.STUDENT) {
+			ArrayList<Integer> favIDs = ((Student) user).getFavoriteIDs();
+			String ret = "";
+			for(int i = 0; i < favIDs.size(); i++) {
+				ret += properties.getProperty(i) + "\n";
+			}
+			return ret;
+		}
+		return "";
+	}
+	
+	public String viewMyProperties(Account user) {
+		if(user.type == AccountType.PROPERTYMANAGER) {
+			ArrayList<Integer> myIDs = ((PropertyManager) user).getMyPropertyIDs();
+			String ret = "";
+			for(int i = 0; i < myIDs.size(); i++) {
+				ret += properties.getProperty(i) + "\n";
+			}
+			return ret;
+		}
+		return "";
+	}
+	
+	public String viewSignedLeases(Account user) {
+		ArrayList<Integer> leaseIDs = user.getSignedLeaseIDs();
+		String ret = "";
+		for(int i = 0; i < leaseIDs.size(); i++) {
+			//TODO
+		}
+		return ret;
+	}
 
 	public boolean usernameInList(AccountType type, String username) {
 		if(students.usernameInList(username) || propertyManagers.usernameInList(username)) {

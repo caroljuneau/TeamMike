@@ -10,11 +10,11 @@ public class Account {
 	protected String emailAddress;
 	protected String phone;
 	protected AccountType type;
-	protected int[] ratings;
+	protected ArrayList<Integer> ratings;
 	protected ArrayList<Review> reviews;
 	protected ArrayList<Lease> signedLeases;
-	protected int[] reviewIDs;
-	protected int[] signedLeaseIDs;
+	protected ArrayList<Integer> reviewIDs;
+	protected ArrayList<Integer> signedLeaseIDs;
 	
 	public Account(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone)
 	{
@@ -78,27 +78,27 @@ public class Account {
 		this.type = type;
 	}
 	
-	public int[] getRating() {
+	public ArrayList<Integer> getRating() {
 		return this.ratings;
 	}
-	public void setRating(int[] arr) {
+	public void setRating(ArrayList<Integer> arr) {
 		this.ratings = arr;
 	}
-	public void setReviewIDs(int[] arr) {
+	public void setReviewIDs(ArrayList<Integer> arr) {
 		this.reviewIDs = arr;
 	}
-	public int[] getReviewIDs() {
+	public ArrayList<Integer> getReviewIDs() {
 		return this.reviewIDs;
 	}
-	public void setSignedLeaseIDs(int[] arr) {
+	public void setSignedLeaseIDs(ArrayList<Integer> arr) {
 		this.signedLeaseIDs = arr;
 	}
-	public int[] getSignedLeaseIDs() {
+	public ArrayList<Integer> getSignedLeaseIDs() {
 		return this.signedLeaseIDs;
 	}
 	
 	public double getAvgRating() {
-		int num = this.getRating().length;
+		int num = this.getRating().size();
 		int sum = 0;
 		for(int j: this.getRating()) {
 			sum += j;
