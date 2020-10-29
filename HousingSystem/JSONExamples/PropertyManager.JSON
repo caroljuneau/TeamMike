@@ -1,104 +1,75 @@
-{
-   "PropertyManager": [
-      {
-         "username": "chriswalls",
-         "password": "$@*!@#!@#!",
-         "firstName": "Chris",
-         "lastName": "Walls",
-		 "emailAddress": "test@gmail.com",
-		 "phone": "555-111-1111",
-		 "ratings": {
-			"4",
-			"3",
-			"5"
-		 },
-		 "reviews": {
-			"Review 0": {
-				"rating": "3",
-				"username": "bobbydale",
-				"description" "The fitness gram pacer test"
-			},
-			"Review 1": {
-				"rating": "5",
-				"username": "princeofbelair",
-				"description" "They was up to no good"
-			}
-		 },
-		 "signedLeases": {
-			"Lease 0": {
-				"property": {
-				}
-				"fees": "electric, 35/mo parking, 300 security deposit",
-				"repairs": "The owner shall replace/repair amenities like the dryer",
-				"termination": "The contract shall only be terminated if",
-				"info": "yeah this property is pretty cool",
-				"signed": "false",
-				"signedBy" : {
-				}
-			},
-			"Lease 1": {
-				"property": {
-				}
-				"fees": "600 security deposit",
-				"repairs": "The owner shall replace/repair amenities like the dryer",
-				"termination": "The contract shall only be terminated if",
-				"info": "yeah this property is pretty cool",
-				"signed": "true",
-				"signedBy" : {
-					"bobbydale",
-					"chriswalls"
-				}
-			}
-		 }
-		 "myProperties": {
-			"Property 1": {
-				"amenities": {
-					"Parking",
-					"Washer/Dryer"
-				},
-				"utilities": "Water, sewage, and trash included.",
-				"location": "123 Picadilly St",
-				"pictures": {
-					filepath/to/picture,
-					filepath/to/picture2
-				},
-				"price": "1200",
-				"ratings": {
-					"3",
-					"4"
-				},
-				"reviews": {
-					"Review 0": {
-						"rating": "3",
-						"username": "bobbydale",
-						"description" "The fitness gram pacer test"
-					},
-					"Review 1": {
-						"rating": "5",
-						"username": "princeofbelair",
-						"description" "They was up to no good"
-					}
-				},
-				"beds": "3",
-				"baths": "2",
-				"lease": {
-					"Lease 0": {
-						"fees": "600 security deposit",
-						"repairs": "The owner shall replace/repair amenities like the dryer",
-						"termination": "The contract shall only be terminated if",
-						"info": "yeah this property is pretty cool",
-						"signed": "true",
-						"signedBy": {
-							"bobbydale",
-							"chriswalls"
-						}
-					}
-				},
-				"description": "christopher columbus sailed in 1492",
-				"contact": "Chris Walls 555-111-1111",
-				"visible": "false"
-			}
-		 }
-      }
-   ]
-}
+[
+  {
+  	"id":7,
+  	"username":"wallsc",
+  	"password":"@Password",
+  	"firstName":"Chris",
+	"lastName":"Walls",
+	"emailAddress":"christopherwallssc@gmail.com",
+	"phone":"803-521-6174",
+	"propertyIDs":[4],
+	"ratings":[1, 1, 1, 4],
+	"reviewIDs":[],
+	"leaseIDs":[4,5]
+  },{
+  	"id":8,
+  	"username":"juneauc",
+  	"password":"@Password",
+  	"firstName":"Carol",
+	"lastName":"Juneau",
+	"emailAddress":"cjuneau@gmail.com",
+	"phone":"803-555-5555",
+	"propertyIDs":[3],
+	"ratings":[2, 2, 1, 3],
+	"reviewIDs":[],
+	"leaseIDs":[3,6]
+  },{
+  	"id":9,
+  	"username":"framesc",
+  	"password":"@Password",
+  	"firstName":"Collin",
+	"lastName":"Frames",
+	"emailAddress":"cframes@gmail.com",
+	"phone":"843-610-1455",
+	"propertyIDs":[2],
+	"ratings":[5, 5, 5, 5, 2],
+	"reviewIDs":[],
+	"leaseIDs":[2]
+  },{
+  	"id":10,
+  	"username":"henryc",
+  	"password":"@Password",
+  	"firstName":"Chase",
+	"lastName":"Henry",
+	"emailAddress":"chenry@gmail.com",
+	"phone":"803-555-5555",
+	"propertyIDs":[1],
+	"ratings":[5],
+	"reviewIDs":[],
+	"leaseIDs":[1]
+  },{
+	"id":11,
+  	"username":"jonesbill",
+  	"password":"@Password",
+  	"firstName":"Bill",
+	"lastName":"Jones",
+	"emailAddress":"billjones@gmail.com",
+	"phone":"803-555-5555",
+	"propertyIDs":[],
+	"ratings":[5,4,3,2,1],
+	"reviewIDs":[],
+	"leaseIDs":[]
+  },{
+	"id":12,
+  	"username":"johnjohn",
+  	"password":"@Password",
+  	"firstName":"John",
+	"lastName":"Johnson",
+	"emailAddress":"jjohnson@gmail.com",
+	"phone":"555-555-5555",
+	"propertyIDs":[],
+	"ratings":[3,5,4],
+	"reviewIDs":[],
+	"leaseIDs":[]
+  }
+]
