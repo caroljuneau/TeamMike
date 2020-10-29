@@ -19,7 +19,8 @@ public class Property {
 	private boolean visible;
 	private int size;
 
-	public Property(String[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
+	public Property(int id, String[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
+		this.propertyId = id;
 		this.amenities = amenities;
 		this.utilities = utilities;
 		this.location = location;
