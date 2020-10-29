@@ -6,7 +6,7 @@ import org.json.simple.parser.*;
 
 public class dataLoader extends DataConstants{
 	
-	public static int[] parseStringToInt(Object obj) {
+	public static int[] parseCSVToInt(Object obj) {
 		String csv;
 		String[] str;
 		int[] ind;
@@ -21,7 +21,7 @@ public class dataLoader extends DataConstants{
 		}
 		return null;
 	}
-	public static String[] parseString(Object obj) {
+	public static String[] parseCSV(Object obj) {
 		String csv;
 		String[] str;
 		if(obj != null) {
@@ -31,13 +31,20 @@ public class dataLoader extends DataConstants{
 		}
 		return null;
 	}
-	public static int[] getIDs(JSONArray arr)
+	public static ArrayList<Integer> getIDs(JSONArray arr)
 	{
-		int[] ids = new int[arr.size()];
+		ArrayList<Integer> ids = new ArrayList<Integer>();
 		for(int i=0; i < arr.size(); i++) {
-			ids[i] = ((Long)arr.get(i)).intValue();
+			ids.add(((Long)arr.get(i)).intValue());
 		}
 		return ids;
+	}
+	public static boolean[] parseBool(JSONArray arr) {
+		boolean[] s = new boolean[arr.size()];
+		for(int i = 0; i < arr.size(); i++) {
+			s[i] = (boolean)arr.get(i);
+		}
+		return s;
 	}
 	
 	
@@ -54,7 +61,7 @@ public class dataLoader extends DataConstants{
 				
 				int id = ((Long)propertyJSON.get(PROPERTY_ID)).intValue();
 				// fix amenities
-				String[] amenities = parseString(propertyJSON.get(AMENITIES));
+				boolean[] amenities = parseBool((JSONArray)propertyJSON.get(AMENITIES));
 				String utilities = (String)propertyJSON.get(UTILITIES);
 				String location = (String)propertyJSON.get(LOCATION);
 				//String pictures = (String)propertyJSON.get(PICTURES);

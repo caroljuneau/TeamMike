@@ -31,7 +31,7 @@
 	"visible": true
   },{
     "propertyId":3,
-	"amenities": "Pool, Gym, Pets, Laundry, Shuttle",
+	"amenities": [true,false,false,true,true],
 	"utilities": "Water and Sewage, Electric, Gas, Trash, Internet, Cable",
 	"location": "800 Alexander Road, Cayce SC",
 	"pictures": "",
@@ -46,7 +46,7 @@
 	"visible": true
   },{
     "propertyId":4,
-	"amenities": "Yard, AC, Stainless Steel Appliances, Cats and Dogs allowed",
+	"amenities": [true,true,false,true,true],
 	"utilities": "Water and Sewage, Electric, Gas, Trash, Internet, Cable",
 	"location": "1437 Karlaney Ave, Cayce SC",
 	"pictures": "",
