@@ -1,13 +1,16 @@
+import java.util.ArrayList;
+
 public class Lease {
 
-	private Property property;
+	private int propertyID;
 	private String fees;
 	private String repairs;
+	private String termination;
 	private String info;
 	private boolean signed;
 	private ArrayList<String> signedBy;
 
-	public Lease(Property property, String fees, String repairs, String termination, String info) {
+	public Lease(Int propertyID, String fees, String repairs, String termination, String info) {
 		this.property = property;
 		this.fees = fees;
 		this.repairs = repairs;
