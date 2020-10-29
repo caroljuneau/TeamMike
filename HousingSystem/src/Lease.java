@@ -11,7 +11,6 @@ public class Lease {
 	private String info;
 	private boolean signed;
 	private ArrayList<String> signedBy;
-	private static Lease leaseList;
 
 	public Lease(int propertyID, String fees, String repairs, String termination, String info) {
 		this.propertyID = propertyID;
@@ -21,14 +20,7 @@ public class Lease {
 		this.info = info;
 		signedBy = null;
 	}
-	public static Lease getInstance()
-	{
-		if(leaseList == null)
-		{
-			leaseList = new Lease();
-		}
-		return leaseList;
-	}
+
 	public int getId() {
 		return id;
 	}
@@ -111,11 +103,11 @@ public class Lease {
 	}
 	public String toString() {
 		String s;
-		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees + 
+		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
 				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
 				"\nInfo: " + this.info;
 		s += "\nSigned By: " + getSignedByString();
 		return s;
 	}
-	
+
 }
