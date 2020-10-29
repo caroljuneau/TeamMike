@@ -82,7 +82,7 @@ public class HousingApplication {
 	}
 	
 	public ArrayList<Property> getPropertiesWithLeases() {
-		ArrayList<Property> list = null;
+		ArrayList<Property> list = new ArrayList<Property>();
 		for(Property property : allProperties()) {
 			if(property.getLeaseIDs() != null) {
 				list.add(property);

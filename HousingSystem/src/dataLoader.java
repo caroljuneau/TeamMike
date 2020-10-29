@@ -205,7 +205,8 @@ public class dataLoader extends DataConstants{
 				
 				int id = ((Long)reviewObj.get(ID)).intValue();
 				int reviewedId = ((Long)reviewObj.get(REVIEWED)).intValue();
-				ReviewType type = ((ReviewType)reviewObj.get(TYPE));
+				ReviewType type = ReviewType.valueOf(((String)reviewObj.get(TYPE)).toUpperCase());
+//				ReviewType type = ((ReviewType)reviewObj.get(TYPE));
 				int rating = ((Long)reviewObj.get(RATING)).intValue();
 				String username = (String)reviewObj.get(USER_NAME);
 				String description = (String)reviewObj.get(DESCRIPTION);
