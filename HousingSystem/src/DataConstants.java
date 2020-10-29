@@ -40,6 +40,22 @@ public abstract class DataConstants {
 	protected static final String DESCRIPTION = "description";
 	protected static final String CONTACT = "contact";
 	protected static final String VISIBLE = "visible";
+	
+	/** Strings to read Lease JSON File */
+	protected static final String FEES = "fees";
+	protected static final String REPAIRS = "repairs";
+	protected static final String TERMINATION = "termination";
+	protected static final String INFO = "info";
+	protected static final String SIGNED = "signed";
+	protected static final String SIGNED_BY = "signedBy";
+
+
+
+
+
+
+	
+	
 
 
 

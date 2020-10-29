@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 public class Lease {
 
+	private int id;
+	private int[] leaseIDs;
 	private int propertyID;
 	private String fees;
 	private String repairs;
@@ -17,6 +19,18 @@ public class Lease {
 		this.termination = termination;
 		this.info = info;
 		signedBy = null;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int[] getLeaseIDs() {
+		return leaseIDs;
+	}
+	public void setLeaseIDs(int[] leaseIDs) {
+		this.leaseIDs = leaseIDs;
 	}
 	public int getPropertyID() {
 		return propertyID;
@@ -65,10 +79,11 @@ public class Lease {
 	public void setSignedBy(ArrayList<String> signedBy) {
 		this.signedBy = signedBy;
 	}
-
+	
 
 	public void sign(String fullName) {
 		signedBy.add(fullName);
+		setSigned(true);
 	}
 
 	public boolean getSigned() {
@@ -87,7 +102,7 @@ public class Lease {
 	}
 	public String toString() {
 		String s;
-		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
+		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees + 
 				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
 				"\nInfo: " + this.info;
 		s += "\nSigned By: " + getSignedByString();
