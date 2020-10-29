@@ -109,6 +109,12 @@ public class HousingUI {
 //		for(PropertyManager p: manager) {
 //			System.out.println(p.getUsername()+" " +p.getPassword()+" "+p.getFirstName()+ " "+p.getLastName());
 //		}
+		// Test for Lease DataLoader
+//		ArrayList<Lease> lease = dataLoader.loadLeases();
+//		for(Lease l: lease) {
+//			System.out.println(l.toString()+"\n");
+//		}
+		
 		
 		while(true) {
 			displayMenu(mainMenuOptions);

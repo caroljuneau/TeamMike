@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Lease {
 
 	private int id;
-	private int[] leaseIDs;
+	private int[] signedByIds;
 	private int propertyID;
 	private String fees;
 	private String repairs;
@@ -21,17 +21,19 @@ public class Lease {
 		this.info = info;
 		signedBy = null;
 	}
+	public static Lease getInstance()
+	{
+		if(leaseList == null)
+		{
+			leaseList = new Lease();
+		}
+		return leaseList;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int[] getLeaseIDs() {
-		return leaseIDs;
-	}
-	public void setLeaseIDs(int[] leaseIDs) {
-		this.leaseIDs = leaseIDs;
 	}
 	public int getPropertyID() {
 		return propertyID;
@@ -76,12 +78,6 @@ public class Lease {
 	public void setSigned(boolean signed) {
 		this.signed = signed;
 	}
-
-	public void setSignedBy(ArrayList<String> signedBy) {
-		this.signedBy = signedBy;
-	}
-	
-
 	public void sign(String fullName) {
 		signedBy.add(fullName);
 		setSigned(true);
@@ -94,12 +90,24 @@ public class Lease {
 	public ArrayList<String> getSignedBy() {
 		return signedBy;
 	}
+	public void setSignedBy(ArrayList<String> signedBy) {
+		this.signedBy = signedBy;
+	}
+	//TODO method to iterate through signedByIds and getUsernames and append to ArrayList
 	public String getSignedByString() {
 		String s = "";
-		for(String i: signedBy) {
-			s += i + ", ";5
+		if (this.signedBy != null) {
+			for(String i: signedBy) {
+				s += i + ", ";
+			}
 		}
 		return s;
+	}
+	public int[] getSignedByIds() {
+		return signedByIds;
+	}
+	public void setSignedByIds(int[] signedByIds) {
+		this.signedByIds = signedByIds;
 	}
 	public String toString() {
 		String s;
@@ -109,13 +117,5 @@ public class Lease {
 		s += "\nSigned By: " + getSignedByString();
 		return s;
 	}
-
-	public static Lease getInstance()
-	{
-		if(leaseList == null)
-		{
-			leaseList = new LeaseList();
-		}
-		return leaseList;
-	}
+	
 }
