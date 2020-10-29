@@ -261,16 +261,16 @@ public class HousingUI {
 				browsePropertiesLoop();
 				break;
 			case 2:
-				viewFavProperties();
+				application.viewFavProperties(user);
 				break;
 			case 3:
-				viewSignedLeases();
+				application.viewSignedLeases(user);
 				break;
 			case 4:
-				reviewProperty();
+//				reviewProperty();//TODO
 				break;
 			case 5:
-				reviewPropertyManager();
+//				reviewPropertyManager();//TODO
 				break;
 			case 6:
 				System.out.println(LOGOUT);
@@ -290,16 +290,16 @@ public class HousingUI {
 			int userCommand = getUserCommand(propertyManagerOptions.length);
 			switch(userCommand) {
 			case 1:
-				manageProperties();
+//				manageProperties();//TODO
 				break;
 			case 2:
-				viewMyProperties();
+				application.viewMyProperties(user);//TODO
 				break;
 			case 3:
-				viewSignedLeases();
+				application.viewSignedLeases(user);
 				break;
 			case 4:
-				reviewStudent();
+//				reviewStudent();//TODO
 				break;
 			case 5:
 				System.out.println(LOGOUT);
@@ -398,37 +398,6 @@ public class HousingUI {
 				break;
 			}
 		}
-	}
-	
-	private void viewFavProperties() {
-		//student; TODO
-	}
-	
-	private void viewSignedLeases() {
-		//student and pm; TODO
-	}
-	
-	private void reviewProperty() {
-		// student; TODO
-	}
-	
-	private void reviewPropertyManager() {
-		// student; TODO
-	}
-	
-//	private void manageAccount() {
-//	}
-	
-	private void manageProperties() {
-		// pm ; TODO
-	}
-	
-	private void viewMyProperties() {
-		// pm; TODO
-	}
-	
-	private void reviewStudent() {
-		//pm; TODO
 	}
 	
 	public static void main(String[] args) {

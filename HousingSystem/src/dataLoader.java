@@ -184,10 +184,35 @@ public class dataLoader extends DataConstants{
 		
 		return null;
 	}
-	public static Review loadReviews() {
-		Review reviews = new Review();
+	public static ArrayList<Review> loadReviews() {
+		ArrayList<Review> reviewList = new ArrayList<Review>();
 		
-		return reviews;
+		try {
+			FileReader reader = new FileReader(REVIEW_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONArray reviewJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < reviewJSON.size(); i++) {
+				JSONObject reviewObj = (JSONObject)reviewJSON.get(i);
+				
+				int id = ((Long)reviewObj.get(ID)).intValue();
+				int reviewedId = ((Long)reviewObj.get(REVIEWED)).intValue();
+				ReviewType type = ((ReviewType)reviewObj.get(TYPE));
+				int rating = ((Long)reviewObj.get(RATING)).intValue();
+				String username = (String)reviewObj.get(USER_NAME);
+				String description = (String)reviewObj.get(DESCRIPTION);
+				
+				Review review = new Review(id, reviewedId, type, rating, username, description);
+				reviewList.add(review);
+				
+			}
+			return reviewList;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	

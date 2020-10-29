@@ -3,7 +3,8 @@ import java.util.ArrayList;
 public class Student extends Account {
 	
 	private ArrayList<Property> favoriteProperties;
-	private int[] favoriteIDs;
+	private ArrayList<Integer> favoriteIDs;
+	//private int[] favoriteIDs;
 	private String studentID;
 	
 	public Student(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)
@@ -14,10 +15,10 @@ public class Student extends Account {
 		this.type = AccountType.STUDENT;
 	}
 
-	public void setFavoriteIDs(int[] arr) {
+	public void setFavoriteIDs(ArrayList<Integer> arr) {
 		this.favoriteIDs = arr;
 	}
-	public int[] getFavoriteIDs() {
+	public ArrayList<Integer> getFavoriteIDs() {
 		return this.favoriteIDs;
 	}
 	public String getStudentId() {
@@ -30,14 +31,14 @@ public class Student extends Account {
 	public void addFavoriteProperty(Property property)
 	{
 		//TODO grab the favoriteProperties array and populate it with the new favorite property by that specific studentID
-		for(int i = 0; i < this.favoriteIDs.length; i++)
-		{
-			if(this.favoriteIDs[i] == null)
-			{
-				favoriteIDs[i] = property.propertyId;
-				return;
-			}
-		}
+//		for(int i = 0; i < this.favoriteIDs.length; i++)
+//		{
+//			if(this.favoriteIDs[i] == null)
+//			{
+//				favoriteIDs[i] = property.propertyId;
+//				return;
+//			}
+//		}
 		//public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID)
 		//int id = students.size() + 1;
 		//students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
@@ -50,7 +51,7 @@ public class Student extends Account {
 	
 	public void removeFavoriteProperty(Property property)
 	{
-		for(int i = 0; i < favoriteProperties; i++)
+//		for(int i = 0; i < favoriteProperties; i++)
 	}
 	
 	public void reviewProperty(Property property, int rating, String username, String review)
