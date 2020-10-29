@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class Property {
 	private int propertyId;
-	private String[] amenities;
+	private ArrayList<String> amenities;
 	private String utilities;
 	private String location;
 	//private ArrayList<String> pictures;
 	private int price;
-	private int[] ratings;
-	private int[] reviewIDs;
-	private int[] leaseIDs;
+	private ArrayList<Integer> ratings;
+	private ArrayList<Integer> reviewIDs;
+	private ArrayList<Integer> leaseIDs;
 	private ArrayList<Review> reviews;
 	private int beds;
 	private int baths;
@@ -19,7 +19,7 @@ public class Property {
 	private boolean visible;
 	private int size;
 
-	public Property(int id, String[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
+	public Property(int id, ArrayList<String> amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		this.propertyId = id;
 		this.amenities = amenities;
 		this.utilities = utilities;
@@ -32,10 +32,10 @@ public class Property {
 		this.visible = visible;
 	}
 
-	public String[] getAmenities() {
+	public ArrayList<String> getAmenities() {
 		return amenities;
 	}
-	public void setAmenities(String[] amenities) {
+	public void setAmenities(ArrayList<String> amenities) {
 		this.amenities = amenities;
 	}
 	public String getUtilities() {
@@ -62,16 +62,16 @@ public class Property {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int[] getRatings() {
+	public ArrayList<Integer> getRatings() {
 		return ratings;
 	}
-	public void setRatings(int[] ratingIDs) {
+	public void setRatings(ArrayList<Integer> ratingIDs) {
 		this.ratings = ratingIDs;
 	}
-	public int[] getReviewIDs() {
+	public ArrayList<Integer> getReviewIDs() {
 		return reviewIDs;
 	}
-	public void setReviewIDs(int[] reviewIDs) {
+	public void setReviewIDs(ArrayList<Integer> reviewIDs) {
 		this.reviewIDs = reviewIDs;
 	}
 	public ArrayList<Review> getReviews() {
@@ -142,11 +142,11 @@ public class Property {
 		return s;
 	}
 
-	public int[] getLeaseIDs() {
+	public ArrayList<Integer> getLeaseIDs() {
 		return leaseIDs;
 	}
 
-	public void setLeaseIDs(int[] leaseIDs) {
+	public void setLeaseIDs(ArrayList<Integer> leaseIDs) {
 		this.leaseIDs = leaseIDs;
 	}
 
