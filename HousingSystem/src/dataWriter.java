@@ -31,6 +31,19 @@ public class dataWriter extends DataConstants{
 
 		return propertyManagerDetails;
 	}
+	public static JSONObject getStudentJSON(Student student) {
+		JSONObject studentDetails = new JSONObject();
+		studentDetails.put(ID, student.getID());
+		studentDetails.put(STUDENT, student.getStudentId());
+		studentDetails.put(USER_NAME, student.getUsername());
+		studentDetails.put(PASSWORD, student.getPassword());
+		studentDetails.put(FIRST_NAME, student.getFirstName());
+		studentDetails.put(LAST_NAME, student.getLastName());
+		studentDetails.put(EMAIL, student.getEmailAddress());
+		studentDetails.put(PHONE, student.getPhone());
+		
+		return studentDetails;
+	}
 	public static JSONObject getPropertyJSON(Property property) {
 		JSONObject propertyDetails = new JSONObject();
 		propertyDetails.put(PROPERTY_ID, property.getPropertyId());
@@ -50,21 +63,10 @@ public class dataWriter extends DataConstants{
 		
 		return propertyDetails;
 	}
-	public static JSONObject getStudentJSON(Student student) {
-		JSONObject studentDetails = new JSONObject();
-		studentDetails.put(ID, student.getID());
-		studentDetails.put(STUDENT, student.getStudentId());
-		studentDetails.put(USER_NAME, student.getUsername());
-		studentDetails.put(PASSWORD, student.getPassword());
-		studentDetails.put(FIRST_NAME, student.getFirstName());
-		studentDetails.put(LAST_NAME, student.getLastName());
-		studentDetails.put(EMAIL, student.getEmailAddress());
-		studentDetails.put(PHONE, student.getPhone());
-		
-		return studentDetails;
-	}
+	//TODO getReviewJSON
+	//TODO getLeaseJSON
 	
-	public static void savePropertyManager(int id) {
+	public static void savePropertyManager() {
 		PropertyManagerList managers = PropertyManagerList.getInstance();
 		ArrayList<PropertyManager> propertyManagers = managers.getPropertyManagers();
 		JSONArray jsonPropertyManagers = new JSONArray();
@@ -73,56 +75,61 @@ public class dataWriter extends DataConstants{
 		for(int i = 0; i < propertyManagers.size(); i++) {
 			jsonPropertyManagers.add(getPropertyManagerJSON(propertyManagers.get(i)));
 		}
-	}
-	
-	public static void saveProperty() {
-		PropertyList properties = PropertyList.getInstance();
 		
-	}
-	public static void deleteProperty() {
-		
-	}
-	public static void saveReview(Review review, Object obj) {
-		
+		//Write JSON file
+		try (FileWriter file = new FileWriter(MANAGER_FILE_NAME)) {
+			file.write(jsonPropertyManagers.toJSONString());
+			file.flush();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void saveStudent() {
 		StudentList students = StudentList.getInstance();
+		ArrayList<Student> studentList = students.getStudents();
+		JSONArray jsonStudents = new JSONArray();
+		
+		//creating all the json objects
+		for(int i = 0; i < studentList.size(); i++) {
+			jsonStudents.add(getStudentJSON(studentList.get(i)));
+		}
+		
+		//Write JSON file
+		try (FileWriter file = new FileWriter(STUDENT_FILE_NAME)) {
+			file.write(jsonStudents.toJSONString());
+			file.flush();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void saveProperty() {
+		PropertyList properties = PropertyList.getInstance();
+		ArrayList<Property> propertyList = properties.getPropertyList();
+		JSONArray jsonProperty = new JSONArray();
+		
+		//creating all the json objects
+		for(int i = 0; i < propertyList.size(); i++) {
+			jsonProperty.add(getPropertyJSON(propertyList.get(i)));
+		}
+		
+		//Write JSON file
+		try (FileWriter file = new FileWriter(PROPERTY_FILE_NAME)) {
+			file.write(jsonProperty.toJSONString());
+			file.flush();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//TODO saveReview
+	//TODO saveLease
+	
+	public static void deleteProperty() {
 		
 	}
-//	//need separate methods for student and propertymanager; no more user class
-//	public static void saveUser() 
-//	{
-//		User user = User.getInstance();
-//		ArrayList<Property> property = property.getProperty();
-//		JSONArray jsonProperty = new JSONArray();
-//		
-//		for(int i = 0; i < property.size(); i++)
-//		{
-//			jsonProperty.add(getUsersJSON(property.get(i)));
-//		}
-//		
-//		try (FileWriter file = new FileWriter(STUDENT_FILE_NAME))
-//		{
-//			
-//			file.write(jsonProperty.toJSONString());
-//			file.flush();
-//		}
-//		
-//		catch(IOException e)
-//		{
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	public static JSONObject getUsersJSON(User user)
-//	{
-//		JSONObject UsersDetails = new JSONObject();
-//		usersDetails.put(USER_FIRST_NAME, users.getFirstName());
-//		usersDetails.put(USER_LAST_NAME, users.getLastName());
-//		usersDetails.put(USER_PHONE_NUMBER, users.getPhoneNumber());
-//		
-//		return usersDetails;
-//	}
-	
 }
