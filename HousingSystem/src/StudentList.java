@@ -16,6 +16,9 @@ public class StudentList {
 		}
 		return studentList;
 	}
+	public ArrayList<Student> getStudents() {
+		return this.students;
+	}
 
 	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size() + 1;
