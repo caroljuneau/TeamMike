@@ -6,7 +6,7 @@ public class LeaseList {
 	private static LeaseList leaseList;
 	
 	private LeaseList() {
-		leases = dataLoader.loadLeases();
+		leases = DataLoader.loadLeases();
 	}
 	
 	public static LeaseList getInstance()

@@ -6,7 +6,7 @@ public class PropertyManagerList {
 	private static PropertyManagerList propertyManagerList;
 
 	private PropertyManagerList() {
-		propertyManagers = dataLoader.loadPropertyManager();
+		propertyManagers = DataLoader.loadPropertyManager();
 	}
 
 	public static PropertyManagerList getInstance() {

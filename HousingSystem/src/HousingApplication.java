@@ -92,7 +92,13 @@ public class HousingApplication {
 	}
 	
 	public String viewPropertiesWithLeases() {
-		return listPropertiesShort(getPropertiesWithLeases());
+		ArrayList<Property> list = new ArrayList<Property>();
+		for(Property property : allProperties()) {
+			if(property.getLeaseIDs() != null) {
+				list.add(property);
+			}
+		}
+		return listPropertiesShort(list);
 	}
 	
 	public int getNumOfPropertiesWithLeases() {
@@ -124,7 +130,7 @@ public class HousingApplication {
 	}
 
 	public String filterByAmenities(boolean[] choices) {
-		//TODO need to test
+		//TODO check if it works when fixed in dataloader
 		ArrayList<Property> filtered = new ArrayList<Property>();
 		for(int i = 0; i < properties.getSize(); i++) {
 			Property property = properties.getProperty(i);
@@ -137,7 +143,6 @@ public class HousingApplication {
 	}
 
 	public String filterByPriceRange(int min, int max) {
-		//TODO need to test
 		ArrayList<Property> filtered = new ArrayList<Property>();
 		for(int i=0; i<properties.getSize(); ++i) {
 			Property property = properties.getProperty(i);
@@ -161,15 +166,14 @@ public class HousingApplication {
 	}
 	
 	public String viewMyProperties(Account user) {
+		ArrayList<Property> list = new ArrayList<Property>();
 		if(user.type == AccountType.PROPERTYMANAGER) {
 			ArrayList<Integer> myIDs = ((PropertyManager) user).getMyPropertyIDs();
-			String ret = "";
 			for(int i = 0; i < myIDs.size(); i++) {
-				ret += properties.getProperty(i) + "\n";
+				list.add(properties.getProperty(i));
 			}
-			return ret;
 		}
-		return "";
+		return listProperties(list);
 	}
 	
 	public String viewSignedLeases(Account user) {

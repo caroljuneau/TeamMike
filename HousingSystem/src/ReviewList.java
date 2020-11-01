@@ -7,7 +7,7 @@ public class ReviewList {
 	private static ReviewList reviewList;
 
 	private ReviewList() {
-		reviews = dataLoader.loadReviews();
+		reviews = DataLoader.loadReviews();
 	}
 
 	public static ReviewList getInstance()

@@ -5,7 +5,7 @@ public class PropertyList {
 	private static PropertyList propertyList;
 
 	private PropertyList() {
-		properties = dataLoader.loadProperties();
+		properties = DataLoader.loadProperties();
 	}
 	
 	public static PropertyList getInstance() {
@@ -30,7 +30,12 @@ public class PropertyList {
 	}
 
 	public Property getProperty(int id) {
-		return properties.get(id);
+		for(Property prop : properties) {
+			if(prop.getPropertyId() == id) {
+				return prop;
+			}
+		}
+		return null;
 	}
 	
 	public String toString()

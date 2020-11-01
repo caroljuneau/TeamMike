@@ -4,7 +4,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
-public class dataLoader extends DataConstants{
+public class DataLoader extends DataConstants{
 	
 	public static int[] parseCSVToInt(Object obj) {
 		String csv;

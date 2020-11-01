@@ -6,7 +6,7 @@ public class StudentList {
 	private static StudentList studentList;
 
 	private StudentList() {
-		students = dataLoader.loadStudent();
+		students = DataLoader.loadStudent();
 	}
 
 	public static StudentList getInstance() {

@@ -56,7 +56,6 @@ public class HousingUI {
 		};
 	private String[] browsePropertiesOptions = 
 		{
-				// TODO check when we have finalized which methods are going to be implemented
 			"Browse Properties Menu: ",
 			"View all properties", //1
 			"Search by keyword", //2
