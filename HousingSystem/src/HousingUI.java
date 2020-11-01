@@ -109,10 +109,10 @@ public class HousingUI {
 //			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
 //		}
 		// Test for Property DataLoader
-//		ArrayList<Property> properties = dataLoader.loadProperties();
-//		for(Property p: properties) {
-//			System.out.println(p.toString()+"\n");
-//		}
+		ArrayList<Property> properties = dataLoader.loadProperties();
+		for(Property p: properties) {
+			System.out.println(p.toString()+"\n");
+		}
 		// Test for PropertyManager DataLoader
 //		ArrayList<PropertyManager> manager = dataLoader.loadPropertyManager();
 //		for(PropertyManager p: manager) {

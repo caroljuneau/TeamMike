@@ -38,6 +38,16 @@ public class Property {
 	public void setAmenities(boolean[] amenities) {
 		this.amenities = amenities;
 	}
+	public String amenitiesToString() {
+		String s = "";
+		String[] amenities = {"Washer/Dryer", "Gym", "Pool", "Furnished", "Pet Friendly"};
+		for(int i = 0; i < this.amenities.length; i++) {
+			if(this.amenities[i] == true) {
+				s += amenities[i] + " ";
+			} 
+		}
+		return s;
+	}
 	public String getUtilities() {
 		return utilities;
 	}
@@ -135,7 +145,7 @@ public class Property {
 	
 	public String toString() {
 		String s;
-		s = "Location: " + this.location + "\nAmenities: " + this.amenities +
+		s = "Location: " + this.location + "\nAmenities: " + this.amenitiesToString() +
 				"\nUtilities: " + this.utilities + "\nPrice: " + this.price + "\nBeds: " +
 				this.beds + "\nBaths: " + this.baths + "\nDescription: " + this.description +
 				"\nContact: " + this.contact;

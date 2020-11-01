@@ -22,8 +22,12 @@ public class PropertyManagerList {
 
 	public void addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		int id = propertyManagers.size() + 1;
-		propertyManagers.add(new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone));
+		PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
+		propertyManagers.add(manager);
 		//TODO add to json
+		dataWriter write = new dataWriter();
+		write.savePropertyManager(manager);
+		//System.out.println(manager.toString());
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {
@@ -38,15 +42,6 @@ public class PropertyManagerList {
 		return null;
 	}
 	
-	public PropertyManager getPropertyManager(int id) {
-		for(PropertyManager pM : propertyManagers) {
-			if(pM.getID() == id) {
-				return pM;
-			}
-		}
-		return null;
-	}
-	
 	public boolean usernameInList(String username) {
 		Iterator<PropertyManager> iterator = propertyManagers.iterator();
 		while(iterator.hasNext()) {
@@ -55,9 +50,5 @@ public class PropertyManagerList {
 			}
 		}
 		return false;
-	}
-	
-	public int getSize() {
-		return propertyManagers.size();
 	}
 }
