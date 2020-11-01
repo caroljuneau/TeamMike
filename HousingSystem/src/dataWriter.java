@@ -5,16 +5,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class dataWriter extends DataConstants{
-	/**
-	 * chris' train of thought
-	 *
-	 * propertymanager: CREATE PROPERTY, EDIT PROPERTY, DELETE PROPERTY,
-	 * 					CREATE LEASE and append to property,
-	 * 					REVIEW student
-	 * STUDENT: 		ADD FAVORITE, REMOVE FAVORITE,
-	 * 					REVIEW PROPERTY, REVIEW PROPERTYMANAGER
-	 *
-	 */
 
 	public static JSONObject getPropertyManagerJSON(PropertyManager manager) {
 		JSONObject propertyManagerDetails = new JSONObject();
