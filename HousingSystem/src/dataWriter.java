@@ -53,9 +53,25 @@ public class dataWriter extends DataConstants{
 
 		return propertyDetails;
 	}
-	//TODO getReviewJSON
-	//TODO getLeaseJSON
+	public static JSONObject getReviewJSON(Review review) {
+		JSONObject reviewDetails = new JSONObject();
+		reviewDetails.put(ID, review.getId());
+		reviewDetails.put(REVIEWED, review.getReviewedId());
+		reviewDetails.put(TYPE, review.getType());
+		reviewDetails.put(RATING, review.getRating());
+		reviewDetails.put(USER_NAME, review.getUsername());
 
+		return reviewDetails;
+	}
+	public static JSONObject getLeaseJSON(Lease lease) {
+		JSONObject leaseDetails = new JSONObject();
+		leaseDetails.put(ID, lease.getId());
+		leaseDetails.put(PROPERTY_ID, lease.getPropertyID());
+		// fill out rest after redesign
+
+		return leaseDetails;
+	}
+	
 	public static void savePropertyManager(PropertyManager m) {
 //		PropertyManagerList managers = PropertyManagerList.getInstance();
 //		ArrayList<PropertyManager> propertyManagers = managers.getPropertyManagers();
