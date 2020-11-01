@@ -107,22 +107,11 @@ public class Lease {
 		return;
 	}
 
-//	public ArrayList<String> getSignedBy() {
-//		return signedBy;
-//	}
-//	public void setSignedBy(ArrayList<String> signedBy) {
-//		this.signedBy = signedBy;
-//	}
-	
-	
-	//getSignedByString is now in HOusing Application
-	
 	public String toString() {
 		String s;
 		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
 				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
 				"\nInfo: " + this.info;
-//		s += "\nSigned By: " + getSignedByString();
 		return s;
 	}
 

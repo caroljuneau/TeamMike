@@ -6,36 +6,13 @@ import org.json.simple.parser.*;
 
 public class DataLoader extends DataConstants{
 	
-	public static int[] parseCSVToInt(Object obj) {
-		String csv;
-		String[] str;
-		int[] ind;
-		if(obj != null) {
-			csv = obj.toString();
-			str = csv.split(", ");
-			ind = new int[str.length];
-			for(int i = 0; i < str.length; i++) {
-				ind[i] = Integer.parseInt(str[i]);
-			}
-			return ind;
-		}
-		return null;
-	}
-	public static String[] parseCSV(Object obj) {
-		String csv;
-		String[] str;
-		if(obj != null) {
-			csv = obj.toString();
-			str = csv.split(", ");
-			return str;
-		}
-		return null;
-	}
 	public static ArrayList<Integer> getIDs(JSONArray arr)
 	{
 		ArrayList<Integer> ids = new ArrayList<Integer>();
-		for(int i=0; i < arr.size(); i++) {
-			ids.add(((Long)arr.get(i)).intValue());
+		if (arr != null) {
+			for(int i=0; i < arr.size(); i++) {
+				ids.add(((Long)arr.get(i)).intValue());
+			}
 		}
 		return ids;
 	}
@@ -47,20 +24,17 @@ public class DataLoader extends DataConstants{
 		return s;
 	}
 	
-	
 	public static ArrayList<Property> loadProperties() {
 		ArrayList<Property> properties = new ArrayList<Property>();
 		
 		try {
 			FileReader reader = new FileReader(PROPERTY_FILE_NAME);
-			JSONParser parser = new JSONParser();
 			JSONArray propertiesJSON = (JSONArray)new JSONParser().parse(reader);
 			
 			for(int i=0; i < propertiesJSON.size(); i++) {
 				JSONObject propertyJSON = (JSONObject)propertiesJSON.get(i);
 				
 				int id = ((Long)propertyJSON.get(PROPERTY_ID)).intValue();
-				// fix amenities
 				boolean[] amenities = parseBool((JSONArray)propertyJSON.get(AMENITIES));
 				String utilities = (String)propertyJSON.get(UTILITIES);
 				String location = (String)propertyJSON.get(LOCATION);
@@ -85,15 +59,14 @@ public class DataLoader extends DataConstants{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
+	
 	public static ArrayList<Student> loadStudent() {
 		ArrayList<Student> students = new ArrayList<Student>();
 		
 		try {
 			FileReader reader = new FileReader(STUDENT_FILE_NAME);
-			JSONParser parser = new JSONParser();
 			JSONArray studentsJSON = (JSONArray)new JSONParser().parse(reader);
 			
 			for(int i=0; i < studentsJSON.size(); i++) {
@@ -120,15 +93,14 @@ public class DataLoader extends DataConstants{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
+	
 	public static ArrayList<PropertyManager> loadPropertyManager() {
 		ArrayList<PropertyManager> managerList = new ArrayList<PropertyManager>();
 		
 		try {
 			FileReader reader = new FileReader(MANAGER_FILE_NAME);
-			JSONParser parser = new JSONParser();
 			JSONArray propertyManagerJSON = (JSONArray)new JSONParser().parse(reader);
 			
 			for(int i=0; i < propertyManagerJSON.size(); i++) {
@@ -155,9 +127,9 @@ public class DataLoader extends DataConstants{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
+	
 	public static ArrayList<Lease> loadLeases() {
 		ArrayList<Lease> leaseList = new ArrayList<Lease>();
 		
@@ -189,15 +161,14 @@ public class DataLoader extends DataConstants{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
+	
 	public static ArrayList<Review> loadReviews() {
 		ArrayList<Review> reviewList = new ArrayList<Review>();
 		
 		try {
 			FileReader reader = new FileReader(REVIEW_FILE_NAME);
-			JSONParser parser = new JSONParser();
 			JSONArray reviewJSON = (JSONArray)new JSONParser().parse(reader);
 			
 			for(int i=0; i < reviewJSON.size(); i++) {
@@ -213,14 +184,12 @@ public class DataLoader extends DataConstants{
 				
 				Review review = new Review(id, reviewedId, type, rating, username, description);
 				reviewList.add(review);
-				
 			}
 			return reviewList;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		return null;
 	}
 
