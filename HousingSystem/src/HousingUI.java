@@ -488,7 +488,7 @@ public class HousingUI {
 	public void reviewProperty() {
 		System.out.println("Please enter the ID of the property you wish to review.");
 		System.out.println(application.viewAllPropertiesShort());
-		int id = getUserCommand(PropertyList.getInstance().getSize() + 1); // TODO +1?
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1);
 		if(id == -1) {
 			System.out.println(INVALID);
 			return;
@@ -549,28 +549,17 @@ public class HousingUI {
 	}
 	
 	public void signLease() {
-		while(true) {
-			System.out.println("Please enter the ID of the property you wish to sign the lease for.");
-			System.out.println(application.viewPropertiesWithLeases());
-			int id = getUserCommand(application.getNumOfPropertiesWithLeases());
-			if(id == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			System.out.println("Signing lease for Property " + application.getProperty(id).shortToString() + ":");
-			application.signLease(user, id);
+		System.out.println("Please enter the ID of the property you wish to sign the lease for.");
+		System.out.println(application.viewPropertiesWithLeases());
+		int id = getUserCommand(application.getNumOfPropertiesWithLeases() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
+			return;
 		}
+		Property property = PropertyList.getInstance().getProperty(id);
+		Lease lease = property.getLease();
+		System.out.println("Signing lease for Property " + property.shortToString() + ":");
+		application.signLease(user, lease);
 	}
 	
 	public static void main(String[] args) {

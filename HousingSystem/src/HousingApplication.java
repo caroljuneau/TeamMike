@@ -163,10 +163,15 @@ public class HousingApplication {
 		student.addReview(review);
 	}
 	
+	public void signLease(Account user, Lease lease) {
+		lease.sign(user);
+		user.addLease(lease);
+	}
+	
 	public ArrayList<Property> getPropertiesWithLeases() {
 		ArrayList<Property> list = new ArrayList<Property>();
 		for(Property property : allProperties()) {
-			if(property.getLeases() != null) {
+			if(property.getLease() != null) {
 				list.add(property);
 			}
 		}
@@ -179,6 +184,10 @@ public class HousingApplication {
 	
 	public int getNumOfPropertiesWithLeases() {
 		return getPropertiesWithLeases().size();
+	}
+	
+	public void signLease(Account user, Property property) {
+		
 	}
 	
 	public String listPropertyManagersShort() {
@@ -220,28 +229,13 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-	
-//	public int getNumOfProperties() {
-//		return properties.getSize();
-//	}
-	
-//	public int getNumOfStudents() {
-//		return students.getSize();
-//	}
-	
-//	public int getNumOfPropertyManagers() {
-//		return propertyManagers.getSize();
-//	}
 //	
 	public void signLease(Account user, int propertyId) {
 //		properties.getProperty(propertyId).getLease().sign(user);
 	}
 
 	public boolean usernameInList(AccountType type, String username) {
-		if(students.usernameInList(username) || propertyManagers.usernameInList(username)) {
-			return true;
-		}
-		return false;
+		return students.usernameInList(username) || propertyManagers.usernameInList(username);
 	}
 
 	public void createStudentAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {

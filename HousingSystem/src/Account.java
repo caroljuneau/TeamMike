@@ -143,4 +143,8 @@ public class Account {
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
+	
+	public void addLease(Lease lease) {
+		this.signedLeases.add(lease);
+	}
 }

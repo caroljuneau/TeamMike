@@ -14,8 +14,8 @@ public class Property {
 	private String description;
 	private String contact;
 	private boolean visible;
-//	private Lease lease;
-	private ArrayList<Lease> leases;
+	private Lease lease;
+//	private ArrayList<Lease> leases;
 	private ArrayList<Integer> ratings;
 	private ArrayList<Review> reviews;
 //	private int size;
@@ -31,20 +31,17 @@ public class Property {
 		this.description = description;
 		this.contact = contact;
 		this.visible = visible;
-		this.leases = new ArrayList<Lease>();
+		this.lease = null;
 		this.ratings = new ArrayList<Integer>();
 		this.reviews = new ArrayList<Review>();
 	}
 	
-	public void setLeases(ArrayList<Integer> leaseIDs) {
-		for(int i = 0; i < leaseIDs.size(); i++) {
-			int id = leaseIDs.get(i);
-			leases.add(LeaseList.getInstance().getLease(id));
-		}
+	public void setLease(int leaseID) {
+		this.lease = LeaseList.getInstance().getLease(leaseID);
 	}
 	
-	public ArrayList<Lease> getLeases() {
-		return this.leases;
+	public Lease getLease() {
+		return this.lease;
 	}
 
 	public void setRatings(ArrayList<Integer> ratingIDs) {
