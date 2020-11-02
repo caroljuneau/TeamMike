@@ -9,7 +9,7 @@
 	"phone":"803-521-6174",
 	"propertyIDs":[4],
 	"ratings":[1, 1, 1, 4],
-	"reviewIDs":[],
+	"reviewIDs":[16],
 	"leaseIDs":[4,5]
   },{
   	"id":8,
@@ -21,7 +21,7 @@
 	"phone":"803-555-5555",
 	"propertyIDs":[3],
 	"ratings":[2, 2, 1, 3],
-	"reviewIDs":[],
+	"reviewIDs":[2],
 	"leaseIDs":[3,6]
   },{
   	"id":9,
@@ -33,7 +33,7 @@
 	"phone":"843-610-1455",
 	"propertyIDs":[2],
 	"ratings":[5, 5, 5, 5, 2],
-	"reviewIDs":[],
+	"reviewIDs":[2],
 	"leaseIDs":[2]
   },{
   	"id":10,
@@ -45,7 +45,7 @@
 	"phone":"803-555-5555",
 	"propertyIDs":[1],
 	"ratings":[5],
-	"reviewIDs":[],
+	"reviewIDs":[2],
 	"leaseIDs":[1]
   },{
 	"id":11,

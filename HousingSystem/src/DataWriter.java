@@ -15,9 +15,10 @@ public class DataWriter extends DataConstants{
 		propertyManagerDetails.put(LAST_NAME, manager.getLastName());
 		propertyManagerDetails.put(EMAIL, manager.getEmailAddress());
 		propertyManagerDetails.put(PHONE, manager.getPhone());
-
-//		JSONArray ids = new JSONArray();
-//		ids.
+		propertyManagerDetails.put(MANAGER_PROPERTY, manager.getMyPropertyIDs());
+		propertyManagerDetails.put(RATINGS, manager.getRating());
+		propertyManagerDetails.put(REVIEWS, manager.getReviewIDs());
+		propertyManagerDetails.put(LEASES, manager.getSignedLeaseIDs());
 
 		return propertyManagerDetails;
 	}
@@ -31,22 +32,26 @@ public class DataWriter extends DataConstants{
 		studentDetails.put(LAST_NAME, student.getLastName());
 		studentDetails.put(EMAIL, student.getEmailAddress());
 		studentDetails.put(PHONE, student.getPhone());
+		studentDetails.put(FAVORITES, student.getFavoriteIDs());
+		studentDetails.put(RATINGS, student.getRating());
+		studentDetails.put(REVIEWS, student.getReviewIDs());
+		studentDetails.put(LEASES, student.getSignedLeaseIDs());
 
 		return studentDetails;
 	}
 	public static JSONObject getPropertyJSON(Property property) {
 		JSONObject propertyDetails = new JSONObject();
 		propertyDetails.put(PROPERTY_ID, property.getPropertyId());
-		//propertyDetails.put(AMENITIES, property.getAmenities());
+		propertyDetails.put(AMENITIES, property.getAmenities());
 		propertyDetails.put(UTILITIES, property.getUtilities());
 		propertyDetails.put(LOCATION, property.getLocation());
 		//propertyDetails.put(PICTURES, property.getPictures());
 		propertyDetails.put(PRICE, property.getPrice());
-		//propertyDetails.put(RATINGS, property.getRatings());
-		//propertyDetails.put(REVIEWS, property.getReviews());
+		propertyDetails.put(RATINGS, property.getRatings());
+		propertyDetails.put(REVIEWS, property.getReviewIDs());
 		propertyDetails.put(BEDS, property.getBeds());
 		propertyDetails.put(BATHS, property.getBaths());
-		//propertyDetails.put(LEASES, property.getLease());
+		propertyDetails.put(LEASES, property.getLeaseIDs());
 		propertyDetails.put(DESCRIPTION, property.getDescription());
 		propertyDetails.put(CONTACT, property.getContact());
 		propertyDetails.put(VISIBLE, property.isVisible());
@@ -73,14 +78,19 @@ public class DataWriter extends DataConstants{
 	}
 	
 	public static void savePropertyManager(PropertyManager m) {
-//		PropertyManagerList managers = PropertyManagerList.getInstance();
-//		ArrayList<PropertyManager> propertyManagers = managers.getPropertyManagers();
-		JSONObject manager = new JSONObject();
-		manager = getPropertyManagerJSON(m);
+//		manager = getPropertyManagerJSON(m);
+//		managerJson.add(manager);
+		PropertyManagerList managers = PropertyManagerList.getInstance();
+		ArrayList<PropertyManager> managerList = managers.getPropertyManagers();
+		JSONArray managerJson = new JSONArray();
 
+		//creating all the json objects
+		for(int i = 0; i < managerList.size(); i++) {
+			managerJson.add(getPropertyManagerJSON(managerList.get(i)));
+		}
 		//Write JSON file
-		try (FileWriter file = new FileWriter(MANAGER_FILE_NAME, true)) {
-			file.write(manager.toJSONString());
+		try (FileWriter file = new FileWriter(MANAGER_FILE_NAME)) {
+			file.write(managerJson.toJSONString());
 			file.flush();
 
 		} catch (IOException e) {
