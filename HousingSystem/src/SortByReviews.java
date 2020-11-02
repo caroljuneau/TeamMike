@@ -1,10 +1,10 @@
 import java.util.*;
 
-public class SortByReviews implements Comparator<Review> {
+public class SortByReviews implements Comparator<Property> {
 
 	@Override
-	public int compare(Review A, Review B) {
-		return A.getReviews() - B.getReviews();
+	public int compare(Property A, Property B) {
+		return A.getNumOfReviews() - B.getNumOfReviews();
 	}
 
 }

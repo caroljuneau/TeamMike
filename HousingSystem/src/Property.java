@@ -163,6 +163,10 @@ public class Property {
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
+	
+	public int getNumOfReviews() {
+		return this.reviews.size();
+	}
 
 
 

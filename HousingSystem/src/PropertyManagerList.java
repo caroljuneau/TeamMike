@@ -37,7 +37,7 @@ public class PropertyManagerList {
 		int id = propertyManagers.size() + 1;
 		PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
 		propertyManagers.add(manager);
-		DataWriter.savePropertyManager(manager);
+		DataWriter.savePropertyManager();
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {
