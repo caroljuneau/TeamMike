@@ -63,9 +63,13 @@ public class Lease {
 		this.id = id;
 	}
 	
-//	public ArrayList<Integer> getSignedByStudentIds() {
-//		return signedByStudentIds;
-//	}
+	public ArrayList<Integer> getSignedByStudentIds() {
+		ArrayList<Integer> signedByStudentIds = new ArrayList<Integer>();
+		for(Student s : signedByStudents) {
+			signedByStudentIds.add(s.getID());
+		}
+		return signedByStudentIds;
+	}
 //	
 //	public void setSignedByStudentIds(ArrayList<Integer> iDs) {
 //		this.signedByStudentIds = iDs;
