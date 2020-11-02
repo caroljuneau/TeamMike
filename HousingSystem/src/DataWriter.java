@@ -120,7 +120,7 @@ public class DataWriter extends DataConstants{
 
 	public static void saveProperty() {
 		PropertyList properties = PropertyList.getInstance();
-		ArrayList<Property> propertyList = properties.getPropertyList();
+		ArrayList<Property> propertyList = properties.getProperties();
 		JSONArray jsonProperty = new JSONArray();
 
 		//creating all the json objects
@@ -146,7 +146,7 @@ public class DataWriter extends DataConstants{
 
 		//creating all the json objects
 		for(int i = 0; i < reviewList.size(); i++) {
-			jsonProperty.add(getPropertyJSON(reviewList.get(i)));
+			jsonProperty.add(getReviewJSON(reviewList.get(i)));
 		}
 
 		//Write JSON file
@@ -167,7 +167,7 @@ public class DataWriter extends DataConstants{
 
 		//creating all the json objects
 		for(int i = 0; i < leaseList.size(); i++) {
-			jsonProperty.add(getPropertyJSON(leaseList.get(i)));
+			jsonProperty.add(getLeaseJSON(leaseList.get(i)));
 		}
 
 		//Write JSON file
@@ -180,8 +180,4 @@ public class DataWriter extends DataConstants{
 		}
 	}
 
-
-	public static void deleteProperty() {
-
-	}
 }
