@@ -44,21 +44,17 @@ public class PropertyManagerList {
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {
-		Iterator<PropertyManager> iterator = propertyManagers.iterator();
-		PropertyManager propertyManager = null;
-		while(iterator.hasNext()) {
-			propertyManager = iterator.next();
-			if(propertyManager.getUsername().equals(username) && propertyManager.getPassword().equals(password)) {
-				return propertyManager;
+		for(PropertyManager pm : propertyManagers) {
+			if(pm.getUsername().equals(username) && pm.getPassword().equals(password)) {
+				return pm;
 			}
 		}
 		return null;
 	}
 	
 	public boolean usernameInList(String username) {
-		Iterator<PropertyManager> iterator = propertyManagers.iterator();
-		while(iterator.hasNext()) {
-			if(iterator.next().getUsername() == username) {
+		for(PropertyManager pm : propertyManagers) {
+			if(pm.getUsername().equals(username)) {
 				return true;
 			}
 		}

@@ -16,6 +16,10 @@ public class StudentList {
 		return studentList;
 	}
 	
+	public int getSize() {
+		return students.size();
+	}
+	
 	public ArrayList<Student> getStudents() {
 		return students;
 	}
@@ -23,16 +27,13 @@ public class StudentList {
 	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size() + 1;
 		students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
-		//TODO datawriter
+		//TODO datawriter?
 	}
 	
 	public Student getStudent(String username, String password) {
-		Iterator<Student> iterator = students.iterator();
-		Student student = null;
-		while(iterator.hasNext()) {
-			student = iterator.next();
-			if(student.getUsername().equals(username) && student.getPassword().equals(password)) {
-				return student;
+		for(Student s : students) {
+			if(s.getUsername().equals(username) && s.getPassword().equals(password)) {
+				return s;
 			}
 		}
 		return null;
@@ -48,16 +49,11 @@ public class StudentList {
 	}
 	
 	public boolean usernameInList(String username) {
-		Iterator<Student> iterator = students.iterator();
-		while(iterator.hasNext()) {
-			if(iterator.next().getUsername() == username) {
+		for(Student s : students) {
+			if(s.getUsername().equals(username)) {
 				return true;
 			}
 		}
 		return false;
-	}
-	
-	public int getSize() {
-		return students.size();
 	}
 }
