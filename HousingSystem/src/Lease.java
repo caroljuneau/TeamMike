@@ -4,6 +4,7 @@ public class Lease {
 
 	private int id;
 	private ArrayList<Student> signedByStudents;
+	private String manager;
 	private ArrayList<PropertyManager> signedByPropertyManagers;
 //	private ArrayList<Integer> signedByStudentIds;
 //	private ArrayList<Integer> signedByPropertyManagerIds;
@@ -12,6 +13,8 @@ public class Lease {
 	private String repairs;
 	private String termination;
 	private String info;
+	private String startDate;
+	private String endDate;
 	private boolean signed;
 
 	public Lease(int id, int propertyID, String fees, String repairs, String termination, String info) {
@@ -40,6 +43,13 @@ public class Lease {
 			signedByPropertyManagers.add(PropertyManagerList.getInstance().getPropertyManager(id));
 		}
 	}
+//	public void setManager() {
+//		this.manager = getProperty().;		
+//	}
+//	public PropertyManager getManager() {
+//		return this.manager;
+//	}
+	
 	
 	public ArrayList<PropertyManager> getSignedByPropertyManagers() {
 		return this.signedByPropertyManagers;
@@ -116,6 +126,23 @@ public class Lease {
 	public boolean getSigned() {
 		return signed;
 	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
 	
 	public void sign(Account user) {
 		if(user.type == AccountType.STUDENT) {
@@ -128,6 +155,10 @@ public class Lease {
 		}
 		return;
 	}
+	public Property getProperty() {
+		Property property = PropertyList.getInstance().getProperty(this.propertyID);
+		return property;
+	}
 
 	public String toString() {
 		String s;
@@ -135,6 +166,12 @@ public class Lease {
 				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
 				"\nInfo: " + this.info;
 		return s;
+	}
+	public void toTxt() {
+		String s;
+		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
+				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
+				"\nInfo: " + this.info;
 	}
 
 }

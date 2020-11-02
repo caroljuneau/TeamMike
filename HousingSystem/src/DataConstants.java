@@ -6,6 +6,7 @@ public abstract class DataConstants {
 	protected static final String PROPERTY_FILE_NAME = "JSONExamples/properties.JSON";
 	protected static final String REVIEW_FILE_NAME = "JSONExamples/reviews.json";
 	
+	protected static final String LEASE_TEXT_FILE_NAME = "Text/lease.txt";
 	/** Shared Account Data for PropertyManager and Student */
 	protected static final String ID = "id";
 	protected static final String USER_NAME = "username";

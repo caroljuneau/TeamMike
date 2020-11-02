@@ -77,7 +77,7 @@ public class DataWriter extends DataConstants{
 		return leaseDetails;
 	}
 	
-	public static void savePropertyManager(PropertyManager m) {
+	public static void savePropertyManager() {
 //		manager = getPropertyManagerJSON(m);
 //		managerJson.add(manager);
 		PropertyManagerList managers = PropertyManagerList.getInstance();
@@ -142,16 +142,16 @@ public class DataWriter extends DataConstants{
 	public static void saveReview() {
 		ReviewList review = ReviewList.getInstance();
 		ArrayList<Review> reviewList = review.getReviews();
-		JSONArray jsonProperty = new JSONArray();
+		JSONArray jsonReview = new JSONArray();
 
 		//creating all the json objects
 		for(int i = 0; i < reviewList.size(); i++) {
-			jsonProperty.add(getReviewJSON(reviewList.get(i)));
+			jsonReview.add(getReviewJSON(reviewList.get(i)));
 		}
 
 		//Write JSON file
 		try (FileWriter file = new FileWriter(PROPERTY_FILE_NAME)) {
-			file.write(jsonProperty.toJSONString());
+			file.write(jsonReview.toJSONString());
 			file.flush();
 
 		} catch (IOException e) {
@@ -159,20 +159,64 @@ public class DataWriter extends DataConstants{
 		}
 	}
 
-	//TODO saveLease
 	public static void saveLease() {
 		LeaseList lease = LeaseList.getInstance();
 		ArrayList<Lease> leaseList = lease.getLeases();
-		JSONArray jsonProperty = new JSONArray();
+		JSONArray jsonLease = new JSONArray();
 
 		//creating all the json objects
 		for(int i = 0; i < leaseList.size(); i++) {
-			jsonProperty.add(getLeaseJSON(leaseList.get(i)));
+			jsonLease.add(getLeaseJSON(leaseList.get(i)));
 		}
 
 		//Write JSON file
 		try (FileWriter file = new FileWriter(PROPERTY_FILE_NAME)) {
-			file.write(jsonProperty.toJSONString());
+			file.write(jsonLease.toJSONString());
+			file.flush();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void generateLeaseText(Lease in) {
+//		String landlord = in.getManager();
+	// TODO add landlord/propertyManager id to json
+	/**
+	 * This method is to grab String landloard which is the propertyManager associated to the properties
+	 * first+last name.
+	 * Grab tenant, student signing first/last name.
+	 * Int RENT, Int Damage, Int Cost are all equal to the properties price.
+	 * Then output to txt file:
+	 */
+		String landlord = "";
+		String tenant = "";
+		String date = java.time.LocalDate.now().toString();
+		int rent = in.getProperty().getPrice();
+		int damage = rent; 
+		int cost = rent;
+		int beds = in.getProperty().getBeds();
+		int baths = in.getProperty().getBaths();
+		String address = in.getProperty().getLocation();
+		String startDate = in.getStartDate();
+		String endDate = in.getEndDate();
+		
+		
+		String output = "";
+		output += "This Lease Agreement is made and entered on <DATE> by and between <LANDLOARD> and <TENANT(s)>\n\n";
+		output += "Subject to the terms and conditions stated below the parties agree as follows:\n\n";
+		output += "1. Landloard Tenant Act. This Rental Agreement is governed by the South Carolina Residential Landlord and Tenant Act.\n\n";
+		
+		output += "2. Property. Landloard, in consideration of the lease payments provided in this agreement, leases to Tenant a house with "+beds+" bedrooms and " +baths+
+				" bathrooms, located at " +address+". No other portion of the building wherein the Property is located is included unless expressly provided for in this agreement.\n\n";
+		output += "3. Term. The Tenant will coninue to pay rent from "+ startDate +" to "+endDate+".\n\n";
+		output += "4. Rent. The Tenant will pay "+rent+" each month on the first of the month.\n\n";
+		output += "5. Payment should be sent to:<PAYMENT ADDRESS>\n\n";
+		output += "6. Damages. Charges will be billed to the client for damaged property, up to <DAMAGE COST>\n\n";
+		
+		//Write txt file
+		try (FileWriter file = new FileWriter(LEASE_TEXT_FILE_NAME)) {
+			file.write(output);
 			file.flush();
 
 		} catch (IOException e) {
