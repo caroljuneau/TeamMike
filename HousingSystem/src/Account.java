@@ -13,6 +13,7 @@ public class Account {
 	protected ArrayList<Integer> ratings;
 	protected ArrayList<Review> reviews;
 	protected ArrayList<Lease> signedLeases;
+	protected final double DEFAULT_RATING = 0.0;
 //	protected ArrayList<Integer> reviewIDs;
 //	protected ArrayList<Integer> signedLeaseIDs;
 	
@@ -61,7 +62,9 @@ public class Account {
 		ArrayList<Integer> reviewIDs = new ArrayList<Integer>();
 		for(int i = 0; i < reviews.size(); i++) {
 			Review review = reviews.get(i);
-			reviewIDs.add(review.getId());
+			if(reviews.get(i) != null) {
+				reviewIDs.add(review.getId());
+			}
 		}
 		return reviewIDs;
 	}
@@ -72,7 +75,9 @@ public class Account {
 		ArrayList<Integer> leaseIDs = new ArrayList<Integer>();
 		for(int i = 0; i < signedLeases.size(); i++) {
 			Lease lease = signedLeases.get(i);
-			leaseIDs.add(lease.getId());
+			if(signedLeases.get(i) != null) {
+				leaseIDs.add(lease.getId());
+			}
 		}
 		return leaseIDs;
 	}
@@ -128,6 +133,9 @@ public class Account {
 	
 	
 	public double getAvgRating() {
+		if (this.getRatings() == null) {
+			return DEFAULT_RATING;
+		}
 		int num = this.getRatings().size();
 		int sum = 0;
 		for(int j: this.getRatings()) {
