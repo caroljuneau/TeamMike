@@ -36,7 +36,8 @@ public class HousingUI {
 			"View my signed leases", //4
 			"Rate/review a property", //5
 			"Rate/review a property manager", //6
-			"Log out" //7
+			"View property manager reviews", //7
+			"Log out" //8
 		};
 	private String[] propertyManagerOptions = 
 		{
@@ -46,7 +47,8 @@ public class HousingUI {
 			"Sign lease", //3
 			"View my signed leases", //4
 			"Rate/review a student", //5
-			"Log out" //6
+			"View student reviews", //6
+			"Log out" //7
 		};
 	private String[] guestOptions = 
 		{
@@ -63,7 +65,9 @@ public class HousingUI {
 			"Sort by number of reviews", //4
 			"Filter by amenities", //5
 			"Filter by price range", //6
-			"Go back", //7
+			"View property reviews", //7
+			"View leases", //8
+			"Go back", //9
 		};
 	private String[] managePropertiesOptions = 
 		{
@@ -290,6 +294,9 @@ public class HousingUI {
 				reviewPropertyManager();
 				break;
 			case 7:
+				viewPropertyManagerReviews();
+				break;
+			case 8:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -323,6 +330,9 @@ public class HousingUI {
 				reviewStudent();
 				break;
 			case 6:
+				viewStudentReviews();
+				break;
+			case 7:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -377,6 +387,10 @@ public class HousingUI {
 				filterByPriceRange();
 				break;
 			case 7:
+				viewPropertyReviews();
+			case 8:
+				viewLeases();
+			case 9:
 				goBack = true;
 				break;
 			default:
@@ -560,6 +574,25 @@ public class HousingUI {
 		Lease lease = property.getLease();
 		System.out.println("Signing lease for Property " + property.shortToString() + ":");
 		application.signLease(user, lease);
+	}
+	
+	public void viewPropertyReviews() {
+		System.out.println("Property Reviews:");
+		System.out.println(application.viewPropertyReviews());
+	}
+	
+	public void viewPropertyManagerReviews() {
+		System.out.println("Property Manager Reviews:");
+		System.out.println(application.viewPropertyManagerReviews());
+	}
+	
+	public void viewStudentReviews() {
+		System.out.println("Student Reviews:");
+		System.out.println(application.viewStudentReviews());
+	}
+	
+	public void viewLeases() {
+		//TODO
 	}
 	
 	public static void main(String[] args) {

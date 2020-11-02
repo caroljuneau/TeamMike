@@ -52,7 +52,8 @@ public class DataLoader extends DataConstants{
 				property.setPropertyId(id);
 				property.setRatings(getIDs((JSONArray)propertyJSON.get(RATINGS)));
 				property.setReviews(getIDs((JSONArray)propertyJSON.get(REVIEWS)));
-				property.setLeases(getIDs((JSONArray)propertyJSON.get(LEASES)));
+				int leaseID = ((Long)propertyJSON.get(LEASES)).intValue();
+				property.setLease(leaseID);
 
 			}
 			return properties;

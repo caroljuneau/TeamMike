@@ -37,10 +37,18 @@ public class HousingApplication {
 		return properties.getProperties();
 	}
 
+	public ArrayList<PropertyManager> allPropertyManagers() {
+		return propertyManagers.getPropertyManagers();
+	}
+
+	public ArrayList<Student> allStudents() {
+		return students.getStudents();
+	}
+
 	public String listProperties(ArrayList<Property> list) {
 		String ret = "";
 		for(Property property : list) {
-			ret += property.toString() + "\n\n";
+			ret += property.toString() + "\n";
 		}
 		return ret;
 	}
@@ -186,10 +194,6 @@ public class HousingApplication {
 		return getPropertiesWithLeases().size();
 	}
 
-	public void signLease(Account user, Property property) {
-
-	}
-
 	public String listPropertyManagersShort() {
 		String ret = "";
 		for(PropertyManager pm : propertyManagers.getPropertyManagers()) {
@@ -229,9 +233,44 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-//
-	public void signLease(Account user, int propertyId) {
-//		properties.getProperty(propertyId).getLease().sign(user);
+
+	public String viewPropertyReviews() {
+		String ret = "";
+		for(Property property : allProperties()) {
+			ret += property.shortToString() + "\n";
+			ret += "Reviews:\n";
+			for(Review review : property.getReviews()) {
+				ret += review.toString();
+			}
+			ret += "\n";
+		}
+		return ret;
+	}
+
+	public String viewPropertyManagerReviews() {
+		String ret = "";
+		for(PropertyManager pm : allPropertyManagers()) {
+			ret += pm.shortToString() + "\n";
+			ret += "Reviews:\n";
+			for(Review review : pm.getReviews()) {
+				ret += review.toString();
+			}
+			ret += "\n";
+		}
+		return ret;
+	}
+
+	public String viewStudentReviews() {
+		String ret = "";
+		for(Student s : allStudents()) {
+			ret += s.shortToString() + "\n";
+			ret += "Reviews:\n";
+			for(Review review : s.getReviews()) {
+				ret += review.toString();
+			}
+			ret += "\n";
+		}
+		return ret;
 	}
 
 	public boolean usernameInList(AccountType type, String username) {
