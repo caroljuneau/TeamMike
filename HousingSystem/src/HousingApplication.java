@@ -299,5 +299,11 @@ public class HousingApplication {
 	public boolean deleteProperty(Property property) {
 		return properties.removeProperty(property);
 	}
+	
+	public void addLease(Property property, String fees, String repairs, String termination, String info) {
+		int leaseID = LeaseList.getInstance().getSize();
+		Lease lease = leases.addLease(leaseID, property.getPropertyId(), fees, repairs, termination, info);
+		property.setLease(lease);
+	}
 
 }

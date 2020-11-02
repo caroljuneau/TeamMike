@@ -589,7 +589,7 @@ public class HousingUI {
 	public void signLease() {
 		System.out.println("Please enter the ID of the property you wish to sign the lease for.");
 		System.out.println(application.viewPropertiesWithLeases());
-		int id = getUserCommand(application.getNumOfPropertiesWithLeases() + 1);
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1);
 		if(id == -1) {
 			System.out.println(INVALID);
 			return;
@@ -618,7 +618,7 @@ public class HousingUI {
 	public void viewLeases() {
 		System.out.println("Please enter the ID of the property you wish to view the lease for.");
 		System.out.println(application.viewPropertiesWithLeases());
-		int id = getUserCommand(application.getNumOfPropertiesWithLeases() + 1);
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1);
 		if(id == -1) {
 			System.out.println(INVALID);
 			return;
@@ -703,7 +703,27 @@ public class HousingUI {
 	}
 	
 	public void createLease() {
-		
+		System.out.println("Please enter the ID of the property you wish to create a lease for.");
+		System.out.println(application.viewMyProperties(user));
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		Property property = PropertyList.getInstance().getProperty(id);
+		if(property.getLease() != null) {
+			System.out.println("Property already has a lease.");
+			return;
+		}
+		System.out.println("Enter information about fees.");
+		String fees = keyboard.nextLine();
+		System.out.println("Enter information about repairs.");
+		String repairs = keyboard.nextLine();
+		System.out.println("Enter information about termination.");
+		String termination = keyboard.nextLine();
+		System.out.println("Enter any additional information.");
+		String info = keyboard.nextLine();
+		application.addLease(property, fees, repairs, termination, info);
 	}
 	
 	public static void main(String[] args) {

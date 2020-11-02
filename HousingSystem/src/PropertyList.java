@@ -23,6 +23,7 @@ public class PropertyList {
 		int id = properties.size() + 1;
 		Property property = new Property(id, amenities, utilities, location, price, beds, baths, description, contact, visible);
 		properties.add(property);
+		DataWriter.saveProperty();
 		return property;
 	}
 

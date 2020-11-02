@@ -37,9 +37,7 @@ public class PropertyManagerList {
 		int id = propertyManagers.size() + 1;
 		PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
 		propertyManagers.add(manager);
-//		//TODO add to json
-		DataWriter write = new DataWriter();
-		write.savePropertyManager(manager);
+		DataWriter.savePropertyManager(manager);
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {

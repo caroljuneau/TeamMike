@@ -5,20 +5,15 @@ public class Property {
 	private boolean[] amenities;
 	private String utilities;
 	private String location;
-	//private ArrayList<String> pictures;
 	private int price;
-//	private ArrayList<Integer> reviewIDs;
-//	private ArrayList<Integer> leaseIDs;
 	private int beds;
 	private int baths;
 	private String description;
 	private String contact;
 	private boolean visible;
 	private Lease lease;
-//	private ArrayList<Lease> leases;
 	private ArrayList<Integer> ratings;
 	private ArrayList<Review> reviews;
-//	private int size;
 
 	public Property(int id, boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		this.propertyId = id;
@@ -38,6 +33,10 @@ public class Property {
 	
 	public void setLease(int leaseID) {
 		this.lease = LeaseList.getInstance().getLease(leaseID);
+	}
+	
+	public void setLease(Lease lease) {
+		this.lease = lease;
 	}
 	
 	public Lease getLease() {
@@ -112,12 +111,6 @@ public class Property {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-//	public ArrayList<String> getPictures() {
-//		return pictures;
-//	}
-//	public void setPictures(ArrayList<String> pictures) {
-//		this.pictures = pictures;
-//	}
 	public int getPrice() {
 		return price;
 	}
@@ -155,9 +148,6 @@ public class Property {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-//	public boolean matches(String key) {
-//		return false;
-//	}
 	
 	public String toString() {
 		return "Location: " + this.location + "\nAmenities: " + this.amenitiesToString() +

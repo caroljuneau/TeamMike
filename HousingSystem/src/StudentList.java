@@ -27,7 +27,7 @@ public class StudentList {
 	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size() + 1;
 		students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
-		//TODO datawriter?
+		DataWriter.saveStudent();
 	}
 	
 	public Student getStudent(String username, String password) {
