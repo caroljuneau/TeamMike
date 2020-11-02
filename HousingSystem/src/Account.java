@@ -57,15 +57,25 @@ public class Account {
 //	public void setReviewIDs(ArrayList<Integer> arr) {
 //		this.reviewIDs = arr;
 //	}
-//	public ArrayList<Integer> getReviewIDs() {
-//		return this.reviewIDs;
-//	}
+	public ArrayList<Integer> getReviewIDs() {
+		ArrayList<Integer> reviewIDs = new ArrayList<Integer>();
+		for(int i = 0; i < reviews.size(); i++) {
+			Review review = reviews.get(i);
+			reviewIDs.add(review.getId());
+		}
+		return reviewIDs;
+	}
 //	public void setSignedLeaseIDs(ArrayList<Integer> arr) {
 //		this.signedLeaseIDs = arr;
 //	}
-//	public ArrayList<Integer> getSignedLeaseIDs() {
-//		return this.signedLeaseIDs;
-//	}
+	public ArrayList<Integer> getSignedLeaseIDs() {
+		ArrayList<Integer> leaseIDs = new ArrayList<Integer>();
+		for(int i = 0; i < signedLeases.size(); i++) {
+			Lease lease = signedLeases.get(i);
+			leaseIDs.add(lease.getId());
+		}
+		return leaseIDs;
+	}
 	public int getID() {
 		return this.id;
 	}

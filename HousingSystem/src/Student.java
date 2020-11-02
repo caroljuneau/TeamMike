@@ -28,9 +28,14 @@ public class Student extends Account {
 //	public void setFavoriteIDs(ArrayList<Integer> arr) {
 //		this.favoriteIDs = arr;
 //	}
-//	public ArrayList<Integer> getFavoriteIDs() {
-//		return this.favoriteIDs;
-//	}
+	public ArrayList<Integer> getFavoriteIDs() {
+		ArrayList<Integer> favoriteIDs = new ArrayList<Integer>();
+		for(int i = 0; i < favProperties.size(); i++) {
+			Property property = favProperties.get(i);
+			favoriteIDs.add(property.getPropertyId());
+		}
+		return favoriteIDs;
+	}
 	
 	public String getStudentId() {
 		return this.studentID;

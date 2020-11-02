@@ -22,9 +22,14 @@ public class PropertyManager extends Account {
 		return this.myProperties;
 	}
 	
-//	public ArrayList<Integer> getMyPropertyIDs() {
-//		return myPropertyIDs;
-//	}
+	public ArrayList<Integer> getMyPropertyIDs() {
+		ArrayList<Integer> myPropertyIDs = new ArrayList<Integer>();
+		for(int i = 0; i < myProperties.size(); i++) {
+			Property property = myProperties.get(i);
+			myPropertyIDs.add(property.getPropertyId());
+		}
+		return myPropertyIDs;
+	}
 //
 //	public void setMyPropertyIDs(ArrayList<Integer> myPropertyIDs) {
 //		this.myPropertyIDs = myPropertyIDs;

@@ -43,6 +43,10 @@ public class Property {
 	public Lease getLease() {
 		return this.lease;
 	}
+	
+	public int getLeaseID() {
+		return this.lease.getId();
+	}
 
 	public void setRatings(ArrayList<Integer> ratingIDs) {
 		this.ratings = ratingIDs;
@@ -61,6 +65,15 @@ public class Property {
 	
 	public ArrayList<Review> getReviews() {
 		return reviews;
+	}
+	
+	public ArrayList<Integer> getReviewIDs() {
+		ArrayList<Integer> reviewIDs = new ArrayList<Integer>();
+		for(int i = 0; i < reviews.size(); i++) {
+			Review review = reviews.get(i);
+			reviewIDs.add(review.getId());
+		}
+		return reviewIDs;
 	}
 	
 	public int getPropertyId() {

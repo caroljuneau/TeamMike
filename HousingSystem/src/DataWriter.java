@@ -16,7 +16,7 @@ public class DataWriter extends DataConstants{
 		propertyManagerDetails.put(EMAIL, manager.getEmailAddress());
 		propertyManagerDetails.put(PHONE, manager.getPhone());
 		propertyManagerDetails.put(MANAGER_PROPERTY, manager.getMyPropertyIDs());
-		propertyManagerDetails.put(RATINGS, manager.getRating());
+		propertyManagerDetails.put(RATINGS, manager.getRatings());
 		propertyManagerDetails.put(REVIEWS, manager.getReviewIDs());
 		propertyManagerDetails.put(LEASES, manager.getSignedLeaseIDs());
 
@@ -33,7 +33,7 @@ public class DataWriter extends DataConstants{
 		studentDetails.put(EMAIL, student.getEmailAddress());
 		studentDetails.put(PHONE, student.getPhone());
 		studentDetails.put(FAVORITES, student.getFavoriteIDs());
-		studentDetails.put(RATINGS, student.getRating());
+		studentDetails.put(RATINGS, student.getRatings());
 		studentDetails.put(REVIEWS, student.getReviewIDs());
 		studentDetails.put(LEASES, student.getSignedLeaseIDs());
 
