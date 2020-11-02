@@ -67,8 +67,6 @@ public class Review {
 	}
 	
 	public String toString() {
-		String s;
-		s = super.toString();
-		return s;
+		return "Rating: " + rating + "\nUsername: " + username + "\nDescription: " + description + "\n";
 	}
 }

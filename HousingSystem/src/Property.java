@@ -160,16 +160,14 @@ public class Property {
 //	}
 	
 	public String toString() {
-		String s;
-		s = "Location: " + this.location + "\nAmenities: " + this.amenitiesToString() +
+		return "Location: " + this.location + "\nAmenities: " + this.amenitiesToString() +
 				"\nUtilities: " + this.utilities + "\nPrice: " + this.price + "\nBeds: " +
 				this.beds + "\nBaths: " + this.baths + "\nDescription: " + this.description +
-				"\nContact: " + this.contact;
-		return s;
+				"\nContact: " + this.contact + "\n";
 	}
 	
 	public String shortToString() {
-		return "ID: " + this.propertyId + ", Location: " + this.location;
+		return "ID: " + this.propertyId + ", Location: " + this.location + "\n";
 	}
 	
 	public void addReview(Review review) {

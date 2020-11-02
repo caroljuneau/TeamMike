@@ -139,7 +139,7 @@ public class Account {
 	public String toString() {
 		return "Username: " + this.username + "\nPassword: " + this.password+ "\nFirst: " + this.firstName +
 				"\nLast: " + this.lastName + "\nEmail: " + this.emailAddress + "\nPhone: " +
-				this.phone + "\nAvg Rating: " + this.getAvgRating();
+				this.phone + "\nAvg Rating: " + this.getAvgRating() + "\n";
 	}
 	
 	public String getName() {
@@ -147,7 +147,7 @@ public class Account {
 	}
 	
 	public String shortToString() {
-		return "ID: " + ", " + getName();
+		return "ID: " + ", " + getName() + "\n";
 	}
 	
 	public void addReview(Review review) {

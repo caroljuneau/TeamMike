@@ -41,6 +41,16 @@ public class ReviewList {
 		reviews.add(review);
 		return review;
 	}
+	
+	public ArrayList<Review> getReviewsOfType(ReviewType type) {
+		ArrayList<Review> typeReviews = new ArrayList<Review>();
+		for(Review r : reviews) {
+			if(r.getType() == type) {
+				typeReviews.add(r);
+			}
+		}
+		return typeReviews;
+	}
 
 
 }
