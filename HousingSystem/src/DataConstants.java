@@ -31,6 +31,7 @@ public abstract class DataConstants {
 	/** Strings to read Properties JSON File */
 	protected static final String PROPERTY = "properties";
 	protected static final String PROPERTY_ID = "propertyId";
+	protected static final String PROPERTY_MANAGER_ID = "propertyManagerId";
 	protected static final String AMENITIES = "amenities";
 	protected static final String UTILITIES = "utilities";
 	protected static final String LOCATION = "location";

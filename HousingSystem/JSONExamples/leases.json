@@ -7,7 +7,8 @@
     "termination":"",
     "info": "",
     "signed":false,
-    "signedBy": []
+    "signedByStudentIds": [],
+    "signedByPropertyManagerIds":[]
   },{
   	"id":2,
   	"propertyId":2,
@@ -16,7 +17,8 @@
     "termination":"",
     "info": "",
     "signed":false,
-    "signedBy": []
+    "signedByStudentIds": [],
+    "signedByPropertyManagerIds":[]  
   },{
   	"id":3,
   	"propertyId":3,
@@ -25,7 +27,8 @@
     "termination":"",
     "info": "",
     "signed":false,
-    "signedBy": []
+    "signedByStudentIds": [],
+    "signedByPropertyManagerIds": []
   },{
   	"id":4,
   	"propertyId":4,
@@ -34,6 +37,17 @@
     "termination":"",
     "info": "",
     "signed":false,
-    "signedBy": []
+    "signedByStudentIds": [],
+    "signedByPropertyManagerIds":[]
+  },{
+    "id":5,
+    "propertyId":5,
+    "fees":"One month's rent security deposit",
+    "repairs":"",
+    "termination":"",
+    "info": "",
+    "signed":false,
+    "signedByStudentIds": [],
+    "signedByPropertyManagerIds":[]
   }
 ]

@@ -14,6 +14,7 @@ public class Property {
 	private Lease lease;
 	private ArrayList<Integer> ratings;
 	private ArrayList<Review> reviews;
+	private int propertyManagerId;
 
 	public Property(int id, boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		this.propertyId = id;
@@ -166,6 +167,21 @@ public class Property {
 	
 	public int getNumOfReviews() {
 		return this.reviews.size();
+	}
+	public String getPropertyManager() {
+		PropertyManagerList list = PropertyManagerList.getInstance();
+		PropertyManager manager = list.getPropertyManager(this.propertyManagerId);
+		String s = "";
+		s = manager.getFirstName() + " " + manager.getLastName();
+		return s;
+	}
+
+	public int getPropertyManagerId() {
+		return propertyManagerId;
+	}
+
+	public void setPropertyManagerId(int propertyManagerId) {
+		this.propertyManagerId = propertyManagerId;
 	}
 
 

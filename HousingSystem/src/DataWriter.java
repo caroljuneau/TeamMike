@@ -42,6 +42,7 @@ public class DataWriter extends DataConstants{
 	public static JSONObject getPropertyJSON(Property property) {
 		JSONObject propertyDetails = new JSONObject();
 		propertyDetails.put(PROPERTY_ID, property.getPropertyId());
+		propertyDetails.put(PROPERTY_MANAGER_ID, property.getPropertyManagerId());
 		propertyDetails.put(AMENITIES, property.getAmenities());
 		propertyDetails.put(UTILITIES, property.getUtilities());
 		propertyDetails.put(LOCATION, property.getLocation());
@@ -72,7 +73,13 @@ public class DataWriter extends DataConstants{
 		JSONObject leaseDetails = new JSONObject();
 		leaseDetails.put(ID, lease.getId());
 		leaseDetails.put(PROPERTY_ID, lease.getPropertyID());
-		// fill out rest after redesign
+		leaseDetails.put(FEES, lease.getFees());
+		leaseDetails.put(REPAIRS, lease.getRepairs());
+		leaseDetails.put(TERMINATION, lease.getTermination());
+		leaseDetails.put(INFO, lease.getInfo());
+		leaseDetails.put(SIGNED, lease.getSigned());
+		leaseDetails.put(SIGNED_BY_STUDENT_IDS, lease.getSignedByStudentIds());
+		leaseDetails.put(SIGNED_BY_PROPERTY_MANAGER_IDS, lease.getSignedByPropertyManagerIds());
 
 		return leaseDetails;
 	}
@@ -189,8 +196,8 @@ public class DataWriter extends DataConstants{
 	 * Int RENT, Int Damage, Int Cost are all equal to the properties price.
 	 * Then output to txt file:
 	 */
-		String landlord = "";
-		String tenant = "";
+		String landlord = in.getProperty().getPropertyManager();
+		String tenant = "TENANT";
 		String date = java.time.LocalDate.now().toString();
 		int rent = in.getProperty().getPrice();
 		int damage = rent; 
