@@ -32,11 +32,11 @@ public class HousingApplication {
 		//if not found, return null
 		return null;
 	}
-	
+
 	public ArrayList<Property> allProperties() {
 		return properties.getProperties();
 	}
-	
+
 	public String listProperties(ArrayList<Property> list) {
 		String ret = "";
 		for(Property property : list) {
@@ -44,7 +44,7 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-	
+
 	public String listPropertiesShort(ArrayList<Property> list) {
 		String ret = "";
 		for(Property property : list) {
@@ -52,41 +52,41 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-	
+
 	public String viewAllProperties() {
 		return listProperties(allProperties());
 	}
-	
+
 	public String viewAllPropertiesShort() {
 		return listPropertiesShort(allProperties());
 	}
-	
+
 	public String searchByKeyword(String key) {
 		ArrayList<Property> list = allProperties();
 		//TODO
 		return listProperties(list);
 	}
-	
+
 	public String sortByPrice(boolean increasing) {
 		ArrayList<Property> list = allProperties();
-		//TODO FIX
+		//TODO Test
 //		Collections.copy(list, allProperties());
 		if(increasing == true) {
-			Collections.sort(list, Collections.reverseOrder().reversed());
+			Collections.sort(list, new SortByPrice());
 		} else {
-			Collections.sort(list, Collections.reverseOrder());
+			Collections.sort(list, new SortByPrice().reversed());
 		}
 		return listProperties(list);
 	}
-	
+
 	public String sortByNumReviews(boolean increasing) {
-		//TODO FIX
+		//TODO Test
 		ArrayList<Property> list = allProperties();
 //		Collections.copy(list, allProperties());
 		if(increasing == true) {
-			Collections.sort(list, Collections.reverseOrder().reversed());
+			Collections.sort(list, new SortByReviews());
 		} else {
-			Collections.sort(list, Collections.reverseOrder());
+			Collections.sort(list, new SortByReviews().reversed());
 		}
 		return listProperties(list);
 	}
@@ -115,14 +115,14 @@ public class HousingApplication {
 		}
 		return listProperties(filtered);
 	}
-	
+
 	public String viewFavProperties(Account user) {
 		if(user.type == AccountType.STUDENT) {
 			return listProperties(((Student) user).getFavProperties());
 		}
 		return "No favorite properties.";
 	}
-	
+
 	public String viewSignedLeases(Account user) {
 		String ret = "";
 		ArrayList<Lease> signedLeases = user.getSignedLeases();
@@ -131,14 +131,14 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-	
+
 	public String viewMyProperties(Account user) {
 		if(user.type == AccountType.PROPERTYMANAGER) {
 			return listProperties(((PropertyManager) user).getMyProperties());
 		}
 		return "No properties.";
 	}
-	
+
 	public void reviewProperty(Account user, Property property, int rating, String description) {
 		int reviewId = ReviewList.getInstance().getSize();
 		// add review to review list:
@@ -146,7 +146,7 @@ public class HousingApplication {
 		// add review to property:
 		property.addReview(review);
 	}
-	
+
 	public void reviewPropertyManager(Account user, PropertyManager propertyManager, int rating, String description) {
 		int reviewId = ReviewList.getInstance().getSize();
 		// add review to review list:
@@ -154,7 +154,7 @@ public class HousingApplication {
 		// add review to property manager:
 		propertyManager.addReview(review);
 	}
-	
+
 	public void reviewStudent(Account user, Student student, int rating, String description) {
 		int reviewId = ReviewList.getInstance().getSize();
 		// add review to review list:
@@ -162,12 +162,12 @@ public class HousingApplication {
 		// add review to student:
 		student.addReview(review);
 	}
-	
+
 	public void signLease(Account user, Lease lease) {
 		lease.sign(user);
 		user.addLease(lease);
 	}
-	
+
 	public ArrayList<Property> getPropertiesWithLeases() {
 		ArrayList<Property> list = new ArrayList<Property>();
 		for(Property property : allProperties()) {
@@ -177,19 +177,19 @@ public class HousingApplication {
 		}
 		return list;
 	}
-	
+
 	public String viewPropertiesWithLeases() {
 		return listPropertiesShort(getPropertiesWithLeases());
 	}
-	
+
 	public int getNumOfPropertiesWithLeases() {
 		return getPropertiesWithLeases().size();
 	}
-	
+
 	public void signLease(Account user, Property property) {
-		
+
 	}
-	
+
 	public String listPropertyManagersShort() {
 		String ret = "";
 		for(PropertyManager pm : propertyManagers.getPropertyManagers()) {
@@ -197,7 +197,7 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-	
+
 	public String listStudentsShort() {
 		String ret = "";
 		for(Student student : students.getStudents()) {
@@ -205,19 +205,19 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-	
+
 	public Student getStudent(int id) {
 		return students.getStudent(id);
 	}
-	
+
 	public PropertyManager getPropertyManager(int id) {
 		return propertyManagers.getPropertyManager(id);
 	}
-	
+
 	public Property getProperty(int id) {
 		return properties.getProperty(id);
 	}
-	
+
 	public String getSignedBy(Lease lease) {
 		String ret = "Students: \n";
 		for(Student s : lease.getSignedByStudents()) {
@@ -229,7 +229,7 @@ public class HousingApplication {
 		}
 		return ret;
 	}
-//	
+//
 	public void signLease(Account user, int propertyId) {
 //		properties.getProperty(propertyId).getLease().sign(user);
 	}
