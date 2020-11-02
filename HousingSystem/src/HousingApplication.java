@@ -284,5 +284,20 @@ public class HousingApplication {
 	public void createPropertyManagerAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		propertyManagers.addPropertyManager(username, password, firstName, lastName, emailAddress, phone);
 	}
+	public void addNewProperty(Account user, String location, boolean[] amenitiesBool, String utilities, int price, int beds, int baths, String description, String contact) {
+		Property property = properties.addProperty(amenitiesBool, utilities, location, price, beds, baths, description, contact, true);
+		if(user.getAccountType() == AccountType.PROPERTYMANAGER) {
+			((PropertyManager) user).addMyProperty(property);
+		}
+	}
+	public void addFavProperty(Account user, Property property) {
+		if(user.getAccountType() == AccountType.STUDENT) {
+			((Student) user).addFavoriteProperty(property);
+		}
+	}
+	
+	public boolean deleteProperty(Property property) {
+		return properties.removeProperty(property);
+	}
 
 }

@@ -31,13 +31,14 @@ public class HousingUI {
 		{
 			"Student Menu: ",
 			"Browse properties", //1
-			"View my favorite properties", //2
-			"Sign lease", //3
-			"View my signed leases", //4
-			"Rate/review a property", //5
-			"Rate/review a property manager", //6
-			"View property manager reviews", //7
-			"Log out" //8
+			"Add a favorite property", //2
+			"View my favorite properties", //3
+			"Sign lease", //4
+			"View my signed leases", //5
+			"Rate/review a property", //6
+			"Rate/review a property manager", //7
+			"View property manager reviews", //8
+			"Log out" //9
 		};
 	private String[] propertyManagerOptions = 
 		{
@@ -73,10 +74,9 @@ public class HousingUI {
 		{
 			"Manage Properties Menu: ",
 			"Add a new property", //1
-			"Edit an existing property", //2
-			"Delete an existing property", //3
-			"Create a lease", //4
-			"Go back" //5
+			"Delete an existing property", //2
+			"Create a lease", //3
+			"Go back" //4
 		};
 	private String[] tryAgainOptions = 
 		{
@@ -279,24 +279,27 @@ public class HousingUI {
 				browsePropertiesLoop();
 				break;
 			case 2:
-				viewFavProperties();
+				addFavProperty();
 				break;
 			case 3:
-				signLease();
+				viewFavProperties();
 				break;
 			case 4:
-				viewSignedLeases();
+				signLease();
 				break;
 			case 5:
-				reviewProperty();
+				viewSignedLeases();
 				break;
 			case 6:
-				reviewPropertyManager();
+				reviewProperty();
 				break;
 			case 7:
-				viewPropertyManagerReviews();
+				reviewPropertyManager();
 				break;
 			case 8:
+				viewPropertyManagerReviews();
+				break;
+			case 9:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -401,7 +404,28 @@ public class HousingUI {
 	}
 
 	public void managePropertiesLoop() {
-		//TODO
+		boolean goBack = false;
+		while(!goBack) {
+			displayMenu(managePropertiesOptions);
+			int userCommand = getUserCommand(managePropertiesOptions.length);
+			switch(userCommand) {
+			case 1:
+				addNewProperty();
+				break;
+			case 2:
+				deleteExistingProperty();
+				break;
+			case 3:
+				createLease();
+				break;
+			case 4:
+				goBack = true;
+				break;
+			default:
+				System.out.println(INVALID);
+				break;
+			}
+		}
 	}
 	
 	public void viewAllProperties() {
@@ -592,7 +616,94 @@ public class HousingUI {
 	}
 	
 	public void viewLeases() {
-		//TODO
+		System.out.println("Please enter the ID of the property you wish to view the lease for.");
+		System.out.println(application.viewPropertiesWithLeases());
+		int id = getUserCommand(application.getNumOfPropertiesWithLeases() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		Property property = PropertyList.getInstance().getProperty(id);
+		System.out.println("Lease: ");
+		System.out.println(property.getLease());
+	}
+	
+	public void addFavProperty() {
+		System.out.println("Please enter the ID of the property you wish to add to your favorites.");
+		System.out.println(application.viewAllProperties());
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		Property property = PropertyList.getInstance().getProperty(id);
+		System.out.println("Adding property " + property.shortToString() + " to favorites:");
+		application.addFavProperty(user, property);
+		System.out.println("Added to favorites.");
+	}
+	
+	public void addNewProperty() {
+		System.out.println("Enter the location of the property.");
+		String location = keyboard.nextLine();
+		System.out.println("Enter the amenities of the property; 1 for yes, 2 for no.");
+		boolean[] amenitiesBool = enterAmenities();
+		System.out.println("Enter utilities.");
+		String utilities = keyboard.nextLine();
+		System.out.println("Enter price as an integer.");
+		int price = Integer.parseInt(keyboard.nextLine());
+		System.out.println("Enter the number of beds as an integer.");
+		int beds = Integer.parseInt(keyboard.nextLine());
+		System.out.println("Enter the number of baths as an integer.");
+		int baths = Integer.parseInt(keyboard.nextLine());
+		System.out.println("Enter a description for the property.");
+		String description = keyboard.nextLine();
+		System.out.println("Enter a contact for the property.");
+		String contact = keyboard.nextLine();
+		application.addNewProperty(user, location, amenitiesBool, utilities, price, beds, baths, description, contact);
+		System.out.println("Added property.");
+	}
+	
+	public void deleteExistingProperty() {
+		System.out.println("Please enter the ID of the property you wish to delete.");
+		System.out.println(application.viewAllProperties());
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		Property property = PropertyList.getInstance().getProperty(id);
+		boolean success = application.deleteProperty(property);
+		if(success) {
+			System.out.println("Deleted property.");
+		}
+		else {
+			System.out.println("Failed to delete property.");
+		}
+	}
+	
+	public boolean[] enterAmenities() {
+		boolean[] ret = new boolean[amenities.length];
+		for(int i = 0; i < amenities.length; i++) {
+			while(true) {
+				System.out.println(amenities[i] + "?");
+				String input = keyboard.nextLine();
+				int command = Integer.parseInt(input);
+				if(command == 1) {
+					ret[i] = true;
+					break;
+				} else if(command == 2) {
+					ret[i] = false;
+					break;
+				} else {
+					System.out.println(INVALID);
+				}
+			}
+		}
+		return ret;
+	}
+	
+	public void createLease() {
+		
 	}
 	
 	public static void main(String[] args) {

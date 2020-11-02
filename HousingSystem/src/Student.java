@@ -45,6 +45,10 @@ public class Student extends Account {
 		this.studentID = studentId;
 	}
 	
+	public void addFavoriteProperty(Property property) {
+		favProperties.add(property);
+	}
+	
 //	public String toString() {
 //		String s;
 //		s = super.toString();

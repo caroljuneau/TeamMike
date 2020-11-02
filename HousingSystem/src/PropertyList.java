@@ -19,10 +19,11 @@ public class PropertyList {
 		return properties;
 	}
 	
-	public void addProperty(boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
+	public Property addProperty(boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		int id = properties.size() + 1;
-		properties.add(new Property(id, amenities, utilities, location, price, beds, baths, description, contact, visible));
-		//TODO add the property to json
+		Property property = new Property(id, amenities, utilities, location, price, beds, baths, description, contact, visible);
+		properties.add(property);
+		return property;
 	}
 
 	public int getSize() {
@@ -38,9 +39,7 @@ public class PropertyList {
 		return null;
 	}
 	
-	public String toString()
-	{
-		return "";
-		//TODO
+	public boolean removeProperty(Property property) {
+		return properties.remove(property);
 	}
 }

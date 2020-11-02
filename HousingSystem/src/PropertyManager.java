@@ -30,6 +30,10 @@ public class PropertyManager extends Account {
 		}
 		return myPropertyIDs;
 	}
+	
+	public void addMyProperty(Property property) {
+		myProperties.add(property);
+	}
 //
 //	public void setMyPropertyIDs(ArrayList<Integer> myPropertyIDs) {
 //		this.myPropertyIDs = myPropertyIDs;
