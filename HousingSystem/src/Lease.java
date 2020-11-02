@@ -70,6 +70,14 @@ public class Lease {
 		}
 		return signedByStudentIds;
 	}
+	
+	public ArrayList<Integer> getSignedByPropertyManagerIds() {
+		ArrayList<Integer> signedByPropertyManagerIds = new ArrayList<Integer>();
+		for(PropertyManager pm : signedByPropertyManagers) {
+			signedByPropertyManagerIds.add(pm.getID());
+		}
+		return signedByPropertyManagerIds;
+	}
 //	
 //	public void setSignedByStudentIds(ArrayList<Integer> iDs) {
 //		this.signedByStudentIds = iDs;

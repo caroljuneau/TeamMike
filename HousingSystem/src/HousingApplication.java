@@ -102,10 +102,8 @@ public class HousingApplication {
 	public String filterByAmenities(boolean[] choices) {
 		//TODO check if it works when fixed in dataloader
 		ArrayList<Property> filtered = new ArrayList<Property>();
-		for(int i = 0; i < properties.getSize(); i++) {
-			Property property = properties.getProperty(i);
-			boolean[] actualAmenities = property.getAmenities();
-			if(choices.equals(actualAmenities)) {
+		for(Property property : allProperties()) {
+			if(choices.equals(property.getAmenities())) {
 				filtered.add(property);
 			}
 		}
@@ -114,8 +112,7 @@ public class HousingApplication {
 
 	public String filterByPriceRange(int min, int max) {
 		ArrayList<Property> filtered = new ArrayList<Property>();
-		for(int i=0; i<properties.getSize(); ++i) {
-			Property property = properties.getProperty(i);
+		for(Property property : allProperties()) {
 			int price = property.getPrice();
 			if(price >= min && price <= max) {
 				filtered.add(property);
