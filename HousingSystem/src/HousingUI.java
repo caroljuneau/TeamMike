@@ -122,44 +122,16 @@ public class HousingUI {
 //		for(Lease l: lease) {
 //			System.out.println(l.toString()+"\n");
 //		}
-		
-		
 		while(true) {
+			user = null;
 			displayMenu(mainMenuOptions);
 			int userCommand = getUserCommand(mainMenuOptions.length);
 			switch(userCommand) {
 			case 1:
-				displayMenu(createAccountOptions);
-				userCommand = getUserCommand(createAccountOptions.length);
-				switch(userCommand) {
-				case 1:
-					createAccount(AccountType.STUDENT);
-					studentLoop();
-					break;
-				case 2:
-					createAccount(AccountType.PROPERTYMANAGER);
-					propertyManagerLoop();
-					break;
-				case 3:
-					break;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
+				createAccount();
 				break;
 			case 2:
 				logIn();
-				System.out.println(WELCOME + " " + user.getName());
-				switch(user.getAccountType()) {
-				case STUDENT:
-					studentLoop();
-					break;
-				case PROPERTYMANAGER:
-					propertyManagerLoop();
-					break;
-				default:
-					break;
-				}
 				break;
 			case 3:
 				guestLoop();
@@ -193,6 +165,26 @@ public class HousingUI {
 		return -1;
 	}
 	
+	private void createAccount() {
+		displayMenu(createAccountOptions);
+		int userCommand = getUserCommand(createAccountOptions.length);
+		switch(userCommand) {
+		case 1:
+			createAccount(AccountType.STUDENT);
+			studentLoop();
+			break;
+		case 2:
+			createAccount(AccountType.PROPERTYMANAGER);
+			propertyManagerLoop();
+			break;
+		case 3:
+			break;
+		default:
+			System.out.println(INVALID);
+			break;
+		}
+	}
+	
 	private void logIn() {
 		user = null;
 		while(user == null)
@@ -216,11 +208,22 @@ public class HousingUI {
 				}
 			}
 		}
+		System.out.println(WELCOME + " " + user.getName());
+		switch(user.getAccountType()) {
+		case STUDENT:
+			studentLoop();
+			break;
+		case PROPERTYMANAGER:
+			propertyManagerLoop();
+			break;
+		default:
+			break;
+		}
+		return;
 	}
 	
 	private void createAccount(AccountType type) {
-		boolean goBack = false;
-		while(!goBack) {
+		while(true) {
 			System.out.println("Please enter a username.");
 			String username = keyboard.nextLine();
 			if(application.usernameInList(type, username)) {
@@ -256,11 +259,13 @@ public class HousingUI {
 			else if(type == AccountType.PROPERTYMANAGER) {
 				application.createPropertyManagerAccount(username, password, firstname, lastname, emailAddress, phone);
 			}
+			user = application.logIn(username, password);
 			return;
 		}
 	}
 	
 	private void studentLoop() {
+		if(user.getAccountType() != AccountType.STUDENT) return;
 		boolean logOut = false;
 		while(!logOut) {
 			displayMenu(studentOptions);
@@ -270,13 +275,13 @@ public class HousingUI {
 				browsePropertiesLoop();
 				break;
 			case 2:
-				System.out.println(application.viewFavProperties(user));
+				viewFavProperties();
 				break;
 			case 3:
 				signLease();
 				break;
 			case 4:
-				System.out.println(application.viewSignedLeases(user));
+				viewSignedLeases();
 				break;
 			case 5:
 				reviewProperty();
@@ -296,22 +301,23 @@ public class HousingUI {
 	}
 
 	private void propertyManagerLoop() {
+		if(user.getAccountType() != AccountType.PROPERTYMANAGER) return;
 		boolean logOut = false;
 		while(!logOut) {
 			displayMenu(propertyManagerOptions);
 			int userCommand = getUserCommand(propertyManagerOptions.length);
 			switch(userCommand) {
 			case 1:
-//				manageProperties();//TODO
+				managePropertiesLoop();
 				break;
 			case 2:
-				System.out.println(application.viewMyProperties(user));
+				viewMyProperties();
 				break;
 			case 3:
 				signLease();
 				break;
 			case 4:
-				System.out.println(application.viewSignedLeases(user));
+				viewSignedLeases();
 				break;
 			case 5:
 				reviewStudent();
@@ -353,78 +359,22 @@ public class HousingUI {
 			int userCommand = getUserCommand(browsePropertiesOptions.length);
 			switch(userCommand) {
 			case 1:
-				System.out.println("Viewing All Properties:");
-				System.out.println(application.viewAllProperties());
+				viewAllProperties();
 				break;
 			case 2:
-				System.out.println("Please enter a keyword.");
-				String keyword = keyboard.nextLine();
-				System.out.println("Searching by keyword:" + keyword);
-				System.out.println(application.searchByKeyword(keyword));
+				searchByKeyword();
 				break;
 			case 3:
-				displayMenu(incOrDec);
-				int userCommand2 = getUserCommand(incOrDec.length);
-				switch(userCommand2) {
-				case 1:
-					System.out.println("Sorting by price, increasing:");
-					System.out.println(application.sortByPrice(true));
-					break;
-				case 2:
-					System.out.println("Sorting by price, decreasing");
-					System.out.println(application.sortByPrice(false));
-					break;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
+				sortByPrice();
 				break;
 			case 4:
-				displayMenu(incOrDec);
-				int userCommand3 = getUserCommand(incOrDec.length);
-				switch(userCommand3) {
-				case 1:
-					System.out.println("Sorting by number of reviews, increasing");
-					System.out.println(application.sortByNumReviews(true));
-					break;
-				case 2:
-					System.out.println("Sorting by number of reviews, decreasing");
-					System.out.println(application.sortByNumReviews(false));
-					break;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
+				sortByNumReviews();
 				break;
 			case 5:
-				System.out.println("Which amenities do you want?");
-				boolean[] choices = new boolean[amenities.length];
-				for(int i = 0; i < amenities.length; i++) {
-					while(true) {
-						System.out.println(amenities[i] + "? Enter 1 for yes or 2 for no.");
-						int choice = getUserCommand(3);
-						if(choice == 1) {
-							choices[i] = true;
-							break;
-						}
-						if(choice == 2) {
-							choices[i] = false;
-							break;
-						}
-						System.out.println(INVALID);
-					}	
-				}
-				System.out.println(application.filterByAmenities(choices));
+				filterByAmenities();
 				break;
 			case 6:
-				System.out.println("Please enter a minimum price (as an integer).");
-				int min = keyboard.nextInt();
-				keyboard.nextLine();
-				System.out.println("Please enter a maximum price (as an integer).");
-				int max = keyboard.nextInt();
-				keyboard.nextLine();
-				System.out.println("Properties between $" + min + " and $" + max + ":");
-				System.out.println(application.filterByPriceRange(min, max));
+				filterByPriceRange();
 				break;
 			case 7:
 				goBack = true;
@@ -435,144 +385,167 @@ public class HousingUI {
 			}
 		}
 	}
+
+	public void managePropertiesLoop() {
+		//TODO
+	}
+	
+	public void viewAllProperties() {
+		System.out.println("Viewing All Properties:");
+		System.out.println(application.viewAllProperties());
+	}
+	
+	public void searchByKeyword() {
+		System.out.println("Please enter a keyword.");
+		String keyword = keyboard.nextLine();
+		System.out.println("Searching by keyword:" + keyword);
+		System.out.println(application.searchByKeyword(keyword));
+	}
+	
+	public void sortByPrice() {
+		displayMenu(incOrDec);
+		int userCommand = getUserCommand(incOrDec.length);
+		switch(userCommand) {
+		case 1:
+			System.out.println("Sorting by price, increasing:");
+			System.out.println(application.sortByPrice(true));
+			break;
+		case 2:
+			System.out.println("Sorting by price, decreasing");
+			System.out.println(application.sortByPrice(false));
+			break;
+		default:
+			System.out.println(INVALID);
+			break;
+		}
+	}
+	
+	public void sortByNumReviews() {
+		displayMenu(incOrDec);
+		int userCommand = getUserCommand(incOrDec.length);
+		switch(userCommand) {
+		case 1:
+			System.out.println("Sorting by number of reviews, increasing");
+			System.out.println(application.sortByNumReviews(true));
+			break;
+		case 2:
+			System.out.println("Sorting by number of reviews, decreasing");
+			System.out.println(application.sortByNumReviews(false));
+			break;
+		default:
+			System.out.println(INVALID);
+			break;
+		}
+	}
+	
+	public void filterByAmenities() {
+		System.out.println("Which amenities do you want?");
+		boolean[] choices = new boolean[amenities.length];
+		for(int i = 0; i < amenities.length; i++) {
+			while(true) {
+				System.out.println(amenities[i] + "? Enter 1 for yes or 2 for no.");
+				int choice = getUserCommand(3);
+				if(choice == 1) {
+					choices[i] = true;
+					break;
+				}
+				if(choice == 2) {
+					choices[i] = false;
+					break;
+				}
+				System.out.println(INVALID);
+			}	
+		}
+		System.out.println(application.filterByAmenities(choices));
+	}
+	
+	public void filterByPriceRange() {
+		System.out.println("Please enter a minimum price (as an integer).");
+		int min = keyboard.nextInt();
+		keyboard.nextLine();
+		System.out.println("Please enter a maximum price (as an integer).");
+		int max = keyboard.nextInt();
+		keyboard.nextLine();
+		System.out.println("Properties between $" + min + " and $" + max + ":");
+		System.out.println(application.filterByPriceRange(min, max));
+	}
+	
+	public void viewFavProperties() {
+		System.out.println("Favorite Properties:");
+		System.out.println(application.viewFavProperties(user));
+	}
+	
+	public void viewSignedLeases() {
+		System.out.println("Signed Leases:");
+		System.out.println(application.viewSignedLeases(user));
+	}
+	
+	public void viewMyProperties() {
+		System.out.println("My Properties:");
+		System.out.println(application.viewMyProperties(user));
+	}
 	
 	public void reviewProperty() {
-		while(true) {
-			System.out.println("Please enter the ID of the property you wish to review.");
-			System.out.println(application.viewAllPropertiesShort());
-			int id = getUserCommand(application.getNumOfProperties() + 1); // TODO +1?
-			if(id == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			id--;
-			System.out.println("Reviewing property " + application.getProperty(id).shortToString() + ":");
-			System.out.println("Please enter a rating of the property as an integer between 1 and 5.");
-			int rating = getUserCommand(6);
-			if(rating == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			System.out.println("Please type your review.");
-			String review = keyboard.nextLine();
-			application.reviewProperty(user, id, rating, review);
+		System.out.println("Please enter the ID of the property you wish to review.");
+		System.out.println(application.viewAllPropertiesShort());
+		int id = getUserCommand(PropertyList.getInstance().getSize() + 1); // TODO +1?
+		if(id == -1) {
+			System.out.println(INVALID);
 			return;
 		}
-		
+		Property property = PropertyList.getInstance().getProperty(id);
+		System.out.println("Reviewing property " + property.shortToString() + ":");
+		System.out.println("Please enter a rating of the property as an integer between 1 and 5.");
+		int rating = getUserCommand(6);
+		if(rating == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		System.out.println("Please type your review.");
+		String review = keyboard.nextLine();
+		application.reviewProperty(user, property, rating, review);
 	}
 	
 	public void reviewPropertyManager() {
-		while(true) {
-			System.out.println("Please enter the ID of the property manager you wish to review.");
-			System.out.println(application.listPropertyManagersShort());
-			int id = getUserCommand(application.getNumOfPropertyManagers() + 1);
-			if(id == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			id--;
-			System.out.println("Reviewing property manager " + application.getPropertyManager(id).shortToString() + ":");
-			System.out.println("Please enter a rating of the property manager as an integer between 1 and 5.");
-			int rating = getUserCommand(6);
-			if(rating == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			System.out.println("Please type your review.");
-			String review = keyboard.nextLine();
-			application.reviewPropertyManager(user, id, rating, review);
+		System.out.println("Please enter the ID of the property manager you wish to review.");
+		System.out.println(application.listPropertyManagersShort());
+		int id = getUserCommand(PropertyManagerList.getInstance().getSize() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
 			return;
 		}
+		PropertyManager propertyManager = PropertyManagerList.getInstance().getPropertyManager(id);
+		System.out.println("Reviewing property manager " + propertyManager.shortToString() + ":");
+		System.out.println("Please enter a rating of the property manager as an integer between 1 and 5.");
+		int rating = getUserCommand(6);
+		if(rating == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		System.out.println("Please type your review.");
+		String review = keyboard.nextLine();
+		application.reviewPropertyManager(user, propertyManager, rating, review);
 	}
 	
 	public void reviewStudent() {
-		while(true) {
-			System.out.println("Please enter the ID of the student you wish to review.");
-			System.out.println(application.listStudentsShort());
-			int id = getUserCommand(application.getNumOfStudents() + 1);
-			if(id == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			id--;
-			System.out.println("Reviewing student " + application.getStudent(id).shortToString() + ":");
-			System.out.println("Please enter a rating of the student as an integer between 1 and 5.");
-			int rating = getUserCommand(6);
-			if(rating == -1) {
-				System.out.println(INVALID);
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
-				continue;
-			}
-			System.out.println("Please type your review.");
-			String review = keyboard.nextLine();
-			application.reviewStudent(user, id, rating, review);
+		System.out.println("Please enter the ID of the student you wish to review.");
+		System.out.println(application.listStudentsShort());
+		int id = getUserCommand(StudentList.getInstance().getSize() + 1);
+		if(id == -1) {
+			System.out.println(INVALID);
 			return;
 		}
+		Student student = StudentList.getInstance().getStudent(id);
+		System.out.println("Reviewing student " + student.shortToString() + ":");
+		System.out.println("Please enter a rating of the student as an integer between 1 and 5.");
+		int rating = getUserCommand(6);
+		if(rating == -1) {
+			System.out.println(INVALID);
+			return;
+		}
+		System.out.println("Please type your review.");
+		String review = keyboard.nextLine();
+		application.reviewStudent(user, student, rating, review);
 	}
 	
 	public void signLease() {

@@ -21,4 +21,13 @@ public class LeaseList {
 	public ArrayList<Lease> getLeases() {
 		return leases;
 	}
+	
+	public Lease getLease(int id) {
+		for(Lease l : leases) {
+			if(l.getId() == id) {
+				return l;
+			}
+		}
+		return null;
+	}
 }

@@ -37,6 +37,22 @@ public class HousingApplication {
 		return properties.getProperties();
 	}
 	
+	public String listProperties(ArrayList<Property> list) {
+		String ret = "";
+		for(Property property : list) {
+			ret += property.toString() + "\n\n";
+		}
+		return ret;
+	}
+	
+	public String listPropertiesShort(ArrayList<Property> list) {
+		String ret = "";
+		for(Property property : list) {
+			ret += property.shortToString() + "\n";
+		}
+		return ret;
+	}
+	
 	public String viewAllProperties() {
 		return listProperties(allProperties());
 	}
@@ -53,6 +69,7 @@ public class HousingApplication {
 	
 	public String sortByPrice(boolean increasing) {
 		ArrayList<Property> list = allProperties();
+		//TODO FIX
 //		Collections.copy(list, allProperties());
 		if(increasing == true) {
 			Collections.sort(list, Collections.reverseOrder().reversed());
@@ -63,6 +80,7 @@ public class HousingApplication {
 	}
 	
 	public String sortByNumReviews(boolean increasing) {
+		//TODO FIX
 		ArrayList<Property> list = allProperties();
 //		Collections.copy(list, allProperties());
 		if(increasing == true) {
@@ -71,62 +89,6 @@ public class HousingApplication {
 			Collections.sort(list, Collections.reverseOrder());
 		}
 		return listProperties(list);
-	}
-	
-	public String listProperties(ArrayList<Property> properties) {
-		String ret = "";
-		for(Property property : properties) {
-			ret += property.toString() + "\n\n";
-		}
-		return ret;
-	}
-	
-	public ArrayList<Property> getPropertiesWithLeases() {
-		ArrayList<Property> list = new ArrayList<Property>();
-		for(Property property : allProperties()) {
-			if(property.getLeaseIDs() != null) {
-				list.add(property);
-			}
-		}
-		return list;
-	}
-	
-	public String viewPropertiesWithLeases() {
-		ArrayList<Property> list = new ArrayList<Property>();
-		for(Property property : allProperties()) {
-			if(property.getLeaseIDs() != null) {
-				list.add(property);
-			}
-		}
-		return listPropertiesShort(list);
-	}
-	
-	public int getNumOfPropertiesWithLeases() {
-		return getPropertiesWithLeases().size();
-	}
-	
-	public String listPropertiesShort(ArrayList<Property> properties) {
-		String ret = "";
-		for(Property property : properties) {
-			ret += property.shortToString() + "\n";
-		}
-		return ret;
-	}
-	
-	public String listPropertyManagersShort() {
-		String ret = "";
-		for(PropertyManager pm : propertyManagers.getPropertyManagers()) {
-			ret += pm.shortToString() + "\n";
-		}
-		return ret;
-	}
-	
-	public String listStudentsShort() {
-		String ret = "";
-		for(Student student : students.getStudents()) {
-			ret += student.shortToString() + "\n";
-		}
-		return ret;
 	}
 
 	public String filterByAmenities(boolean[] choices) {
@@ -153,34 +115,84 @@ public class HousingApplication {
 		}
 		return listProperties(filtered);
 	}
-
-	public String viewFavProperties(Account user) {
-		ArrayList<Property> list = new ArrayList<Property>();
-		if(user.type == AccountType.STUDENT) {
-			ArrayList<Integer> favIDs = ((Student) user).getFavoriteIDs();
-			for(int i = 0; i < favIDs.size(); i++) {
-				list.add(properties.getProperty(i));
-			}
-		}
-		return listProperties(list);
-	}
 	
-	public String viewMyProperties(Account user) {
-		ArrayList<Property> list = new ArrayList<Property>();
-		if(user.type == AccountType.PROPERTYMANAGER) {
-			ArrayList<Integer> myIDs = ((PropertyManager) user).getMyPropertyIDs();
-			for(int i = 0; i < myIDs.size(); i++) {
-				list.add(properties.getProperty(i));
-			}
+	public String viewFavProperties(Account user) {
+		if(user.type == AccountType.STUDENT) {
+			return listProperties(((Student) user).getFavProperties());
 		}
-		return listProperties(list);
+		return "No favorite properties.";
 	}
 	
 	public String viewSignedLeases(Account user) {
-		ArrayList<Integer> leaseIDs = user.getSignedLeaseIDs();
 		String ret = "";
-		for(int i = 0; i < leaseIDs.size(); i++) {
-			//TODO
+		ArrayList<Lease> signedLeases = user.getSignedLeases();
+		for(Lease l : signedLeases) {
+			ret += l.toString();
+		}
+		return ret;
+	}
+	
+	public String viewMyProperties(Account user) {
+		if(user.type == AccountType.PROPERTYMANAGER) {
+			return listProperties(((PropertyManager) user).getMyProperties());
+		}
+		return "No properties.";
+	}
+	
+	public void reviewProperty(Account user, Property property, int rating, String description) {
+		int reviewId = ReviewList.getInstance().getSize();
+		// add review to review list:
+		Review review = reviews.addReview(reviewId + 1, property.getPropertyId(), ReviewType.PROPERTY, rating, user.getUsername(), description);
+		// add review to property:
+		property.addReview(review);
+	}
+	
+	public void reviewPropertyManager(Account user, PropertyManager propertyManager, int rating, String description) {
+		int reviewId = ReviewList.getInstance().getSize();
+		// add review to review list:
+		Review review = reviews.addReview(reviewId + 1, propertyManager.getID(), ReviewType.PROPERTYMANAGER, rating, user.getUsername(), description);
+		// add review to property manager:
+		propertyManager.addReview(review);
+	}
+	
+	public void reviewStudent(Account user, Student student, int rating, String description) {
+		int reviewId = ReviewList.getInstance().getSize();
+		// add review to review list:
+		Review review = reviews.addReview(reviewId + 1, student.getID(), ReviewType.STUDENT, rating, user.getUsername(), description);
+		// add review to student:
+		student.addReview(review);
+	}
+	
+	public ArrayList<Property> getPropertiesWithLeases() {
+		ArrayList<Property> list = new ArrayList<Property>();
+		for(Property property : allProperties()) {
+			if(property.getLeases() != null) {
+				list.add(property);
+			}
+		}
+		return list;
+	}
+	
+	public String viewPropertiesWithLeases() {
+		return listPropertiesShort(getPropertiesWithLeases());
+	}
+	
+	public int getNumOfPropertiesWithLeases() {
+		return getPropertiesWithLeases().size();
+	}
+	
+	public String listPropertyManagersShort() {
+		String ret = "";
+		for(PropertyManager pm : propertyManagers.getPropertyManagers()) {
+			ret += pm.shortToString() + "\n";
+		}
+		return ret;
+	}
+	
+	public String listStudentsShort() {
+		String ret = "";
+		for(Student student : students.getStudents()) {
+			ret += student.shortToString() + "\n";
 		}
 		return ret;
 	}
@@ -199,45 +211,30 @@ public class HousingApplication {
 	
 	public String getSignedBy(Lease lease) {
 		String ret = "Students: \n";
-		for(int i : lease.getSignedByStudentIds()) {
-			ret += getStudent(i).getName() + "\n";
+		for(Student s : lease.getSignedByStudents()) {
+			ret += s.getName() + "\n";
 		}
 		ret += "Property Managers: \n";
-		for(int i : lease.getSignedByPropertyManagerIds()) {
-			ret += getPropertyManager(i).getName() + "\n";
+		for(PropertyManager pm : lease.getSignedByPropertyManagers()) {
+			ret += pm.getName() + "\n";
 		}
 		return ret;
 	}
 	
-	public int getNumOfProperties() {
-		return properties.getSize();
-	}
+//	public int getNumOfProperties() {
+//		return properties.getSize();
+//	}
 	
-	public int getNumOfStudents() {
-		return students.getSize();
-	}
+//	public int getNumOfStudents() {
+//		return students.getSize();
+//	}
 	
-	public int getNumOfPropertyManagers() {
-		return propertyManagers.getSize();
-	}
-	
+//	public int getNumOfPropertyManagers() {
+//		return propertyManagers.getSize();
+//	}
+//	
 	public void signLease(Account user, int propertyId) {
-		properties.getProperty(propertyId).getLease().sign(user);
-	}
-	
-	public void reviewProperty(Account user, int propertyId, int rating, String review) {
-		int reviewId = reviews.addReview(propertyId, ReviewType.PROPERTY, rating, user.getUsername(), review);
-		properties.getProperty(propertyId).addReview(reviewId);
-	}
-	
-	public void reviewPropertyManager(Account user, int propertyManagerId, int rating, String review) {
-		int reviewId = reviews.addReview(propertyManagerId, ReviewType.PROPERTYMANAGER, rating, user.getUsername(), review);
-		propertyManagers.getPropertyManager(propertyManagerId).addReview(reviewId);
-	}
-	
-	public void reviewStudent(Account user, int studentId, int rating, String review) {
-		int reviewId = reviews.addReview(studentId, ReviewType.STUDENT, rating, user.getUsername(), review);
-		students.getStudent(studentId).addReview(reviewId);
+//		properties.getProperty(propertyId).getLease().sign(user);
 	}
 
 	public boolean usernameInList(AccountType type, String username) {

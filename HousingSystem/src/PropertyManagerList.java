@@ -19,14 +19,27 @@ public class PropertyManagerList {
 	public ArrayList<PropertyManager> getPropertyManagers() {
 		return this.propertyManagers;
 	}
+	
+	public PropertyManager getPropertyManager(int id) {
+		for(PropertyManager pm : propertyManagers) {
+			if(pm.getID() == id) {
+				return pm;
+			}
+		}
+		return null;
+	}
+	
+	public int getSize() {
+		return propertyManagers.size();
+	}
 
 	public void addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		int id = propertyManagers.size() + 1;
 		PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
 		propertyManagers.add(manager);
-		//TODO add to json
-		dataWriter write = new dataWriter();
-		write.savePropertyManager(manager);
+//		//TODO add to json
+//		dataWriter write = new dataWriter();
+//		write.savePropertyManager(manager);
 		//System.out.println(manager.toString());
 	}
 	

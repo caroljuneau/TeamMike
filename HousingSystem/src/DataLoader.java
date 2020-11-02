@@ -51,8 +51,8 @@ public class DataLoader extends DataConstants{
 				
 				property.setPropertyId(id);
 				property.setRatings(getIDs((JSONArray)propertyJSON.get(RATINGS)));
-				property.setReviewIDs(getIDs((JSONArray)propertyJSON.get(REVIEWS)));
-				property.setLeaseIDs(getIDs((JSONArray)propertyJSON.get(LEASES)));
+				property.setReviews(getIDs((JSONArray)propertyJSON.get(REVIEWS)));
+				property.setLeases(getIDs((JSONArray)propertyJSON.get(LEASES)));
 
 			}
 			return properties;
@@ -84,10 +84,10 @@ public class DataLoader extends DataConstants{
 				Student student = new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID);
 				students.add(student);
 				
-				student.setFavoriteIDs(getIDs((JSONArray)studentJSON.get(FAVORITES)));
-				student.setRating(getIDs((JSONArray)studentJSON.get(RATINGS)));
-				student.setReviewIDs(getIDs((JSONArray)studentJSON.get(REVIEWS)));
-				student.setSignedLeaseIDs(getIDs((JSONArray)studentJSON.get(LEASES)));
+				student.setFavProperties(getIDs((JSONArray)studentJSON.get(FAVORITES)));
+				student.setRatings(getIDs((JSONArray)studentJSON.get(RATINGS)));
+				student.setReviews(getIDs((JSONArray)studentJSON.get(REVIEWS)));
+				student.setSignedLeases(getIDs((JSONArray)studentJSON.get(LEASES)));
 			}
 			return students;
 		} catch (Exception e) {
@@ -117,10 +117,10 @@ public class DataLoader extends DataConstants{
 				PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
 				managerList.add(manager);
 				
-				manager.setMyPropertyIDs(getIDs((JSONArray)managerJSON.get(MANAGER_PROPERTY)));
-				manager.setRating(getIDs((JSONArray)managerJSON.get(RATINGS)));
-				manager.setReviewIDs(getIDs((JSONArray)managerJSON.get(REVIEWS)));
-				manager.setSignedLeaseIDs(getIDs((JSONArray)managerJSON.get(LEASES)));
+				manager.setMyProperties(getIDs((JSONArray)managerJSON.get(MANAGER_PROPERTY)));
+				manager.setRatings(getIDs((JSONArray)managerJSON.get(RATINGS)));
+				manager.setReviews(getIDs((JSONArray)managerJSON.get(REVIEWS)));
+				manager.setSignedLeases(getIDs((JSONArray)managerJSON.get(LEASES)));
 			}
 			return managerList;
 			
@@ -153,8 +153,8 @@ public class DataLoader extends DataConstants{
 				leaseList.add(lease);
 				
 				lease.setSigned(signed);
-				lease.setSignedByStudentIds(getIDs((JSONArray)leaseObj.get(SIGNED_BY_STUDENT_IDS)));
-				lease.setSignedByPropertyManagerIds(getIDs((JSONArray)leaseObj.get(SIGNED_BY_PROPERTY_MANAGER_IDS)));
+				lease.setSignedByStudents(getIDs((JSONArray)leaseObj.get(SIGNED_BY_STUDENT_IDS)));
+				lease.setSignedByPropertyManagers(getIDs((JSONArray)leaseObj.get(SIGNED_BY_PROPERTY_MANAGER_IDS)));
 			}
 			return leaseList;
 			

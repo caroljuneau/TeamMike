@@ -23,11 +23,23 @@ public class ReviewList {
 		return reviews;
 	}
 	
-	public int addReview(int reviewedId, ReviewType type, int rating, String username, String description) {
-		int id = reviews.size() + 1;
-		reviews.add(new Review(id, reviewedId, type, rating, username, description));
-		return id;
-		//TODO datawriter
+	public int getSize() {
+		return reviews.size();
+	}
+	
+	public Review getReview(int id) {
+		for(Review r : reviews) {
+			if(r.getId() == id) {
+				return r;
+			}
+		}
+		return null;
+	}
+	
+	public Review addReview(int id, int reviewedId, ReviewType type, int rating, String username, String description) {
+		Review review = new Review(id, reviewedId, type, rating, username, description);
+		reviews.add(review);
+		return review;
 	}
 
 

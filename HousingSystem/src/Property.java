@@ -7,17 +7,18 @@ public class Property {
 	private String location;
 	//private ArrayList<String> pictures;
 	private int price;
-	private ArrayList<Integer> ratings;
-	private ArrayList<Integer> reviewIDs;
-	private ArrayList<Integer> leaseIDs;
-	private ArrayList<Review> reviews;
+//	private ArrayList<Integer> reviewIDs;
+//	private ArrayList<Integer> leaseIDs;
 	private int beds;
 	private int baths;
-	private Lease lease;
 	private String description;
 	private String contact;
 	private boolean visible;
-	private int size;
+//	private Lease lease;
+	private ArrayList<Lease> leases;
+	private ArrayList<Integer> ratings;
+	private ArrayList<Review> reviews;
+//	private int size;
 
 	public Property(int id, boolean[] amenities, String utilities, String location, int price, int beds, int baths, String description, String contact, boolean visible) {
 		this.propertyId = id;
@@ -30,6 +31,47 @@ public class Property {
 		this.description = description;
 		this.contact = contact;
 		this.visible = visible;
+		this.leases = new ArrayList<Lease>();
+		this.ratings = new ArrayList<Integer>();
+		this.reviews = new ArrayList<Review>();
+	}
+	
+	public void setLeases(ArrayList<Integer> leaseIDs) {
+		for(int i = 0; i < leaseIDs.size(); i++) {
+			int id = leaseIDs.get(i);
+			leases.add(LeaseList.getInstance().getLease(id));
+		}
+	}
+	
+	public ArrayList<Lease> getLeases() {
+		return this.leases;
+	}
+
+	public void setRatings(ArrayList<Integer> ratingIDs) {
+		this.ratings = ratingIDs;
+	}
+	
+	public ArrayList<Integer> getRatings() {
+		return ratings;
+	}
+	
+	public void setReviews(ArrayList<Integer> reviewIDs) {
+		for(int i = 0; i < reviewIDs.size(); i++) {
+			int id = reviewIDs.get(i);
+			reviews.add(ReviewList.getInstance().getReview(id));
+		}
+	}
+	
+	public ArrayList<Review> getReviews() {
+		return reviews;
+	}
+	
+	public int getPropertyId() {
+		return propertyId;
+	}
+
+	public void setPropertyId(int propertyId) {
+		this.propertyId = propertyId;
 	}
 
 	public boolean[] getAmenities() {
@@ -72,24 +114,7 @@ public class Property {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public ArrayList<Integer> getRatings() {
-		return ratings;
-	}
-	public void setRatings(ArrayList<Integer> ratingIDs) {
-		this.ratings = ratingIDs;
-	}
-	public ArrayList<Integer> getReviewIDs() {
-		return reviewIDs;
-	}
-	public void setReviewIDs(ArrayList<Integer> reviewIDs) {
-		this.reviewIDs = reviewIDs;
-	}
-	public ArrayList<Review> getReviews() {
-		return reviews;
-	}
-	public void setReviews(ArrayList<Review> reviews) {
-		this.reviews = reviews;
-	}
+	
 	public int getBeds() {
 		return beds;
 	}
@@ -101,12 +126,6 @@ public class Property {
 	}
 	public void setBaths(int baths) {
 		this.baths = baths;
-	}
-	public Lease getLease() {
-		return lease;
-	}
-	public void setLease(Lease lease) {
-		this.lease = lease;
 	}
 	public String getDescription() {
 		return description;
@@ -126,22 +145,9 @@ public class Property {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	public int getSize() {
-		return size;
-	}
-	public Property get(int i) {
-		return null;
-	}
-	public boolean matches(String key) {
-		return false;
-	}
-	public int getPropertyId() {
-		return propertyId;
-	}
-
-	public void setPropertyId(int propertyId) {
-		this.propertyId = propertyId;
-	}
+//	public boolean matches(String key) {
+//		return false;
+//	}
 	
 	public String toString() {
 		String s;
@@ -155,17 +161,9 @@ public class Property {
 	public String shortToString() {
 		return "ID: " + this.propertyId + ", Location: " + this.location;
 	}
-
-	public ArrayList<Integer> getLeaseIDs() {
-		return leaseIDs;
-	}
-
-	public void setLeaseIDs(ArrayList<Integer> leaseIDs) {
-		this.leaseIDs = leaseIDs;
-	}
 	
-	public void addReview(int reviewId) {
-		reviewIDs.add(reviewId);
+	public void addReview(Review review) {
+		this.reviews.add(review);
 	}
 
 

@@ -13,8 +13,8 @@ public class Account {
 	protected ArrayList<Integer> ratings;
 	protected ArrayList<Review> reviews;
 	protected ArrayList<Lease> signedLeases;
-	protected ArrayList<Integer> reviewIDs;
-	protected ArrayList<Integer> signedLeaseIDs;
+//	protected ArrayList<Integer> reviewIDs;
+//	protected ArrayList<Integer> signedLeaseIDs;
 	
 	public Account(int id, String username, String password, String firstName, String lastName, String emailAddress, String phone)
 	{
@@ -25,10 +25,47 @@ public class Account {
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.phone = phone;
-		this.ratings = null;
-		this.reviews = null;
-		this.signedLeases = null;
+		this.ratings = new ArrayList<Integer>();
+		this.reviews = new ArrayList<Review>();
+		this.signedLeases = new ArrayList<Lease>();
 	}
+
+	public void setRatings(ArrayList<Integer> ratings) {
+		this.ratings = ratings;
+	}
+	public ArrayList<Integer> getRatings() {
+		return this.ratings;
+	}
+	public void setReviews(ArrayList<Integer> reviewIDs) {
+		for(int i = 0; i < reviewIDs.size(); i++) {
+			int id = reviewIDs.get(i);
+			reviews.add(ReviewList.getInstance().getReview(id));
+		}
+	}
+	public ArrayList<Review> getReviews() {
+		return this.reviews;
+	}
+	public void setSignedLeases(ArrayList<Integer> signedLeaseIDs) {
+		for(int i = 0; i < signedLeaseIDs.size(); i++) {
+			int id = signedLeaseIDs.get(i);
+			signedLeases.add(LeaseList.getInstance().getLease(id));
+		}
+	}
+	public ArrayList<Lease> getSignedLeases() {
+		return this.signedLeases;
+	}
+//	public void setReviewIDs(ArrayList<Integer> arr) {
+//		this.reviewIDs = arr;
+//	}
+//	public ArrayList<Integer> getReviewIDs() {
+//		return this.reviewIDs;
+//	}
+//	public void setSignedLeaseIDs(ArrayList<Integer> arr) {
+//		this.signedLeaseIDs = arr;
+//	}
+//	public ArrayList<Integer> getSignedLeaseIDs() {
+//		return this.signedLeaseIDs;
+//	}
 	public int getID() {
 		return this.id;
 	}
@@ -78,60 +115,21 @@ public class Account {
 		this.type = type;
 	}
 	
-	public ArrayList<Integer> getRating() {
-		return this.ratings;
-	}
-	public void setRating(ArrayList<Integer> arr) {
-		this.ratings = arr;
-	}
-	public void setReviewIDs(ArrayList<Integer> arr) {
-		this.reviewIDs = arr;
-	}
-	public ArrayList<Integer> getReviewIDs() {
-		return this.reviewIDs;
-	}
-	public void setSignedLeaseIDs(ArrayList<Integer> arr) {
-		this.signedLeaseIDs = arr;
-	}
-	public ArrayList<Integer> getSignedLeaseIDs() {
-		return this.signedLeaseIDs;
-	}
+	
 	
 	public double getAvgRating() {
-		int num = this.getRating().size();
+		int num = this.getRatings().size();
 		int sum = 0;
-		for(int j: this.getRating()) {
+		for(int j: this.getRatings()) {
 			sum += j;
 		}
 		return sum/num;
 	}
 	
-	public void addReview()
-	{
-		
-	}
-	
-	public ArrayList<Review> getReviews()
-	{
-		return null;
-	}
-	
-	public void signLease(Property property)
-	{
-		
-	}
-	
-	public ArrayList<Lease> getSignedLeases()
-	{
-		return null;
-	}
-	
 	public String toString() {
-		String s;
-		s = "Username: " + this.username + "\nPassword: " + this.password+ "\nFirst: " + this.firstName +
+		return "Username: " + this.username + "\nPassword: " + this.password+ "\nFirst: " + this.firstName +
 				"\nLast: " + this.lastName + "\nEmail: " + this.emailAddress + "\nPhone: " +
 				this.phone + "\nAvg Rating: " + this.getAvgRating();
-		return s;
 	}
 	
 	public String getName() {
@@ -142,7 +140,7 @@ public class Account {
 		return "ID: " + ", " + getName();
 	}
 	
-	public void addReview(int reviewId) {
-		reviewIDs.add(reviewId);
+	public void addReview(Review review) {
+		this.reviews.add(review);
 	}
 }
