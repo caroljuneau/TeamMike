@@ -33,11 +33,12 @@ public class PropertyManagerList {
 		return propertyManagers.size();
 	}
 
-	public void addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
+	public PropertyManager addPropertyManager(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		int id = propertyManagers.size() + 1;
-		PropertyManager manager = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
-		propertyManagers.add(manager);
-		DataWriter.savePropertyManager();
+		PropertyManager pm = new PropertyManager(id, username, password, firstName, lastName, emailAddress, phone);
+		propertyManagers.add(pm);
+//		DataWriter.savePropertyManager(); TODO
+		return pm;
 	}
 	
 	public PropertyManager getPropertyManager(String username, String password) {

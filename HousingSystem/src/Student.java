@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Student extends Account {
 	
-//	private ArrayList<Integer> favoriteIDs;
 	private ArrayList<Property> favProperties;
 	private String studentID;
 	
@@ -24,10 +23,6 @@ public class Student extends Account {
 	public ArrayList<Property> getFavProperties() {
 		return favProperties;
 	}
-
-//	public void setFavoriteIDs(ArrayList<Integer> arr) {
-//		this.favoriteIDs = arr;
-//	}
 	public ArrayList<Integer> getFavoriteIDs() {
 		ArrayList<Integer> favoriteIDs = new ArrayList<Integer>();
 		for(int i = 0; i < favProperties.size(); i++) {
@@ -48,10 +43,4 @@ public class Student extends Account {
 	public void addFavoriteProperty(Property property) {
 		favProperties.add(property);
 	}
-	
-//	public String toString() {
-//		String s;
-//		s = super.toString();
-//		return s;
-//	}
 }

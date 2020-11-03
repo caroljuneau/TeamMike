@@ -4,8 +4,9 @@ public class Lease {
 
 	private int id;
 	private ArrayList<Student> signedByStudents;
-	private String manager;
-	private ArrayList<PropertyManager> signedByPropertyManagers;
+//	private String manager;
+//	private ArrayList<PropertyManager> signedByPropertyManagers;
+	private PropertyManager signedByPropertyManager;
 //	private ArrayList<Integer> signedByStudentIds;
 //	private ArrayList<Integer> signedByPropertyManagerIds;
 	private int propertyID;
@@ -37,12 +38,32 @@ public class Lease {
 		return this.signedByStudents;
 	}
 	
-	public void setSignedByPropertyManagers(ArrayList<Integer> signedByPropertyManagerIDs) {
-		for(int i = 0; i < signedByPropertyManagerIDs.size(); i++) {
-			int id = signedByPropertyManagerIDs.get(i);
-			signedByPropertyManagers.add(PropertyManagerList.getInstance().getPropertyManager(id));
+	public ArrayList<Integer> getSignedByStudentIDs() {
+		ArrayList<Integer> signedByStudentIDs = new ArrayList<Integer>();
+		for(Student s : signedByStudents) {
+			signedByStudentIDs.add(s.getID());
 		}
+		return signedByStudentIDs;
 	}
+	
+	public void setSignedByPropertyManager(int signedByPMID) {
+		this.signedByPropertyManager = PropertyManagerList.getInstance().getPropertyManager(signedByPMID);
+	}
+	
+	public PropertyManager getSignedByPropertyManager() {
+		return this.signedByPropertyManager;
+	}
+	
+	public int getSignedByPropertyManagerID() {
+		return this.signedByPropertyManager.getID();
+	}
+	
+//	public void setSignedByPropertyManagers(ArrayList<Integer> signedByPropertyManagerIDs) {
+//		for(int i = 0; i < signedByPropertyManagerIDs.size(); i++) {
+//			int id = signedByPropertyManagerIDs.get(i);
+//			signedByPropertyManagers.add(PropertyManagerList.getInstance().getPropertyManager(id));
+//		}
+//	}
 //	public void setManager() {
 //		this.manager = getProperty().;		
 //	}
@@ -51,9 +72,9 @@ public class Lease {
 //	}
 	
 	
-	public ArrayList<PropertyManager> getSignedByPropertyManagers() {
-		return this.signedByPropertyManagers;
-	}
+//	public ArrayList<PropertyManager> getSignedByPropertyManagers() {
+//		return this.signedByPropertyManagers;
+//	}
 
 	public int getId() {
 		return id;
@@ -63,21 +84,13 @@ public class Lease {
 		this.id = id;
 	}
 	
-	public ArrayList<Integer> getSignedByStudentIds() {
-		ArrayList<Integer> signedByStudentIds = new ArrayList<Integer>();
-		for(Student s : signedByStudents) {
-			signedByStudentIds.add(s.getID());
-		}
-		return signedByStudentIds;
-	}
-	
-	public ArrayList<Integer> getSignedByPropertyManagerIds() {
-		ArrayList<Integer> signedByPropertyManagerIds = new ArrayList<Integer>();
-		for(PropertyManager pm : signedByPropertyManagers) {
-			signedByPropertyManagerIds.add(pm.getID());
-		}
-		return signedByPropertyManagerIds;
-	}
+//	public ArrayList<Integer> getSignedByPropertyManagerIds() {
+//		ArrayList<Integer> signedByPropertyManagerIds = new ArrayList<Integer>();
+//		for(PropertyManager pm : signedByPropertyManagers) {
+//			signedByPropertyManagerIds.add(pm.getID());
+//		}
+//		return signedByPropertyManagerIds;
+//	}
 //	
 //	public void setSignedByStudentIds(ArrayList<Integer> iDs) {
 //		this.signedByStudentIds = iDs;
@@ -162,7 +175,7 @@ public class Lease {
 			setSigned(true);
 		}
 		if(user.type == AccountType.PROPERTYMANAGER) {
-			signedByPropertyManagers.add((PropertyManager) user);
+			signedByPropertyManager = (PropertyManager) user;
 			setSigned(true);
 		}
 		return;

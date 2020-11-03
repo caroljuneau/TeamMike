@@ -24,10 +24,12 @@ public class StudentList {
 		return students;
 	}
 
-	public void addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
+	public Student addStudent(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		int id = students.size() + 1;
-		students.add(new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID));
-		DataWriter.saveStudent();
+		Student s = new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID);
+		students.add(s);
+//		DataWriter.saveStudent(); //TODO
+		return s;
 	}
 	
 	public Student getStudent(String username, String password) {
