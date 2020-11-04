@@ -30,51 +30,55 @@ public class Property {
 		this.ratings = new ArrayList<Integer>();
 		this.reviews = new ArrayList<Review>();
 	}
-	
+
 	public void setLease(int leaseID) {
+		if (leaseID == -1)
+			return;
 		this.lease = LeaseList.getInstance().getLease(leaseID);
 	}
-	
+
 	public void setLease(Lease lease) {
 		this.lease = lease;
 	}
-	
+
 	public Lease getLease() {
 		return this.lease;
 	}
-	
+
 	public int getLeaseID() {
+		if (this.lease == null)
+			return -1;
 		return this.lease.getId();
 	}
 
 	public void setRatings(ArrayList<Integer> ratingIDs) {
 		this.ratings = ratingIDs;
 	}
-	
+
 	public ArrayList<Integer> getRatings() {
 		return ratings;
 	}
-	
+
 	public void setReviews(ArrayList<Integer> reviewIDs) {
-		for(int i = 0; i < reviewIDs.size(); i++) {
+		for (int i = 0; i < reviewIDs.size(); i++) {
 			int id = reviewIDs.get(i);
 			reviews.add(ReviewList.getInstance().getReview(id));
 		}
 	}
-	
+
 	public ArrayList<Review> getReviews() {
 		return reviews;
 	}
-	
+
 	public ArrayList<Integer> getReviewIDs() {
 		ArrayList<Integer> reviewIDs = new ArrayList<Integer>();
-		for(int i = 0; i < reviews.size(); i++) {
+		for (int i = 0; i < reviews.size(); i++) {
 			Review review = reviews.get(i);
 			reviewIDs.add(review.getId());
 		}
 		return reviewIDs;
 	}
-	
+
 	public int getPropertyId() {
 		return propertyId;
 	}
@@ -86,88 +90,103 @@ public class Property {
 	public boolean[] getAmenities() {
 		return amenities;
 	}
+
 	public void setAmenities(boolean[] amenities) {
 		this.amenities = amenities;
 	}
+
 	public String amenitiesToString() {
 		String s = "";
-		String[] amenities = {"Washer/Dryer", "Gym", "Pool", "Furnished", "Pet Friendly"};
-		for(int i = 0; i < this.amenities.length; i++) {
-			if(this.amenities[i] == true) {
+		String[] amenities = { "Pool", "Gym", "Pet Friendly", "Laundry", "Shuttle" };
+		for (int i = 0; i < this.amenities.length; i++) {
+			if (this.amenities[i] == true) {
 				s += amenities[i] + " ";
-			} 
+			}
 		}
 		return s;
 	}
+
 	public String getUtilities() {
 		return utilities;
 	}
+
 	public void setUtilities(String utilities) {
 		this.utilities = utilities;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public int getPrice() {
 		return price;
 	}
+
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
+
 	public int getBeds() {
 		return beds;
 	}
+
 	public void setBeds(int beds) {
 		this.beds = beds;
 	}
+
 	public int getBaths() {
 		return baths;
 	}
+
 	public void setBaths(int baths) {
 		this.baths = baths;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getContact() {
 		return contact;
 	}
+
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
+
 	public boolean isVisible() {
 		return visible;
 	}
+
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
 	public String toString() {
-		return "Location: " + this.location + "\nAmenities: " + this.amenitiesToString() +
-				"\nUtilities: " + this.utilities + "\nPrice: " + this.price + "\nBeds: " +
-				this.beds + "\nBaths: " + this.baths + "\nDescription: " + this.description +
-				"\nContact: " + this.contact + "\n";
+		return "Property ID: " + this.propertyId + "\nLocation: " + this.location + "\nAmenities: "
+				+ this.amenitiesToString() + "\nUtilities: " + this.utilities + "\nPrice: " + this.price + "\nBeds: "
+				+ this.beds + "\nBaths: " + this.baths + "\nNumber of Reviews: " + this.reviews.size()
+				+ "\nDescription: " + this.description + "\nContact: " + this.contact + "\n";
 	}
-	
+
 	public String shortToString() {
-		return "ID: " + this.propertyId + ", Location: " + this.location + "\n";
+		return "Property ID: " + this.propertyId + ", Location: " + this.location + "\n";
 	}
-	
+
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}
-	
+
 	public int getNumOfReviews() {
 		return this.reviews.size();
 	}
-
-
 
 }
