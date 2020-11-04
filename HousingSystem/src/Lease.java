@@ -25,19 +25,19 @@ public class Lease {
 		this.studentIDs = new ArrayList<Integer>();
 		this.propertyManagerID = -1;
 	}
-	
+
 	public void setSignedByStudents(ArrayList<Integer> signedByStudentIDs) {
 		this.studentIDs = signedByStudentIDs;
 	}
-	
+
 	public ArrayList<Integer> getSignedByStudents() {
 		return this.studentIDs;
 	}
-	
+
 	public void setSignedByPropertyManager(int signedByPMID) {
 		this.propertyManagerID = signedByPMID;
 	}
-	
+
 	public int getSignedByPropertyManager() {
 		return this.propertyManagerID;
 	}
@@ -45,11 +45,11 @@ public class Lease {
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public int getPropertyID() {
 		return propertyID;
 	}
@@ -114,18 +114,18 @@ public class Lease {
 		this.endDate = endDate;
 	}
 
-	
 	public void sign(Account user) {
-		if(user.type == AccountType.STUDENT) {
+		if (user.type == AccountType.STUDENT) {
 			studentIDs.add(user.getID());
 			setSigned(true);
 		}
-		if(user.type == AccountType.PROPERTYMANAGER) {
+		if (user.type == AccountType.PROPERTYMANAGER) {
 			propertyManagerID = user.getID();
 			setSigned(true);
 		}
 		return;
 	}
+
 	public Property getProperty() {
 		Property property = PropertyList.getInstance().getProperty(this.propertyID);
 		return property;
@@ -133,9 +133,8 @@ public class Lease {
 
 	public String toString() {
 		String s;
-		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
-				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
-				"\nInfo: " + this.info + "\nSigned: " + this.signed;
+		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees + "\nRepairs: " + this.repairs
+				+ "\nTermination: " + this.termination + "\nInfo: " + this.info + "\nSigned: " + this.signed;
 		return s;
 	}
 //	public void toTxt() {

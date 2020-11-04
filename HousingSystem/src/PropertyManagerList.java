@@ -15,20 +15,20 @@ public class PropertyManagerList {
 		}
 		return propertyManagerList;
 	}
-	
+
 	public ArrayList<PropertyManager> getPropertyManagers() {
 		return this.propertyManagers;
 	}
-	
+
 	public PropertyManager getPropertyManager(int id) {
-		for(PropertyManager pm : propertyManagers) {
-			if(pm.getID() == id) {
+		for (PropertyManager pm : propertyManagers) {
+			if (pm.getID() == id) {
 				return pm;
 			}
 		}
 		return null;
 	}
-	
+
 	public int getSize() {
 		return propertyManagers.size();
 	}
@@ -40,19 +40,19 @@ public class PropertyManagerList {
 //		DataWriter.savePropertyManager(); TODO
 		return pm;
 	}
-	
+
 	public PropertyManager getPropertyManager(String username, String password) {
-		for(PropertyManager pm : propertyManagers) {
-			if(pm.getUsername().equals(username) && pm.getPassword().equals(password)) {
+		for (PropertyManager pm : propertyManagers) {
+			if (pm.getUsername().equals(username) && pm.getPassword().equals(password)) {
 				return pm;
 			}
 		}
 		return null;
 	}
-	
+
 	public boolean usernameInList(String username) {
-		for(PropertyManager pm : propertyManagers) {
-			if(pm.getUsername().equals(username)) {
+		for (PropertyManager pm : propertyManagers) {
+			if (pm.getUsername().equals(username)) {
 				return true;
 			}
 		}

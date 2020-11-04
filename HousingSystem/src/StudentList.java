@@ -15,11 +15,11 @@ public class StudentList {
 		}
 		return studentList;
 	}
-	
+
 	public int getSize() {
 		return students.size();
 	}
-	
+
 	public ArrayList<Student> getStudents() {
 		return students;
 	}
@@ -31,28 +31,28 @@ public class StudentList {
 //		DataWriter.saveStudent(); //TODO
 		return s;
 	}
-	
+
 	public Student getStudent(String username, String password) {
-		for(Student s : students) {
-			if(s.getUsername().equals(username) && s.getPassword().equals(password)) {
+		for (Student s : students) {
+			if (s.getUsername().equals(username) && s.getPassword().equals(password)) {
 				return s;
 			}
 		}
 		return null;
 	}
-	
+
 	public Student getStudent(int id) {
-		for(Student student : students) {
-			if(student.getID() == id) {
+		for (Student student : students) {
+			if (student.getID() == id) {
 				return student;
 			}
 		}
 		return null;
 	}
-	
+
 	public boolean usernameInList(String username) {
-		for(Student s : students) {
-			if(s.getUsername().equals(username)) {
+		for (Student s : students) {
+			if (s.getUsername().equals(username)) {
 				return true;
 			}
 		}

@@ -15,19 +15,19 @@ public class HousingApplication {
 		students = StudentList.getInstance();
 		propertyManagers = PropertyManagerList.getInstance();
 	}
-	
+
 	public int getPropertiesSize() {
 		return properties.getSize();
 	}
-	
+
 	public int getStudentsSize() {
 		return students.getSize();
 	}
-	
+
 	public int getPropertyManagersSize() {
 		return propertyManagers.getSize();
 	}
-	
+
 	public Student getStudent(int id) {
 		return students.getStudent(id);
 	}
@@ -53,15 +53,14 @@ public class HousingApplication {
 	}
 
 	// Returns user with a matching username and password, else null
-	public Account logIn(String username, String password)
-	{
+	public Account logIn(String username, String password) {
 		Account user = null;
 		user = students.getStudent(username, password);
-		if(user != null) {
+		if (user != null) {
 			return user;
 		}
 		user = propertyManagers.getPropertyManager(username, password);
-		if(user != null) {
+		if (user != null) {
 			return user;
 		}
 		return null;
@@ -70,46 +69,46 @@ public class HousingApplication {
 	// Returns a string with all the properties in a list
 	public String listProperties(ArrayList<Property> list) {
 		String ret = "";
-		for(Property p : list) {
+		for (Property p : list) {
 			ret += p + "\n";
 		}
 		return ret;
 	}
-	
+
 	// Returns a string with the short version of the properties in a list
 	public String listPropertiesShort(ArrayList<Property> list) {
 		String ret = "";
-		for(Property p : list) {
+		for (Property p : list) {
 			ret += p.shortToString() + "\n";
 		}
 		return ret;
 	}
 
-	// Returns a string with all (viewable) properties. 
+	// Returns a string with all (viewable) properties.
 	public String viewAllProperties() {
 		return listProperties(getProperties());
 	}
 
-	// Returns a string with all (viewable) properties' short strings. 
+	// Returns a string with all (viewable) properties' short strings.
 	public String viewAllPropertiesShort() {
 		return listPropertiesShort(getProperties());
 	}
 
-	// Returns a string with all properties that contain a keyword. 
+	// Returns a string with all properties that contain a keyword.
 	public String searchByKeyword(String key) {
 		ArrayList<Property> list = new ArrayList<>();
-		for(Property p : getProperties()) {
-			if(p.toString().contains(key)) {
+		for (Property p : getProperties()) {
+			if (p.toString().contains(key)) {
 				list.add(p);
 			}
 		}
 		return listProperties(list);
 	}
 
-	// Returns a string with all properties, sorted by price. 
+	// Returns a string with all properties, sorted by price.
 	public String sortByPrice(boolean increasing) {
 		ArrayList<Property> list = getProperties();
-		if(increasing == true) {
+		if (increasing == true) {
 			Collections.sort(list, new SortByPrice());
 		} else {
 			Collections.sort(list, new SortByPrice().reversed());
@@ -117,10 +116,10 @@ public class HousingApplication {
 		return listProperties(list);
 	}
 
-	// Returns a string with all properties, sorted by number of reviews. 
+	// Returns a string with all properties, sorted by number of reviews.
 	public String sortByNumReviews(boolean increasing) {
 		ArrayList<Property> list = getProperties();
-		if(increasing == true) {
+		if (increasing == true) {
 			Collections.sort(list, new SortByReviews());
 		} else {
 			Collections.sort(list, new SortByReviews().reversed());
@@ -128,69 +127,71 @@ public class HousingApplication {
 		return listProperties(list);
 	}
 
-	// Returns a string with all properties that have, at least, all the given amenities.
+	// Returns a string with all properties that have, at least, all the given
+	// amenities.
 	public String filterByAmenities(boolean[] choices) {
 		ArrayList<Property> filtered = new ArrayList<Property>();
-		for(Property p : getProperties()) {
+		for (Property p : getProperties()) {
 			boolean equal = true;
-			for(int i = 0; i < choices.length; i++) {
-				if(choices[i] && !p.getAmenities()[i]) { 
+			for (int i = 0; i < choices.length; i++) {
+				if (choices[i] && !p.getAmenities()[i]) {
 					// the property does not have the requested amenity
 					equal = false;
 				}
 			}
-			if(equal) {
+			if (equal) {
 				filtered.add(p);
 			}
 		}
 		return listProperties(filtered);
 	}
 
-	// Returns a string with all properties within a price range. 
+	// Returns a string with all properties within a price range.
 	public String filterByPriceRange(int min, int max) {
 		ArrayList<Property> filtered = new ArrayList<Property>();
-		for(Property property : getProperties()) {
+		for (Property property : getProperties()) {
 			int price = property.getPrice();
-			if(price >= min && price <= max) {
+			if (price >= min && price <= max) {
 				filtered.add(property);
 			}
 		}
 		return listProperties(filtered);
 	}
 
-	// Returns a string with a student's favorite properties. 
+	// Returns a string with a student's favorite properties.
 	public String viewFavProperties(Account user) {
-		if(user.type == AccountType.STUDENT) {
+		if (user.type == AccountType.STUDENT) {
 			return listProperties(((Student) user).getFavProperties());
 		}
 		return "No favorite properties.";
 	}
 
-	// Returns a string with a user's signed leases. 
+	// Returns a string with a user's signed leases.
 	public String viewSignedLeases(Account user) {
 		String ret = "";
 		ArrayList<Lease> signedLeases = user.getSignedLeases();
-		for(Lease l : signedLeases) {
+		for (Lease l : signedLeases) {
 			ret += l.toString();
 		}
 		return ret;
 	}
 
-	// Returns a string with a property manager's properties. 
+	// Returns a string with a property manager's properties.
 	public String viewMyProperties(Account user) {
-		if(user.type == AccountType.PROPERTYMANAGER) {
+		if (user.type == AccountType.PROPERTYMANAGER) {
 			return listProperties(((PropertyManager) user).getMyProperties());
 		}
 		return "No properties.";
 	}
-	
+
 	public String viewMyPropertiesShort(Account user) {
-		if(user.type == AccountType.PROPERTYMANAGER) {
+		if (user.type == AccountType.PROPERTYMANAGER) {
 			return listPropertiesShort(((PropertyManager) user).getMyProperties());
 		}
 		return "No properties.";
 	}
-	// Reviews a property and returns that review as a string. 
+
+	// Reviews a property and returns that review as a string.
 	public String reviewProperty(Account user, Property property, int rating, String description) {
 		int reviewId = reviews.getSize() + 1;
 		// add review to review list:
@@ -200,7 +201,7 @@ public class HousingApplication {
 		return review.toString();
 	}
 
-	// Reviews a property manager and returns that review as a string. 
+	// Reviews a property manager and returns that review as a string.
 	public String reviewPropertyManager(Account user, PropertyManager propertyManager, int rating, String description) {
 		int reviewId = reviews.getSize() + 1;
 		// add review to review list:
@@ -210,7 +211,7 @@ public class HousingApplication {
 		return review.toString();
 	}
 
-	// Reviews a student and returns that review as a string. 
+	// Reviews a student and returns that review as a string.
 	public String reviewStudent(Account user, Student student, int rating, String description) {
 		int reviewId = reviews.getSize() + 1;
 		// add review to review list:
@@ -220,35 +221,35 @@ public class HousingApplication {
 		return review.toString();
 	}
 
-	// User signs a lease and the lease is returned as a string. 
+	// User signs a lease and the lease is returned as a string.
 	public String signLease(Account user, Lease lease) {
 		lease.sign(user);
 		user.addLease(lease);
 		return "Signed lease :" + lease;
 	}
 
-	// Returns a string with a short version of all property managers. 
+	// Returns a string with a short version of all property managers.
 	public String listPropertyManagersShort() {
 		String ret = "";
-		for(PropertyManager pm : propertyManagers.getPropertyManagers()) {
+		for (PropertyManager pm : propertyManagers.getPropertyManagers()) {
 			ret += pm.getName() + "\n";
 		}
 		return ret;
 	}
 
-	// Returns a string with a short version of all students. 
+	// Returns a string with a short version of all students.
 	public String listStudentsShort() {
 		String ret = "";
-		for(Student student : students.getStudents()) {
+		for (Student student : students.getStudents()) {
 			ret += student.getName() + "\n";
 		}
 		return ret;
 	}
 
-	// Returns a string with the users who have signed a lease. 
+	// Returns a string with the users who have signed a lease.
 	public String getSignedBy(Lease lease) {
 		String ret = "Students: \n";
-		for(int i : lease.getSignedByStudents()) {
+		for (int i : lease.getSignedByStudents()) {
 			ret += students.getStudent(i).getName() + "\n";
 		}
 		ret += "Property Manager: \n";
@@ -256,13 +257,13 @@ public class HousingApplication {
 		return ret;
 	}
 
-	// View reviews for all properties. 
+	// View reviews for all properties.
 	public String viewPropertyReviews() {
 		String ret = "";
-		for(Property p : getProperties()) {
+		for (Property p : getProperties()) {
 			ret += p.shortToString();
 			ret += "Reviews:\n";
-			for(Review r : p.getReviews()) {
+			for (Review r : p.getReviews()) {
 				ret += r;
 			}
 			ret += "\n";
@@ -270,13 +271,13 @@ public class HousingApplication {
 		return ret;
 	}
 
-	// View reviews for all property managers. 
+	// View reviews for all property managers.
 	public String viewPropertyManagerReviews() {
 		String ret = "";
-		for(PropertyManager pm : getPropertyManagers()) {
+		for (PropertyManager pm : getPropertyManagers()) {
 			ret += "ID: " + pm.getID() + ", " + pm.getName() + "\n";
 			ret += "Reviews:\n";
-			for(Review r : pm.getReviews()) {
+			for (Review r : pm.getReviews()) {
 				ret += r;
 			}
 			ret += "\n";
@@ -284,13 +285,13 @@ public class HousingApplication {
 		return ret;
 	}
 
-	// View reviews for all students. 
+	// View reviews for all students.
 	public String viewStudentReviews() {
 		String ret = "";
-		for(Student s : getStudents()) {
+		for (Student s : getStudents()) {
 			ret += "ID: " + s.getID() + ", " + s.getName() + "\n";
 			ret += "Reviews:\n";
-			for(Review r : s.getReviews()) {
+			for (Review r : s.getReviews()) {
 				ret += r;
 			}
 			ret += "\n";
@@ -298,43 +299,43 @@ public class HousingApplication {
 		return ret;
 	}
 
-	// Checks if a username is associated with an existing account. 
+	// Checks if a username is associated with an existing account.
 	public boolean usernameInList(String username) {
 		return students.usernameInList(username) || propertyManagers.usernameInList(username);
 	}
 
-	// Creates and returns a student. 
+	// Creates and returns a student.
 	public Student createStudentAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone, String studentID) {
 		return students.addStudent(username, password, firstName, lastName, emailAddress, phone, studentID);
 	}
 
-	// Creates and returns a property manager. 
+	// Creates and returns a property manager.
 	public PropertyManager createPropertyManagerAccount(String username, String password, String firstName, String lastName, String emailAddress, String phone) {
 		return propertyManagers.addPropertyManager(username, password, firstName, lastName, emailAddress, phone);
 	}
-	
-	// Creates a new property. 
+
+	// Creates a new property.
 	public String addNewProperty(Account user, String location, boolean[] amenitiesBool, String utilities, int price, int beds, int baths, String description, String contact) {
 		Property property = properties.addProperty(amenitiesBool, utilities, location, price, beds, baths, description, contact, true);
-		if(user.getAccountType() == AccountType.PROPERTYMANAGER) {
+		if (user.getAccountType() == AccountType.PROPERTYMANAGER) {
 			((PropertyManager) user).addMyProperty(property);
 		}
 		return "Added property: " + property;
 	}
-	
-	// Adds a favorite property, for a student. 
+
+	// Adds a favorite property, for a student.
 	public void addFavProperty(Account user, Property property) {
-		if(user.getAccountType() == AccountType.STUDENT) {
+		if (user.getAccountType() == AccountType.STUDENT) {
 			((Student) user).addFavoriteProperty(property);
 		}
 	}
-	
-	// Sets a property to invisible. 
+
+	// Sets a property to invisible.
 	public String removeProperty(Property property) {
 		return "Removed property: " + properties.removeProperty(property).shortToString();
 	}
-	
-	// Creates a lease for a property. 
+
+	// Creates a lease for a property.
 	public String addLease(Property property, String fees, String repairs, String termination, String info) {
 		int leaseID = leases.getSize() + 1;
 		Lease lease = leases.addLease(leaseID, property.getPropertyId(), fees, repairs, termination, info);
