@@ -11,9 +11,9 @@ public class HousingApplication {
 	public HousingApplication() {
 		leases = LeaseList.getInstance();
 		reviews = ReviewList.getInstance();
-		properties = PropertyList.getInstance();
 		students = StudentList.getInstance();
 		propertyManagers = PropertyManagerList.getInstance();
+		properties = PropertyList.getInstance();
 	}
 
 	public int getPropertiesSize() {
@@ -161,7 +161,11 @@ public class HousingApplication {
 	// Returns a string with a student's favorite properties.
 	public String viewFavProperties(Account user) {
 		if (user.type == AccountType.STUDENT) {
-			return listProperties(((Student) user).getFavProperties());
+			ArrayList<Property> favProperties = new ArrayList<Property>();
+			for(int i : ((Student) user).getFavProperties()) {
+				favProperties.add(properties.getProperty(i));
+			}
+			return listProperties(favProperties);
 		}
 		return "No favorite properties.";
 	}
@@ -179,14 +183,23 @@ public class HousingApplication {
 	// Returns a string with a property manager's properties.
 	public String viewMyProperties(Account user) {
 		if (user.type == AccountType.PROPERTYMANAGER) {
-			return listProperties(((PropertyManager) user).getMyProperties());
+			ArrayList<Property> myProperties = new ArrayList<Property>();
+			for(int i : ((PropertyManager) user).getMyProperties()) {
+				myProperties.add(properties.getProperty(i));
+			}
+			return listProperties(myProperties);
 		}
 		return "No properties.";
 	}
 
+	// Returns a shorter string with a property manager's properties.
 	public String viewMyPropertiesShort(Account user) {
 		if (user.type == AccountType.PROPERTYMANAGER) {
-			return listPropertiesShort(((PropertyManager) user).getMyProperties());
+			ArrayList<Property> myProperties = new ArrayList<Property>();
+			for(int i : ((PropertyManager) user).getMyProperties()) {
+				myProperties.add(properties.getProperty(i));
+			}
+			return listPropertiesShort(myProperties);
 		}
 		return "No properties.";
 	}
@@ -232,7 +245,7 @@ public class HousingApplication {
 	public String listPropertyManagersShort() {
 		String ret = "";
 		for (PropertyManager pm : propertyManagers.getPropertyManagers()) {
-			ret += pm.getName() + "\n";
+			ret += "ID: " + pm.getID() + ", " + pm.getName() + "\n";
 		}
 		return ret;
 	}
@@ -241,7 +254,7 @@ public class HousingApplication {
 	public String listStudentsShort() {
 		String ret = "";
 		for (Student student : students.getStudents()) {
-			ret += student.getName() + "\n";
+			ret += "ID: " + student.getID() + ", " + student.getName() + "\n";
 		}
 		return ret;
 	}
@@ -326,7 +339,7 @@ public class HousingApplication {
 	// Adds a favorite property, for a student.
 	public void addFavProperty(Account user, Property property) {
 		if (user.getAccountType() == AccountType.STUDENT) {
-			((Student) user).addFavoriteProperty(property);
+			((Student) user).addFavoriteProperty(property.getPropertyId());
 		}
 	}
 

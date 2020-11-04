@@ -149,6 +149,7 @@ public class HousingUI {
 				System.out.println(INVALID);
 				break;
 			}
+			updateJSON();
 		}
 	}
 
@@ -210,6 +211,7 @@ public class HousingUI {
 				System.out.println(INVALID);
 				break;
 			}
+			updateJSON();
 		}
 	}
 
@@ -245,6 +247,7 @@ public class HousingUI {
 				System.out.println(INVALID);
 				break;
 			}
+			updateJSON();
 		}
 	}
 
@@ -757,6 +760,14 @@ public class HousingUI {
 		System.out.println("Enter any additional information.");
 		String info = keyboard.nextLine();
 		System.out.println(application.addLease(property, fees, repairs, termination, info));
+	}
+	
+	public void updateJSON() {
+		DataWriter.saveLease();
+		DataWriter.saveProperty();
+		DataWriter.savePropertyManager();
+		DataWriter.saveReview();
+		DataWriter.saveStudent();
 	}
 
 	public static void main(String[] args) {

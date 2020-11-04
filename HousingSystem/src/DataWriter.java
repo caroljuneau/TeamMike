@@ -5,6 +5,15 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class DataWriter extends DataConstants {
+	
+	//used for amenities
+	public static JSONArray parseBool(boolean[] arr) {
+		JSONArray ret = new JSONArray();
+		for (int i = 0; i < arr.length; i++) {
+			ret.add(arr[i]);
+		}
+		return ret;
+	}
 
 	public static JSONObject getPropertyManagerJSON(PropertyManager manager) {
 		JSONObject propertyManagerDetails = new JSONObject();
@@ -15,7 +24,7 @@ public class DataWriter extends DataConstants {
 		propertyManagerDetails.put(LAST_NAME, manager.getLastName());
 		propertyManagerDetails.put(EMAIL, manager.getEmailAddress());
 		propertyManagerDetails.put(PHONE, manager.getPhone());
-		propertyManagerDetails.put(MANAGER_PROPERTY, manager.getMyPropertyIDs());
+		propertyManagerDetails.put(MANAGER_PROPERTY, manager.getMyProperties());
 		propertyManagerDetails.put(RATINGS, manager.getRatings());
 		propertyManagerDetails.put(REVIEWS, manager.getReviewIDs());
 		propertyManagerDetails.put(LEASES, manager.getSignedLeaseIDs());
@@ -33,7 +42,7 @@ public class DataWriter extends DataConstants {
 		studentDetails.put(LAST_NAME, student.getLastName());
 		studentDetails.put(EMAIL, student.getEmailAddress());
 		studentDetails.put(PHONE, student.getPhone());
-		studentDetails.put(FAVORITES, student.getFavoriteIDs());
+		studentDetails.put(FAVORITES, student.getFavProperties());
 		studentDetails.put(RATINGS, student.getRatings());
 		studentDetails.put(REVIEWS, student.getReviewIDs());
 		studentDetails.put(LEASES, student.getSignedLeaseIDs());
@@ -44,7 +53,7 @@ public class DataWriter extends DataConstants {
 	public static JSONObject getPropertyJSON(Property property) {
 		JSONObject propertyDetails = new JSONObject();
 		propertyDetails.put(PROPERTY_ID, property.getPropertyId());
-		propertyDetails.put(AMENITIES, property.getAmenities());
+		propertyDetails.put(AMENITIES, parseBool(property.getAmenities()));
 		propertyDetails.put(UTILITIES, property.getUtilities());
 		propertyDetails.put(LOCATION, property.getLocation());
 		propertyDetails.put(PRICE, property.getPrice());
@@ -64,9 +73,10 @@ public class DataWriter extends DataConstants {
 		JSONObject reviewDetails = new JSONObject();
 		reviewDetails.put(ID, review.getId());
 		reviewDetails.put(REVIEWED, review.getReviewedId());
-		reviewDetails.put(TYPE, review.getType());
+		reviewDetails.put(TYPE, review.getType().toString());
 		reviewDetails.put(RATING, review.getRating());
 		reviewDetails.put(USER_NAME, review.getUsername());
+		reviewDetails.put(DESCRIPTION, review.getDescription());
 
 		return reviewDetails;
 	}
@@ -92,7 +102,7 @@ public class DataWriter extends DataConstants {
 
 		// creating all the json objects
 		for (PropertyManager pm : managerList) {
-			managerJson.add(pm);
+			managerJson.add(getPropertyManagerJSON(pm));
 		}
 		// Write JSON file
 		try (FileWriter file = new FileWriter(MANAGER_FILE_NAME)) {
@@ -111,7 +121,7 @@ public class DataWriter extends DataConstants {
 
 		// creating all the json objects
 		for (Student s : studentList) {
-			jsonStudents.add(s);
+			jsonStudents.add(getStudentJSON(s));
 		}
 
 		// Write JSON file
@@ -131,7 +141,7 @@ public class DataWriter extends DataConstants {
 
 		// creating all the json objects
 		for (Property p : propertyList) {
-			jsonProperty.add(p);
+			jsonProperty.add(getPropertyJSON(p));
 		}
 
 		// Write JSON file
@@ -151,11 +161,11 @@ public class DataWriter extends DataConstants {
 
 		// creating all the json objects
 		for (Review r : reviewList) {
-			jsonReview.add(r);
+			jsonReview.add(getReviewJSON(r));
 		}
 
 		// Write JSON file
-		try (FileWriter file = new FileWriter(PROPERTY_FILE_NAME)) {
+		try (FileWriter file = new FileWriter(REVIEW_FILE_NAME)) {
 			file.write(jsonReview.toJSONString());
 			file.flush();
 
@@ -171,11 +181,11 @@ public class DataWriter extends DataConstants {
 
 		// creating all the json objects
 		for (Lease l : leaseList) {
-			jsonLease.add(l);
+			jsonLease.add(getLeaseJSON(l));
 		}
 
 		// Write JSON file
-		try (FileWriter file = new FileWriter(PROPERTY_FILE_NAME)) {
+		try (FileWriter file = new FileWriter(LEASE_FILE_NAME)) {
 			file.write(jsonLease.toJSONString());
 			file.flush();
 
@@ -190,7 +200,10 @@ public class DataWriter extends DataConstants {
 
 		// get name of the property manager (landlord)
 		PropertyManager pm = PropertyManagerList.getInstance().getPropertyManager(in.getSignedByPropertyManager());
-		String landlord = pm.getName();
+		String landlord = "";
+		if(pm != null) {
+			landlord = pm.getName();
+		}
 
 		// get names of the students (tenants)
 		ArrayList<Student> students = new ArrayList<Student>();

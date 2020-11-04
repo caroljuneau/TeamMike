@@ -37,7 +37,6 @@ public class ReviewList {
 	public Review addReview(int id, int reviewedId, ReviewType type, int rating, String username, String description) {
 		Review review = new Review(id, reviewedId, type, rating, username, description);
 		reviews.add(review);
-		DataWriter.saveReview();
 		return review;
 	}
 

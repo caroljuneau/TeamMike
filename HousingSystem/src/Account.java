@@ -62,7 +62,7 @@ public class Account {
 		ArrayList<Integer> reviewIDs = new ArrayList<Integer>();
 		for (int i = 0; i < reviews.size(); i++) {
 			Review review = reviews.get(i);
-			if (reviews.get(i) != null) {
+			if (review != null) {
 				reviewIDs.add(review.getId());
 			}
 		}
@@ -73,7 +73,7 @@ public class Account {
 		ArrayList<Integer> leaseIDs = new ArrayList<Integer>();
 		for (int i = 0; i < signedLeases.size(); i++) {
 			Lease lease = signedLeases.get(i);
-			if (signedLeases.get(i) != null) {
+			if (lease != null) {
 				leaseIDs.add(lease.getId());
 			}
 		}
@@ -145,7 +145,7 @@ public class Account {
 	}
 
 	public double getAvgRating() {
-		if (this.getRatings() == null) {
+		if (this.ratings.size() < 1) {
 			return DEFAULT_RATING;
 		}
 		int num = this.getRatings().size();

@@ -45,8 +45,7 @@ public class DataLoader extends DataConstants {
 				String contact = (String) propertyJSON.get(CONTACT);
 				boolean vis = (boolean) propertyJSON.get(VISIBLE);
 
-				Property property = new Property(id, amenities, utilities, location, price, beds, baths, description,
-						contact, vis);
+				Property property = new Property(id, amenities, utilities, location, price, beds, baths, description, contact, vis);
 				properties.add(property);
 
 				property.setRatings(getIDs((JSONArray) propertyJSON.get(RATINGS)));
@@ -80,8 +79,7 @@ public class DataLoader extends DataConstants {
 				String phone = (String) studentJSON.get(PHONE);
 				String studentID = (String) studentJSON.get(STUDENT);
 
-				Student student = new Student(id, username, password, firstName, lastName, emailAddress, phone,
-						studentID);
+				Student student = new Student(id, username, password, firstName, lastName, emailAddress, phone,studentID);
 				students.add(student);
 
 				student.setFavProperties(getIDs((JSONArray) studentJSON.get(FAVORITES)));
