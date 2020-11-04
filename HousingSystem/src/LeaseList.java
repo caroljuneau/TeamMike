@@ -36,7 +36,7 @@ public class LeaseList {
 	public Lease addLease(int id, int propertyID, String fees, String repairs, String termination, String info) {
 		Lease lease = new Lease(id, propertyID, fees, repairs, termination, info);
 		leases.add(lease);
-//		DataWriter.saveReview(); TODO
+		DataWriter.saveReview();
 		return lease;
 	}
 }

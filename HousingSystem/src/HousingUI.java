@@ -64,7 +64,7 @@ public class HousingUI {
 			"Sort by number of reviews", //4
 			"Filter by amenities", //5
 			"Filter by price range", //6
-			"View leases", //7
+			"View lease and generate txt", //7
 			"View property reviews", //8
 			"View property manager reviews", //9
 			"View student reviews", //10
@@ -646,12 +646,15 @@ public class HousingUI {
 			return;
 		}
 		Property property = application.getProperty(id);
-		if (property.getLease() == null) {
+		Lease lease = property.getLease();
+		if (lease == null) {
 			System.out.println("Property " + property.getPropertyId() + " does not have a lease.");
 			return;
 		}
 		System.out.println("Lease for Property " + property.getPropertyId() + ": ");
-		System.out.println(property.getLease());
+		System.out.println(lease);
+		lease.generateTxt();
+		System.out.println("See generated lease in \"" + DataConstants.LEASE_TEXT_FILE_NAME + "\"");
 	}
 
 	// Adds a favorite property, for a student.

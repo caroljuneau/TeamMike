@@ -132,16 +132,11 @@ public class Lease {
 	}
 
 	public String toString() {
-		String s;
-		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees + "\nRepairs: " + this.repairs
+		return "Property ID: " + this.propertyID + "\nFees: " + this.fees + "\nRepairs: " + this.repairs
 				+ "\nTermination: " + this.termination + "\nInfo: " + this.info + "\nSigned: " + this.signed;
-		return s;
 	}
-//	public void toTxt() {
-//		String s;
-//		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
-//				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
-//				"\nInfo: " + this.info;
-//	}
-
+	
+	public void generateTxt() {
+		DataWriter.generateLeaseText(this);
+	}
 }

@@ -6,7 +6,6 @@ public abstract class DataConstants {
 	protected static final String PROPERTY_FILE_NAME = "JSONExamples/properties.JSON";
 	protected static final String REVIEW_FILE_NAME = "JSONExamples/reviews.json";
 	
-	protected static final String LEASE_TEXT_FILE_NAME = "Text/lease.txt";
 	/** Shared Account Data for PropertyManager and Student */
 	protected static final String ID = "id";
 	protected static final String USER_NAME = "username";
@@ -56,23 +55,10 @@ public abstract class DataConstants {
 	protected static final String TYPE = "type";
 	protected static final String RATING = "rating";
 
-
-
-
-
-	
-	
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
+	/** Values for lease agreement */
+	protected static final String LEASE_TEXT_FILE_NAME = "Text/lease.txt";
+	protected static final String START_DATE = "01/01/2021";
+	protected static final String END_DATE =  "12/31/2021";
+	protected static final String PAYMENT_ADDRESS = "123 Money Ln, Columbia, SC";
+	protected static final int DAMAGE_COST = 100;
 }

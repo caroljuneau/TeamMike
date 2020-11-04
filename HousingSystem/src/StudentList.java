@@ -28,7 +28,7 @@ public class StudentList {
 		int id = students.size() + 1;
 		Student s = new Student(id, username, password, firstName, lastName, emailAddress, phone, studentID);
 		students.add(s);
-//		DataWriter.saveStudent(); //TODO
+		DataWriter.saveStudent();
 		return s;
 	}
 
