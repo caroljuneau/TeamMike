@@ -154,10 +154,6 @@ public class Account {
 		return this.firstName + " " + this.lastName;
 	}
 	
-	public String shortToString() {
-		return "ID: " + ", " + getName() + "\n";
-	}
-	
 	public void addReview(Review review) {
 		this.reviews.add(review);
 	}

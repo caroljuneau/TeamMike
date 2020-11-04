@@ -67,6 +67,6 @@ public class Review {
 	}
 	
 	public String toString() {
-		return "Rating: " + rating + "\nUsername: " + username + "\nDescription: " + description + "\n";
+		return "Rating: " + rating + "\n  Username: " + username + "\n  Description: " + description + "\n";
 	}
 }

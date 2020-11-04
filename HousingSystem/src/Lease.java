@@ -3,12 +3,8 @@ import java.util.ArrayList;
 public class Lease {
 
 	private int id;
-	private ArrayList<Student> signedByStudents;
-//	private String manager;
-//	private ArrayList<PropertyManager> signedByPropertyManagers;
-	private PropertyManager signedByPropertyManager;
-//	private ArrayList<Integer> signedByStudentIds;
-//	private ArrayList<Integer> signedByPropertyManagerIds;
+	private ArrayList<Integer> studentIDs;
+	private int propertyManagerID;
 	private int propertyID;
 	private String fees;
 	private String repairs;
@@ -25,56 +21,26 @@ public class Lease {
 		this.repairs = repairs;
 		this.termination = termination;
 		this.info = info;
+		this.signed = false;
+		this.studentIDs = new ArrayList<Integer>();
+		this.propertyManagerID = -1;
 	}
 	
 	public void setSignedByStudents(ArrayList<Integer> signedByStudentIDs) {
-		for(int i = 0; i < signedByStudentIDs.size(); i++) {
-			int id = signedByStudentIDs.get(i);
-			signedByStudents.add(StudentList.getInstance().getStudent(id));
-		}
+		this.studentIDs = signedByStudentIDs;
 	}
 	
-	public ArrayList<Student> getSignedByStudents() {
-		return this.signedByStudents;
-	}
-	
-	public ArrayList<Integer> getSignedByStudentIDs() {
-		ArrayList<Integer> signedByStudentIDs = new ArrayList<Integer>();
-		for(Student s : signedByStudents) {
-			signedByStudentIDs.add(s.getID());
-		}
-		return signedByStudentIDs;
+	public ArrayList<Integer> getSignedByStudents() {
+		return this.studentIDs;
 	}
 	
 	public void setSignedByPropertyManager(int signedByPMID) {
-		this.signedByPropertyManager = PropertyManagerList.getInstance().getPropertyManager(signedByPMID);
+		this.propertyManagerID = signedByPMID;
 	}
 	
-	public PropertyManager getSignedByPropertyManager() {
-		return this.signedByPropertyManager;
+	public int getSignedByPropertyManager() {
+		return this.propertyManagerID;
 	}
-	
-	public int getSignedByPropertyManagerID() {
-		return this.signedByPropertyManager.getID();
-	}
-	
-//	public void setSignedByPropertyManagers(ArrayList<Integer> signedByPropertyManagerIDs) {
-//		for(int i = 0; i < signedByPropertyManagerIDs.size(); i++) {
-//			int id = signedByPropertyManagerIDs.get(i);
-//			signedByPropertyManagers.add(PropertyManagerList.getInstance().getPropertyManager(id));
-//		}
-//	}
-//	public void setManager() {
-//		this.manager = getProperty().;		
-//	}
-//	public PropertyManager getManager() {
-//		return this.manager;
-//	}
-	
-	
-//	public ArrayList<PropertyManager> getSignedByPropertyManagers() {
-//		return this.signedByPropertyManagers;
-//	}
 
 	public int getId() {
 		return id;
@@ -83,26 +49,6 @@ public class Lease {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-//	public ArrayList<Integer> getSignedByPropertyManagerIds() {
-//		ArrayList<Integer> signedByPropertyManagerIds = new ArrayList<Integer>();
-//		for(PropertyManager pm : signedByPropertyManagers) {
-//			signedByPropertyManagerIds.add(pm.getID());
-//		}
-//		return signedByPropertyManagerIds;
-//	}
-//	
-//	public void setSignedByStudentIds(ArrayList<Integer> iDs) {
-//		this.signedByStudentIds = iDs;
-//	}
-//	
-//	public ArrayList<Integer> getSignedByPropertyManagerIds() {
-//		return signedByPropertyManagerIds;
-//	}
-//	
-//	public void setSignedByPropertyManagerIds(ArrayList<Integer> iDs) {
-//		this.signedByPropertyManagerIds = iDs;
-//	}
 	
 	public int getPropertyID() {
 		return propertyID;
@@ -171,11 +117,11 @@ public class Lease {
 	
 	public void sign(Account user) {
 		if(user.type == AccountType.STUDENT) {
-			signedByStudents.add((Student) user);
+			studentIDs.add(user.getID());
 			setSigned(true);
 		}
 		if(user.type == AccountType.PROPERTYMANAGER) {
-			signedByPropertyManager = (PropertyManager) user;
+			propertyManagerID = user.getID();
 			setSigned(true);
 		}
 		return;
@@ -189,14 +135,14 @@ public class Lease {
 		String s;
 		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
 				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
-				"\nInfo: " + this.info;
+				"\nInfo: " + this.info + "\nSigned: " + this.signed;
 		return s;
 	}
-	public void toTxt() {
-		String s;
-		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
-				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
-				"\nInfo: " + this.info;
-	}
+//	public void toTxt() {
+//		String s;
+//		s = "Property ID: " + this.propertyID + "\nFees: " + this.fees +
+//				"\nRepairs: " + this.repairs + "\nTermination: " + this.termination +
+//				"\nInfo: " + this.info;
+//	}
 
 }

@@ -9,11 +9,11 @@ public class HousingApplication {
 	private ReviewList reviews;
 
 	public HousingApplication() {
+		leases = LeaseList.getInstance();
+		reviews = ReviewList.getInstance();
 		properties = PropertyList.getInstance();
 		students = StudentList.getInstance();
 		propertyManagers = PropertyManagerList.getInstance();
-		leases = LeaseList.getInstance();
-		reviews = ReviewList.getInstance();
 	}
 	
 	public int getPropertiesSize() {
@@ -184,6 +184,12 @@ public class HousingApplication {
 		return "No properties.";
 	}
 	
+	public String viewMyPropertiesShort(Account user) {
+		if(user.type == AccountType.PROPERTYMANAGER) {
+			return listPropertiesShort(((PropertyManager) user).getMyProperties());
+		}
+		return "No properties.";
+	}
 	// Reviews a property and returns that review as a string. 
 	public String reviewProperty(Account user, Property property, int rating, String description) {
 		int reviewId = reviews.getSize() + 1;
@@ -225,7 +231,7 @@ public class HousingApplication {
 	public String listPropertyManagersShort() {
 		String ret = "";
 		for(PropertyManager pm : propertyManagers.getPropertyManagers()) {
-			ret += pm.shortToString() + "\n";
+			ret += pm.getName() + "\n";
 		}
 		return ret;
 	}
@@ -234,7 +240,7 @@ public class HousingApplication {
 	public String listStudentsShort() {
 		String ret = "";
 		for(Student student : students.getStudents()) {
-			ret += student.shortToString() + "\n";
+			ret += student.getName() + "\n";
 		}
 		return ret;
 	}
@@ -242,8 +248,8 @@ public class HousingApplication {
 	// Returns a string with the users who have signed a lease. 
 	public String getSignedBy(Lease lease) {
 		String ret = "Students: \n";
-		for(Student s : lease.getSignedByStudents()) {
-			ret += s.getName() + "\n";
+		for(int i : lease.getSignedByStudents()) {
+			ret += students.getStudent(i).getName() + "\n";
 		}
 		ret += "Property Manager: \n";
 		ret += lease.getSignedByPropertyManager() + "\n";
@@ -254,11 +260,12 @@ public class HousingApplication {
 	public String viewPropertyReviews() {
 		String ret = "";
 		for(Property p : getProperties()) {
-			ret += p.shortToString() + "\n";
+			ret += p.shortToString();
 			ret += "Reviews:\n";
 			for(Review r : p.getReviews()) {
-				ret += r + "\n";
+				ret += r;
 			}
+			ret += "\n";
 		}
 		return ret;
 	}
@@ -267,11 +274,12 @@ public class HousingApplication {
 	public String viewPropertyManagerReviews() {
 		String ret = "";
 		for(PropertyManager pm : getPropertyManagers()) {
-			ret += pm.shortToString() + "\n";
+			ret += "ID: " + pm.getID() + ", " + pm.getName() + "\n";
 			ret += "Reviews:\n";
 			for(Review r : pm.getReviews()) {
-				ret += r.toString() + "\n";
+				ret += r;
 			}
+			ret += "\n";
 		}
 		return ret;
 	}
@@ -280,11 +288,12 @@ public class HousingApplication {
 	public String viewStudentReviews() {
 		String ret = "";
 		for(Student s : getStudents()) {
-			ret += s.shortToString() + "\n";
+			ret += "ID: " + s.getID() + ", " + s.getName() + "\n";
 			ret += "Reviews:\n";
 			for(Review r : s.getReviews()) {
-				ret += r + "\n";
+				ret += r;
 			}
+			ret += "\n";
 		}
 		return ret;
 	}

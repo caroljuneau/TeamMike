@@ -38,7 +38,6 @@ public class DataLoader extends DataConstants{
 				boolean[] amenities = parseBool((JSONArray)propertyJSON.get(AMENITIES));
 				String utilities = (String)propertyJSON.get(UTILITIES);
 				String location = (String)propertyJSON.get(LOCATION);
-				//String pictures = (String)propertyJSON.get(PICTURES);
 				int price = ((Long)propertyJSON.get(PRICE)).intValue();
 				int beds = ((Long)propertyJSON.get(BEDS)).intValue();
 				int baths = ((Long)propertyJSON.get(BATHS)).intValue();
@@ -49,11 +48,9 @@ public class DataLoader extends DataConstants{
 				Property property = new Property(id, amenities, utilities, location, price, beds, baths, description, contact, vis);
 				properties.add(property);
 				
-				property.setPropertyId(id);
 				property.setRatings(getIDs((JSONArray)propertyJSON.get(RATINGS)));
 				property.setReviews(getIDs((JSONArray)propertyJSON.get(REVIEWS)));
-				int leaseID = ((Long)propertyJSON.get(LEASES)).intValue();
-				property.setLease(leaseID);
+				property.setLease(((Long)propertyJSON.get(LEASES)).intValue());
 
 			}
 			return properties;
@@ -155,7 +152,7 @@ public class DataLoader extends DataConstants{
 				
 				lease.setSigned(signed);
 				lease.setSignedByStudents(getIDs((JSONArray)leaseObj.get(SIGNED_BY_STUDENT_IDS)));
-				lease.setSignedByPropertyManagers(getIDs((JSONArray)leaseObj.get(SIGNED_BY_PROPERTY_MANAGER_IDS)));
+				lease.setSignedByPropertyManager(((Long)leaseObj.get(SIGNED_BY_PROPERTY_MANAGER_ID)).intValue());
 			}
 			return leaseList;
 			
@@ -178,7 +175,6 @@ public class DataLoader extends DataConstants{
 				int id = ((Long)reviewObj.get(ID)).intValue();
 				int reviewedId = ((Long)reviewObj.get(REVIEWED)).intValue();
 				ReviewType type = ReviewType.valueOf(((String)reviewObj.get(TYPE)).toUpperCase());
-//				ReviewType type = ((ReviewType)reviewObj.get(TYPE));
 				int rating = ((Long)reviewObj.get(RATING)).intValue();
 				String username = (String)reviewObj.get(USER_NAME);
 				String description = (String)reviewObj.get(DESCRIPTION);

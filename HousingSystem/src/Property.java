@@ -32,6 +32,7 @@ public class Property {
 	}
 	
 	public void setLease(int leaseID) {
+		if(leaseID == -1) return;
 		this.lease = LeaseList.getInstance().getLease(leaseID);
 	}
 	
@@ -44,6 +45,7 @@ public class Property {
 	}
 	
 	public int getLeaseID() {
+		if(this.lease == null) return -1;
 		return this.lease.getId();
 	}
 
@@ -91,7 +93,7 @@ public class Property {
 	}
 	public String amenitiesToString() {
 		String s = "";
-		String[] amenities = {"Washer/Dryer", "Gym", "Pool", "Furnished", "Pet Friendly"};
+		String[] amenities = {"Pool", "Gym", "Pet Friendly", "Laundry", "Shuttle"};
 		for(int i = 0; i < this.amenities.length; i++) {
 			if(this.amenities[i] == true) {
 				s += amenities[i] + " ";
@@ -150,14 +152,14 @@ public class Property {
 	}
 	
 	public String toString() {
-		return "Location: " + this.location + "\nAmenities: " + this.amenitiesToString() +
+		return "Property ID: " + this.propertyId + "\nLocation: " + this.location + "\nAmenities: " + this.amenitiesToString() +
 				"\nUtilities: " + this.utilities + "\nPrice: " + this.price + "\nBeds: " +
-				this.beds + "\nBaths: " + this.baths + "\nDescription: " + this.description +
-				"\nContact: " + this.contact + "\n";
+				this.beds + "\nBaths: " + this.baths + "\nNumber of Reviews: " + this.reviews.size() + 
+				"\nDescription: " + this.description + "\nContact: " + this.contact + "\n";
 	}
 	
 	public String shortToString() {
-		return "ID: " + this.propertyId + ", Location: " + this.location + "\n";
+		return "Property ID: " + this.propertyId + ", Location: " + this.location + "\n";
 	}
 	
 	public void addReview(Review review) {

@@ -19,13 +19,13 @@
     "type":"PROPERTYMANAGER",
     "rating":3,
   	"username":"chenry",
-    "description":"nice review 3"
+    "description":"nice review for collin"
   },{
   	"id":4,
   	"reviewedId":2,
     "type":"STUDENT",
     "rating":2,
   	"username":"juneauc",
-    "description":"nice lady"
+    "description":"nice lady carol"
   }
 ]

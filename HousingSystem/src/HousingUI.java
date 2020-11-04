@@ -37,8 +37,7 @@ public class HousingUI {
 			"View my signed leases", //5
 			"Rate/review a property", //6
 			"Rate/review a property manager", //7
-			"View property manager reviews", //8
-			"Log out" //9
+			"Log out" //8
 		};
 	private String[] propertyManagerOptions = 
 		{
@@ -48,8 +47,7 @@ public class HousingUI {
 			"Sign lease", //3
 			"View my signed leases", //4
 			"Rate/review a student", //5
-			"View student reviews", //6
-			"Log out" //7
+			"Log out" //6
 		};
 	private String[] guestOptions = 
 		{
@@ -66,9 +64,11 @@ public class HousingUI {
 			"Sort by number of reviews", //4
 			"Filter by amenities", //5
 			"Filter by price range", //6
-			"View property reviews", //7
-			"View leases", //8
-			"Go back", //9
+			"View leases", //7
+			"View property reviews", //8
+			"View property manager reviews", //9
+			"View student reviews", //10
+			"Go back", //11
 		};
 	private String[] managePropertiesOptions = 
 		{
@@ -94,7 +94,7 @@ public class HousingUI {
 		{
 			"Pool",
 			"Gym",
-			"Pets",
+			"Pet Friendly",
 			"Laundry",
 			"Shuttle"
 		};
@@ -107,25 +107,25 @@ public class HousingUI {
 	public void run() {
 		System.out.println(WELCOME);
 		// Test for Student DataLoader
-// 		ArrayList<Student> students = DataLoader.loadStudent();
-//		for(Student s: students) {
-//			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
-//		}
-//		// Test for Property DataLoader
-//		ArrayList<Property> properties = DataLoader.loadProperties();
-//		for(Property p: properties) {
-//			System.out.println(p.toString()+"\n");
-//		}
-//		//Test for PropertyManager DataLoader
-//		ArrayList<PropertyManager> manager = DataLoader.loadPropertyManager();
-//		for(PropertyManager p: manager) {
-//			System.out.println(p.getUsername()+" " +p.getPassword()+" "+p.getFirstName()+ " "+p.getLastName());
-//		}
-//		//Test for Lease DataLoader
-//		ArrayList<Lease> lease = DataLoader.loadLeases();
-//		for(Lease l: lease) {
-//			System.out.println(l.toString()+"\n");
-//		}
+ 		ArrayList<Student> students = DataLoader.loadStudent();
+		for(Student s: students) {
+			System.out.println(s.getUsername()+" " +s.getPassword()+" "+s.getFirstName()+ " "+s.getLastName());
+		}
+		// Test for Property DataLoader
+		ArrayList<Property> properties = DataLoader.loadProperties();
+		for(Property p: properties) {
+			System.out.println(p.toString()+"\n");
+		}
+		//Test for PropertyManager DataLoader
+		ArrayList<PropertyManager> manager = DataLoader.loadPropertyManager();
+		for(PropertyManager p: manager) {
+			System.out.println(p.getUsername()+" " +p.getPassword()+" "+p.getFirstName()+ " "+p.getLastName());
+		}
+		//Test for Lease DataLoader
+		ArrayList<Lease> lease = DataLoader.loadLeases();
+		for(Lease l: lease) {
+			System.out.println(l.toString()+"\n");
+		}
 		while(true) {
 			user = null;
 			displayMenu(mainMenuOptions);
@@ -200,9 +200,6 @@ public class HousingUI {
 				reviewPropertyManager();
 				break;
 			case 8:
-				viewPropertyManagerReviews();
-				break;
-			case 9:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -237,9 +234,6 @@ public class HousingUI {
 				reviewStudent();
 				break;
 			case 6:
-				viewStudentReviews();
-				break;
-			case 7:
 				System.out.println(LOGOUT);
 				logOut = true;
 				break;
@@ -305,17 +299,6 @@ public class HousingUI {
 			String username = keyboard.nextLine();
 			if(application.usernameInList(username)) {
 				System.out.println("Username is already taken.");
-				displayMenu(tryAgainOptions);
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println(INVALID);
-					break;
-				}
 				continue;
 			}
 			System.out.println("Please enter a password.");
@@ -352,16 +335,7 @@ public class HousingUI {
 			user = application.logIn(username, password);
 			if(user == null) {
 				System.out.println("Incorrect username or password.");
-				int userCommand = getUserCommand(tryAgainOptions.length);
-				switch(userCommand) {
-				case 1:
-					break;
-				case 2:
-					return;
-				default:
-					System.out.println("INVALID");
-					break;
-				}
+				return;
 			}
 		}
 		System.out.println(WELCOME + " " + user.getName());
@@ -404,10 +378,18 @@ public class HousingUI {
 				filterByPriceRange();
 				break;
 			case 7:
-				viewPropertyReviews();
-			case 8:
 				viewLeases();
+				break;
+			case 8:
+				viewPropertyReviews();
+				break;
 			case 9:
+				viewPropertyManagerReviews();
+				break;
+			case 10:
+				viewStudentReviews();
+				break;
+			case 11:
 				goBack = true;
 				break;
 			default:
@@ -558,8 +540,8 @@ public class HousingUI {
 		Property property = application.getProperty(id);
 		System.out.println("Reviewing property " + property.shortToString() + ":");
 		System.out.println("Please enter a rating of the property as an integer between 1 and 5.");
-		int rating = getUserCommand(6);
-		if(rating == -1) {
+		int rating = parseInt(keyboard.nextLine());
+		if(rating < 1 || rating > 5) {
 			System.out.println(INVALID);
 			return;
 		}
@@ -578,10 +560,10 @@ public class HousingUI {
 			return;
 		}
 		PropertyManager propertyManager = application.getPropertyManager(id);
-		System.out.println("Reviewing property manager " + propertyManager.shortToString() + ":");
+		System.out.println("Reviewing property manager " + propertyManager.getName() + ":");
 		System.out.println("Please enter a rating of the property manager as an integer between 1 and 5.");
-		int rating = getUserCommand(6);
-		if(rating == -1) {
+		int rating = parseInt(keyboard.nextLine());
+		if(rating < 1 || rating > 5) {
 			System.out.println(INVALID);
 			return;
 		}
@@ -600,10 +582,10 @@ public class HousingUI {
 			return;
 		}
 		Student student = application.getStudent(id);
-		System.out.println("Reviewing student " + student.shortToString() + ":");
+		System.out.println("Reviewing student " + student.getName() + ":");
 		System.out.println("Please enter a rating of the student as an integer between 1 and 5.");
-		int rating = getUserCommand(6);
-		if(rating == -1) {
+		int rating = parseInt(keyboard.nextLine());
+		if(rating < 1 || rating > 5) {
 			System.out.println(INVALID);
 			return;
 		}
@@ -652,7 +634,7 @@ public class HousingUI {
 	// Prints a lease of a property. 
 	public void viewLeases() {
 		System.out.println("Please enter the ID of the property you wish to view the lease for.");
-		System.out.println(application.viewAllProperties());
+		System.out.println(application.viewAllPropertiesShort());
 		int id = getUserCommand(application.getPropertiesSize() + 1);
 		if(id == -1) {
 			System.out.println(INVALID);
@@ -660,10 +642,10 @@ public class HousingUI {
 		}
 		Property property = application.getProperty(id);
 		if(property.getLease() == null) {
-			System.out.println("Property " + property + " does not have a lease.");
+			System.out.println("Property " + property.getPropertyId() + " does not have a lease.");
 			return;
 		}
-		System.out.println("Lease for Property " + property + ": ");
+		System.out.println("Lease for Property " + property.getPropertyId() + ": ");
 		System.out.println(property.getLease());
 	}
 	
@@ -691,11 +673,11 @@ public class HousingUI {
 		System.out.println("Enter utilities.");
 		String utilities = keyboard.nextLine();
 		System.out.println("Enter price as an integer.");
-		int price = Integer.parseInt(keyboard.nextLine());
+		int price = parseInt(keyboard.nextLine());
 		System.out.println("Enter the number of beds as an integer.");
-		int beds = Integer.parseInt(keyboard.nextLine());
+		int beds = parseInt(keyboard.nextLine());
 		System.out.println("Enter the number of baths as an integer.");
-		int baths = Integer.parseInt(keyboard.nextLine());
+		int baths = parseInt(keyboard.nextLine());
 		System.out.println("Enter a description for the property.");
 		String description = keyboard.nextLine();
 		System.out.println("Enter a contact for the property.");
@@ -709,8 +691,7 @@ public class HousingUI {
 			for(int i = 0; i < amenities.length; i++) {
 				while(true) {
 					System.out.println(amenities[i] + "?");
-					String input = keyboard.nextLine();
-					int command = Integer.parseInt(input);
+					int command = parseInt(keyboard.nextLine());
 					if(command == 1) {
 						ret[i] = true;
 						break;
@@ -729,7 +710,13 @@ public class HousingUI {
 	// Note that the property remains in the system, but is not accessible. 
 	public void deleteExistingProperty() {
 		System.out.println("Please enter the ID of the property you wish to delete.");
-		System.out.println(application.viewAllProperties());
+		if(user.getAccountType() == AccountType.PROPERTYMANAGER) {
+			if(((PropertyManager) user).getMyProperties().size() == 0) {
+				System.out.println("You do not have any properties to delete.");
+				return;
+			}
+		}
+		System.out.println(application.viewMyPropertiesShort(user));
 		int id = getUserCommand(application.getPropertiesSize() + 1);
 		if(id == -1) {
 			System.out.println(INVALID);

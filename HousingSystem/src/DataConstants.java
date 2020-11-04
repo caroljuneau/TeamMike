@@ -49,7 +49,7 @@ public abstract class DataConstants {
 	protected static final String INFO = "info";
 	protected static final String SIGNED = "signed";
 	protected static final String SIGNED_BY_STUDENT_IDS = "signedByStudentIds";
-	protected static final String SIGNED_BY_PROPERTY_MANAGER_IDS = "signedByPropertyManagerIds";
+	protected static final String SIGNED_BY_PROPERTY_MANAGER_ID = "signedByPropertyManagerId";
 	
 	/** Strings to read Review JSON File */
 	protected static final String REVIEWED = "reviewedId";
