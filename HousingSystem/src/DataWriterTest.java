@@ -8,59 +8,52 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class DataWriterTest {
-	private Student student = Student.getInstance();
-	private ArrayList<Student> userList = Student.getUsers();
+public class DataWriterTest {
+	private StudentList student = StudentList.getInstance();
+	private ArrayList<Student> studentList = student.getStudents();
 	
 	@BeforeEach
 	public void setup() {
-		Student.getInstance().getUsers().clear();
+		StudentList.getInstance().getStudents().clear();
 		DataWriter.saveStudent();
 	}
 	
 	@AfterEach
 	public void tearDown() {
-		Student.getInstance().getUsers().clear();
+		StudentList.getInstance().getStudents().clear();
 		DataWriter.saveStudent();
 	}
 	
 	
 	@Test
-	void testWritingZeroUsers() {
-		userList = DataLoader.getStudent();
-		assertEquals(0, userList.size());
+	void testWritingZeroStudents() {
+		studentList = DataLoader.loadStudent();
+		assertEquals(0, studentList.size());
 	}
 
 	@Test
-	void testWritingOneUser() {
-		userList.add(new User("asmith", "Amy", "Smith", 19, "803-454-3344"));
+	void testWritingOneStudent() {
+		studentList.add(new Student(1, "username1", "password1", "first1", "last1", "email1", "phone1", "id1"));
 		DataWriter.saveStudent();
-		assertEquals("asmith", DataLoader.getStudent().get(0).getUserName());
+		assertEquals("username1", DataLoader.loadStudent().get(0).getUsername());
 	}
 	
 	@Test
-	void testWritingFiveUsers() {
-		userList.add(new Student("asmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("bsmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("csmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("dsmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("esmith", "Amy", "Smith", 19, "803-454-3344"));
+	void testWritingFiveStudents() {
+		studentList.add(new Student(1, "username1", "password1", "first1", "last1", "email1", "phone1", "id1"));
+		studentList.add(new Student(2, "username2", "password2", "first2", "last2", "email2", "phone2", "id2"));
+		studentList.add(new Student(3, "username3", "password3", "first3", "last3", "email3", "phone3", "id3"));
+		studentList.add(new Student(4, "username4", "password4", "first4", "last4", "email4", "phone4", "id4"));
+		studentList.add(new Student(5, "username5", "password5", "first5", "last5", "email5", "phone5", "id5"));
 		DataWriter.saveStudent();
-		assertEquals("esmith", DataLoader.getUsers().get(4).getUserName());
+		assertEquals("username5", DataLoader.loadStudent().get(4).getUsername());
 	}
 	
 	@Test
-	void testWritingEmptyUser() {
-		userList.add(new Student("", "", "", 0, ""));
+	void testWritingEmptyStudent() {
+		studentList.add(new Student(0, "", "", "", "", "", "", ""));
 		DataWriter.saveStudent();
-		assertEquals("", DataLoader.getUsers().get(0).getUserName());
-	}
-	
-	@Test
-	void testWritingNullUser() {
-		userList.add(new Student(null, "", "", 0, ""));
-		DataWriter.saveStudent();
-		assertEquals(null, DataLoader.getUsers().get(0).getUserName());
+		assertEquals("", DataLoader.loadStudent().get(0).getUsername());
 	}
 	
 }

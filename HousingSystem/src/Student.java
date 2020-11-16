@@ -49,6 +49,10 @@ public class Student extends Account {
 		favProperties.add(property);
 	}
 	
+	public String getUsername() {
+		return username;
+	}
+	
 //	public String toString() {
 //		String s;
 //		s = super.toString();
