@@ -52,6 +52,16 @@ public class ReviewList {
 		}
 		return typeReviews;
 	}
+	
+	public boolean haveUser(String userName) {
+		for(Review r : reviews) {
+			if(r.getUsername().equals(userName)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 
 }

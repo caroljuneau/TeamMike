@@ -41,4 +41,14 @@ public class LeaseList {
 		DataWriter.saveReview();
 		return lease;
 	}
+	
+	public boolean haveFees(String fees) {
+		for(Lease l : leases) {
+			if(l.getFees().equals(fees)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

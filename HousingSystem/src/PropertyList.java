@@ -43,4 +43,14 @@ public class PropertyList {
 	public boolean removeProperty(Property property) {
 		return properties.remove(property);
 	}
+	
+	public boolean haveLocation(String location) {
+		for(Property p : properties) {
+			if(p.getLocation().equals(location)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
