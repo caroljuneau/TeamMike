@@ -9,58 +9,33 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StudentTest {
-	private Student student = Student.getInstance();
-	private ArrayList<Student> userList = Student.getUsers();
+	private StudentList student = StudentList.getInstance();
+	private ArrayList<Student> studentList = student.getStudents();
 	
 	@BeforeEach
 	public void setup() {
-		Student.getInstance().getUsers().clear();
+		studentList.clear();
+		studentList.add(new Student(1, "username1", "password1", "first1", "last1", "email1", "phone1", "id1"));
+		studentList.add(new Student(2, "username2", "password2", "first2", "last2", "email2", "phone2", "id2"));
 		DataWriter.saveStudent();
 	}
 	
 	@AfterEach
 	public void tearDown() {
-		Student.getInstance().getUsers().clear();
+		StudentList.getInstance().getStudents().clear();
 		DataWriter.saveStudent();
 	}
 	
-	
 	@Test
-	void testWritingZeroUsers() {
-		userList = DataLoader.getStudent();
-		assertEquals(0, userList.size());
-	}
-
-	@Test
-	void testWritingOneUser() {
-		userList.add(new User("asmith", "Amy", "Smith", 19, "803-454-3344"));
-		DataWriter.saveStudent();
-		assertEquals("asmith", DataLoader.getStudent().get(0).getUserName());
+	void testHaveValidFirstReviewUser() {
+		boolean idcheck1 = student.usernameInList("username1");
+		assertTrue(idcheck1);
 	}
 	
 	@Test
-	void testWritingFiveUsers() {
-		userList.add(new Student("asmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("bsmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("csmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("dsmith", "Amy", "Smith", 19, "803-454-3344"));
-		userList.add(new Student("esmith", "Amy", "Smith", 19, "803-454-3344"));
-		DataWriter.saveStudent();
-		assertEquals("esmith", DataLoader.getUsers().get(4).getUserName());
-	}
-	
-	@Test
-	void testWritingEmptyUser() {
-		userList.add(new Student("", "", "", 0, ""));
-		DataWriter.saveStudent();
-		assertEquals("", DataLoader.getUsers().get(0).getUserName());
-	}
-	
-	@Test
-	void testWritingNullUser() {
-		userList.add(new Student(null, "", "", 0, ""));
-		DataWriter.saveStudent();
-		assertEquals(null, DataLoader.getUsers().get(0).getUserName());
+	void testHaveValidSecondReviewUser() {
+		boolean idcheck2 = student.usernameInList("username2");
+		assertTrue(idcheck2);
 	}
 	
 }
