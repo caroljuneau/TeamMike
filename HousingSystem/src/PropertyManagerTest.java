@@ -16,7 +16,7 @@ public class PropertyManagerTest {
 		myProperties.clear();
 		myProperties.add(new PropertyManager(1, "Username1", "Password1", "First1", "Last1", "Email1", "Phone1"));
 		myProperties.add(new PropertyManager(2, "Username2", "Password2", "First2", "Last2", "Email2", "Phone2"));
-		DataWriter.saveReview();
+		DataWriter.savePropertyManager();
 	}
 	
 	@AfterEach
