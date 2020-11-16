@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class LeaseTest {
 	private LeaseList lease = LeaseList.getInstance();
 	private ArrayList<Lease> leaseList = lease.getLeases();
-	
+
 	@BeforeEach
 	public void setup() {
 		leaseList.clear();
@@ -19,22 +19,22 @@ public class LeaseTest {
 		leaseList.add(new Lease(2, 2, "fees2", "repairs2", "termination2", "info2"));
 		DataWriter.saveLease();
 	}
-	
+
 	@AfterEach
 	public void tearDown() {
 		LeaseList.getInstance().getLeases().clear();
 		DataWriter.saveLease();
 	}
-	
-	
+
+
 	@Test
-	void testHaveValidFirstReviewUser() {
+	void testHaveValidFirstFee() {
 		boolean idcheck1 = lease.haveFees("fees1");
 		assertTrue(idcheck1);
 	}
-	
+
 	@Test
-	void testHaveValidSecondReviewUser() {
+	void testHaveValidSecondFee() {
 		boolean idcheck2 = lease.haveFees("fees2");
 		assertTrue(idcheck2);
 	}
