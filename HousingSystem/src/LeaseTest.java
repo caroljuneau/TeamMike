@@ -38,4 +38,40 @@ public class LeaseTest {
 		boolean idcheck2 = lease.haveFees("fees2");
 		assertTrue(idcheck2);
 	}
+	
+	@Test
+	void testHaveValidFirstRepairs() {
+		boolean repaircheck1 = lease.haveRepairs("repairs1");
+		assertTrue(repaircheck1);
+	}
+	
+	@Test
+	void testHaveValidSecondRepairs() {
+		boolean repaircheck2 = lease.haveRepairs("repairs2");
+		assertTrue(repaircheck2);
+	}
+	
+	@Test
+	void testHaveValidFirstTermination() {
+		boolean terminationcheck1 = lease.haveTermination("termination1");
+		assertTrue(terminationcheck1);
+	}
+	
+	@Test
+	void testHaveValidSecondTermination() {
+		boolean terminationcheck2 = lease.haveTermination("termination2");
+		assertTrue(terminationcheck2);
+	}
+	
+	@Test
+	void testHaveValidFirstInfo() {
+		boolean infocheck1 = lease.haveInfo("info1");
+		assertTrue(infocheck1);
+	}
+	
+	@Test
+	void testHaveValidSecondInfo() {
+		boolean infocheck2 = lease.haveInfo("info2");
+		assertTrue(infocheck2);
+	}
 }

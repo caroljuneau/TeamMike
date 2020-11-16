@@ -51,4 +51,34 @@ public class LeaseList {
 		
 		return false;
 	}
+	
+	public boolean haveRepairs(String repairs) {
+		for(Lease l : leases) {
+			if(l.getRepairs().equals(repairs)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean haveTermination(String termination) {
+		for(Lease l : leases) {
+			if(l.getTermination().equals(termination)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean haveInfo(String info) {
+		for(Lease l : leases) {
+			if(l.getInfo().equals(info)) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
