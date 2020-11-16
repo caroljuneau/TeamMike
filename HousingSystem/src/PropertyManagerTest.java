@@ -28,7 +28,7 @@ public class PropertyManagerTest {
 	
 	@Test
 	void testHaveValidFirstUsername() {
-		boolean idcheck1 = propertyManager.usernameInList("Username");
+		boolean idcheck1 = propertyManager.usernameInList("Username1");
 		assertTrue(idcheck1);
 	}
 	
