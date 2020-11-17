@@ -74,4 +74,42 @@ public class LeaseTest {
 		boolean infocheck2 = lease.haveInfo("info2");
 		assertTrue(infocheck2);
 	}
+	// start of chris test
+	@Test
+	void testHaveInvalidInfo() {
+		boolean hasInfo = lease.haveInfo("info3");
+		assertFalse(hasInfo);
+	}
+	
+	@Test
+	void testHaveEmptyInfo() {
+		boolean hasEmpty = lease.haveInfo("");
+		assertFalse(hasEmpty);
+	}
+	
+	@Test
+	void testHaveNullInfol() {
+		boolean hasNull = lease.haveInfo("");
+		assertFalse(hasNull);
+	}
+	
+	@Test
+	void testCreateValidLease() {
+		int leaseId = 3;
+		Lease l = new Lease(leaseId, leaseId, "fees3", "repairs3", "termination3", "info3");
+		leaseList.add(l);
+		assertEquals(l, lease.getLease(leaseId));
+	}
+	
+	@Test
+	void testCreateDuplicateLease() {
+		boolean isCreated = leaseList.add(new Lease(3, 3, "fees3", "repairs3", "termination3", "info3"));
+		assertFalse(isCreated);
+	}
+	
+	@Test
+	void testCreateEmptyLease() {
+		boolean isCreated = leaseList.add(new Lease(0, 0, null, null, null, null));
+		assertFalse(isCreated);
+	}
 }
