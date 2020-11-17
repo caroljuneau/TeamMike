@@ -55,4 +55,23 @@ public class PropertyManagerTest {
 		boolean hasNull = propertyManager.usernameInList(null);
 		assertFalse(hasNull);
 	}
+	
+	@Test
+	void testCreateValidPropertyManager() {
+		myProperties.add(new PropertyManager(3, "clwalls3", "Password1", "Chris", "Walls", "@null", "#####"));
+		boolean hasChris = propertyManager.usernameInList("clwalls3");
+		assertTrue(hasChris);
+	}
+	
+	@Test
+	void testCreateDuplicatePropertyManager() {
+		boolean isCreated = myProperties.add(new PropertyManager(3, "clwalls3", "Password1", "Chris", "Walls", "@null", "#####"));
+		assertFalse(isCreated);
+	}
+	
+	@Test
+	void testCreateEmptyPropertyManager() {
+		boolean isCreated = myProperties.add(new PropertyManager(0, null, null, null, null, null, null));
+		assertFalse(isCreated);
+	}
 }
