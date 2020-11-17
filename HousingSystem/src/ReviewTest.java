@@ -37,4 +37,43 @@ public class ReviewTest {
 		boolean idcheck2 = review.haveUser("Chazz Henry");
 		assertTrue(idcheck2);
 	}
+	
+	@Test
+	void testHaveReviewUserInvalid() {
+		boolean hasChris = review.haveUser("Chris Henry");
+		assertFalse(hasChris);
+	}
+	
+	@Test
+	void testHaveReviewUserEmpty() {
+		boolean hasEmpty = review.haveUser("");
+		assertFalse(hasEmpty);
+	}
+	
+	@Test
+	void testHaveReviewUserNull() {
+		boolean hasNull = review.haveUser(null);
+		assertFalse(hasNull);
+	}
+	
+	@Test
+	void testCreateValidReview() {
+		int reviewId = 3;
+		Review r = new Review(reviewId, 3, type, 5, "clwalls2", "nice plot :)");
+		reviewList.add(r);
+		assertEquals(r, review.getReview(reviewId));
+	}
+	
+	@Test
+	void testCreateDuplicateReview() {
+		boolean isCreated = reviewList.add(new Review(1, 1, type, 1, "Chase Henry", "Description"));
+		assertFalse(isCreated);
+	}
+	
+	@Test
+	void testCreateEmptyReview() {
+		boolean isCreated = reviewList.add(new Review(0, 0, type, 0, null, null));
+		assertFalse(isCreated);
+	}
+	
 }

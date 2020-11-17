@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 class StudentTest {
 	private StudentList student = StudentList.getInstance();
 	private ArrayList<Student> studentList = student.getStudents();
+	private HousingApplication app = new HousingApplication();
 	
 	@BeforeEach
 	public void setup() {
@@ -55,6 +56,14 @@ class StudentTest {
 		boolean hasNull = student.usernameInList(null);
 		assertFalse(hasNull);
 	}
+	
+//	@Test
+//	void testCreateValidAccount() {
+//		studentList.add(new Student(3, "clwalls2", "password", "chris", "walls", "clwalls@email.sc.edu", "####", "id3"));
+//		app.logIn("clwalls2", "password");
+//		
+//		
+//	}
 	/**
 	 * maybe add addFavoriteProperty and addLease test, or do in
 	 * those classes.
