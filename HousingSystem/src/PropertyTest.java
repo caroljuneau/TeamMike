@@ -87,4 +87,12 @@ public class PropertyTest {
 		boolean isCreated = propertyList.add(null);
 		assertFalse(isCreated);
 	}
+	
+	@Test
+	void testRemoveProperty() {
+		Property p = new Property(3, TRUE, "water", "1 Test st", 400, 2, 2, "on the riverk", "N/A", true);
+		propertyList.add(p);
+		boolean remove = property.removeProperty(p);
+		assertTrue(remove);
+	}
 }
