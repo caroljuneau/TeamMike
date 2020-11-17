@@ -41,8 +41,8 @@ class StudentTest {
 	
 	@Test
 	void testHaveUserInvalid() {
-		boolean hasJoe = student.usernameInList("bob");
-		assertFalse(hasJoe);
+		boolean hasJoey = student.usernameInList("joey");
+		assertFalse(hasJoey);
 	}
 	
 	@Test
