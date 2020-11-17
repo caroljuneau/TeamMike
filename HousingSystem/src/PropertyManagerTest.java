@@ -37,4 +37,22 @@ public class PropertyManagerTest {
 		boolean idcheck2 = propertyManager.usernameInList("Username2");
 		assertTrue(idcheck2);
 	}
+	
+	@Test
+	void testHaveUserInvalid() {
+		boolean hasChris = propertyManager.usernameInList("chris");
+		assertFalse(hasChris);
+	}
+	
+	@Test
+	void testHaveUserEmpty() {
+		boolean hasEmpty = propertyManager.usernameInList("");
+		assertFalse(hasEmpty);
+	}
+	
+	@Test
+	void testHaveUserNull() {
+		boolean hasNull = propertyManager.usernameInList(null);
+		assertFalse(hasNull);
+	}
 }
