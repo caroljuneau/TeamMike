@@ -15,8 +15,8 @@ class StudentTest {
 	@BeforeEach
 	public void setup() {
 		studentList.clear();
-		studentList.add(new Student(1, "username1", "password1", "first1", "last1", "email1", "phone1", "id1"));
-		studentList.add(new Student(2, "username2", "password2", "first2", "last2", "email2", "phone2", "id2"));
+		studentList.add(new Student(1, "joe", "password1", "first1", "last1", "email1", "phone1", "id1"));
+		studentList.add(new Student(2, "bob", "password2", "first2", "last2", "email2", "phone2", "id2"));
 		DataWriter.saveStudent();
 	}
 	
@@ -28,14 +28,37 @@ class StudentTest {
 	
 	@Test
 	void testHaveValidFirstReviewUser() {
-		boolean idcheck1 = student.usernameInList("username1");
-		assertTrue(idcheck1);
+		boolean hasJoe = student.usernameInList("joe");
+		assertTrue(hasJoe);
 	}
 	
 	@Test
 	void testHaveValidSecondReviewUser() {
-		boolean idcheck2 = student.usernameInList("username2");
-		assertTrue(idcheck2);
+		boolean hasBob = student.usernameInList("bob");
+		assertTrue(hasBob);
 	}
+	
+	@Test
+	void testHaveUserInvalid() {
+		boolean hasJoe = student.usernameInList("bob");
+		assertFalse(hasJoe);
+	}
+	
+	@Test
+	void testHaveUserEmpty() {
+		boolean hasEmpty = student.usernameInList("");
+		assertFalse(hasEmpty);
+	}
+	
+	@Test
+	void testHaveUserNull() {
+		boolean hasNull = student.usernameInList(null);
+		assertFalse(hasNull);
+	}
+	/**
+	 * maybe add addFavoriteProperty and addLease test, or do in
+	 * those classes.
+	 */
+	
 	
 }
